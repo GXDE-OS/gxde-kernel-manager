@@ -6,16 +6,16 @@ VERSION=$(grep 'Kernel Configuration' < config | awk '{print $3}')
 sed -i "/deb-src/s/# //g" /etc/apt/sources.list
 
 # install dep
-apt update
-apt install -y wget xz-utils make gcc flex bison dpkg-dev bc rsync kmod cpio libssl-dev
-apt build-dep -y linux
+sudo apt update
+sudo apt install -y wget xz-utils make gcc flex bison dpkg-dev bc rsync kmod cpio libssl-dev git lsb vim libelf-dev
+sudo apt build-dep -y linux
 
 # change dir to workplace
 cd "${GITHUB_WORKSPACE}" || exit
 
 # download kernel source
-wget http://www.kernel.org/pub/linux/kernel/v5.x/linux-"$VERSION".tar.xz
-tar -xf linux-"$VERSION".tar.xz
+wget http://www.kernel.org/pub/linux/kernel/v6.x/linux-6.3.5.tar.gz  
+tar -xf linux-"$VERSION".tar.gz
 cd linux-"$VERSION" || exit
 
 # copy config file
@@ -23,14 +23,14 @@ cp ../config .config
 
 # disable DEBUG_INFO to speedup build
 scripts/config --disable DEBUG_INFO
-
+scripts/config --set-str SYSTEM_TRUSTED_KEYS ""
 # apply patches
 # shellcheck source=src/util.sh
-source ../patch.d/*.sh
+# source ../patch.d/*.sh
 
 # build deb packages
 CPU_CORES=$(($(grep -c processor < /proc/cpuinfo)*2))
-make deb-pkg -j"$CPU_CORES"
+sudo make bindeb-pkg -j"$CPU_CORES"
 
 # move deb packages to artifact dir
 cd ..
