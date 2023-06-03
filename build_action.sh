@@ -20,7 +20,7 @@ cd linux-"$VERSION" || exit
 
 # copy config file
 cp ../config .config
-
+#
 # disable DEBUG_INFO to speedup build
 scripts/config --disable DEBUG_INFO
 scripts/config --set-str SYSTEM_TRUSTED_KEYS ""
