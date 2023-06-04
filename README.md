@@ -18,6 +18,9 @@
 
 Enjoy～ :grin:
 
+qq交流群：851323386
+![2023-06-04_12-07](https://github.com/XXTX-TOP/Linux-kernel_deb_builder/assets/69441812/1f737dc8-a4cd-4a22-8231-6681687cded4)
+
 了解更多请看：
 
 [利用 GitHub Actions 自动构建 Linux 内核为 deb 包](https://www.debuggerx.com/2021/08/17/Using-github-actions-to-build-kernel-deb-packages/)
