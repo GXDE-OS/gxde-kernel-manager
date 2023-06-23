@@ -38,9 +38,10 @@ mkdir "artifact"
 git clone https://gfdgd-xi:$PASSWORD@github.com/gfdgd-xi/dclc-kernel
 #cd dclc-kernel
 mkdir dclc-kernel/$VERSION
-mv */*.deb dclc-kernel/$VERSION
+mv ./*.deb dclc-kernel/$VERSION
 cd dclc-kernel/$VERSION
 bash ./repack-zstd --scan .
+./build.py
 git add .
 git config --global user.email 3025613752@qq.com
 git config --global user.name gfdgd-xi
