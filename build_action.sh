@@ -38,6 +38,7 @@ mkdir "artifact"
 git clone https://gfdgd-xi:$PASSWORD@github.com/gfdgd-xi/dclc-kernel
 #cd dclc-kernel
 mkdir dclc-kernel/$VERSION
+rm -rfv *dbg*.deb
 mv ./*.deb dclc-kernel/$VERSION
 cd dclc-kernel/$VERSION
 bash ./repack-zstd --scan .
