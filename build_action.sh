@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
 VERSION=$(grep 'Kernel Configuration' < config | awk '{print $3}')
-
 # add deb-src to sources.list
 sed -i "/deb-src/s/# //g" /etc/apt/sources.list
 
@@ -14,7 +13,7 @@ sudo apt build-dep -y linux
 cd "${GITHUB_WORKSPACE}" || exit
 
 # download kernel source
-wget http://www.kernel.org/pub/linux/kernel/v6.x/linux-6.3.8.tar.gz  
+wget http://www.kernel.org/pub/linux/kernel/v6.x/linux-$VERSION.tar.gz  
 tar -xf linux-"$VERSION".tar.gz
 cd linux-"$VERSION" || exit
 
@@ -35,4 +34,15 @@ sudo make bindeb-pkg -j"$CPU_CORES"
 # move deb packages to artifact dir
 cd ..
 mkdir "artifact"
-mv ./*.deb artifact/
+#cp ./*.deb artifact/
+git clone https://gfdgd-xi:$PASSWORD@github.com/gfdgd-xi/dclc-kernel
+#cd dclc-kernel
+mkdir dclc-kernel/$VERSION
+mv */*.deb dclc-kernel/$VERSION
+cd dclc-kernel/$VERSION
+bash ./repack-zstd --scan .
+git add .
+git config --global user.email 3025613752@qq.com
+git config --global user.name gfdgd-xi
+git commit -m 提交$VERSION
+git push
