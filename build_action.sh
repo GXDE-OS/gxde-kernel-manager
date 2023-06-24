@@ -41,7 +41,7 @@ mkdir dclc-kernel/$VERSION
 rm -rfv *dbg*.deb
 mv ./*.deb dclc-kernel/$VERSION
 cd dclc-kernel/$VERSION
-bash ./repack-zstd --scan .
+bash ./repack-zstd --scan ..
 ./build.py
 git add .
 git config --global user.email 3025613752@qq.com
