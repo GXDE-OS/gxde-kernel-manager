@@ -13,7 +13,7 @@ sudo apt build-dep -y linux
 cd "${GITHUB_WORKSPACE}" || exit
 
 # download kernel source
-wget http://www.kernel.org/pub/linux/kernel/v5.x/linux-$VERSION.tar.gz  
+wget http://www.kernel.org/pub/linux/kernel/v6.x/linux-$VERSION.tar.gz  
 tar -xf linux-"$VERSION".tar.gz
 cd linux-"$VERSION" || exit
 
