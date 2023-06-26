@@ -1,7 +1,7 @@
-name: Build kernel deb packages(6)
+name: Build kernel deb packages(7)
 on:
   schedule:
-    - cron: '0 0 * * *'
+    - cron: '0 21 * * *'
   workflow_dispatch:
 
 jobs:
@@ -26,4 +26,4 @@ jobs:
       - name: Build
         env: 
           PASSWORD: ${{ secrets.PASSWORD }}
-        run: bash build_action.sh 6
+        run: bash build_action.sh 7
