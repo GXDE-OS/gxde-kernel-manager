@@ -5,7 +5,7 @@ sudo apt install python3-pyquery -y
 python3 get-newest-version.py $1
 #VERSION=$(grep 'Kernel Configuration' < config | awk '{print $3}')
 # add deb-src to sources.list
-
+MAINVERSION=$1
 VERSION=`cat /tmp/kernelversion.txt`
 URL=`cat /tmp/kernelurl.txt`
 curl https://github.com/gfdgd-xi/dclc-kernel/raw/main/$VERSION/index.html | grep 404
@@ -36,7 +36,7 @@ scripts/config --set-str SYSTEM_TRUSTED_KEYS ""
 
 # build deb packages
 CPU_CORES=$(($(grep -c processor < /proc/cpuinfo)*2))
-#sudo make bindeb-pkg -j"$CPU_CORES"
+sudo make bindeb-pkg -j"$CPU_CORES"
 
 # move deb packages to artifact dir
 cd ..
@@ -46,11 +46,11 @@ git clone https://gfdgd-xi:$PASSWORD@github.com/gfdgd-xi/dclc-kernel
 #cd dclc-kernel
 mkdir dclc-kernel/$VERSION
 rm -rfv *dbg*.deb
-#mv ./*.deb dclc-kernel/$VERSION
+mv ./*.deb dclc-kernel/$VERSION
 cd dclc-kernel/$VERSION
 cd ..
 cd head
-cat > deb/DEBIAN/control <<EOF
+cat > deb-/DEBIAN/control <<EOF
 Package: linux-kernel-dclc-gfdgdxi
 Version: $VERSION
 Maintainer: gfdgd xi <3025613752@qq.com>
@@ -66,7 +66,24 @@ Section: utils
 Installed-Size: 0
 Description: 内核（虚包）
 EOF
+cat > deb-$MAINVERSION/DEBIAN/control <<EOF
+Package: linux-kernel-dclc-gfdgdxi-$MAINVERSION
+Version: $VERSION
+Maintainer: gfdgd xi <3025613752@qq.com>
+Homepage: https://github.com/gfdgd-xi/dclc-kernel
+Architecture: amd64
+Severity: serious
+Certainty: possible
+Check: binaries
+Type: binary, udeb
+Priority: optional
+Depends: linux-headers-$VERSION-amd64-desktop, linux-image-$VERSION-amd64-desktop
+Section: utils
+Installed-Size: 0
+Description: 内核（虚包）
+EOF
 dpkg -b deb linux-kernel-dclc-gfdgdxi_${VERSION}_amd64.deb
+dpkg -b deb-$MAINVERSION linux-kernel-dclc-gfdgdxi-$MAINVERSION_${VERSION}_amd64.deb
 cd ..
 bash ./repack-zstd --scan .
 ./build.py
