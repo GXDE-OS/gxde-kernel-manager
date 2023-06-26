@@ -1,11 +1,18 @@
 #!/usr/bin/env bash
-
-VERSION=$(grep 'Kernel Configuration' < config | awk '{print $3}')
-# add deb-src to sources.list
 sed -i "/deb-src/s/# //g" /etc/apt/sources.list
-
-# install dep
 sudo apt update
+sudo apt install python3-pyquery -y
+python3 get-newest-version.py $1
+#VERSION=$(grep 'Kernel Configuration' < config | awk '{print $3}')
+# add deb-src to sources.list
+
+VERSION=`cat /tmp/kernelversion.txt`
+URL=`cat /tmp/kernelurl.txt`
+curl https://github.com/gfdgd-xi/dclc-kernel/raw/main/$VERSION/index.html
+if [[ $? == 0 ]]; then
+    exit
+fi
+# install dep
 sudo apt install -y wget xz-utils make gcc flex bison dpkg-dev bc rsync kmod cpio libssl-dev git lsb vim libelf-dev
 sudo apt build-dep -y linux
 
@@ -13,7 +20,7 @@ sudo apt build-dep -y linux
 cd "${GITHUB_WORKSPACE}" || exit
 
 # download kernel source
-wget http://www.kernel.org/pub/linux/kernel/v6.x/linux-$VERSION.tar.gz  
+wget $URL  
 tar -xf linux-"$VERSION".tar.gz
 cd linux-"$VERSION" || exit
 
