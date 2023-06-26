@@ -8,8 +8,8 @@ python3 get-newest-version.py $1
 
 VERSION=`cat /tmp/kernelversion.txt`
 URL=`cat /tmp/kernelurl.txt`
-curl https://github.com/gfdgd-xi/dclc-kernel/raw/main/$VERSION/index.html
-if [[ $? == 0 ]]; then
+curl https://github.com/gfdgd-xi/dclc-kernel/raw/main/$VERSION/index.html | grep 404
+if [[ $? != 0 ]]; then
     exit
 fi
 # install dep
@@ -48,7 +48,27 @@ mkdir dclc-kernel/$VERSION
 rm -rfv *dbg*.deb
 mv ./*.deb dclc-kernel/$VERSION
 cd dclc-kernel/$VERSION
-bash ./repack-zstd --scan ..
+cd ..
+cd head
+cat > deb/DEBIAN/control <<EOF
+Package: linux-kernel-dclc-gfdgdxi
+Version: $VERSION
+Maintainer: gfdgd xi <3025613752@qq.com>
+Homepage: https://github.com/gfdgd-xi/dclc-kernel
+Architecture: amd64
+Severity: serious
+Certainty: possible
+Check: binaries
+Type: binary, udeb
+Priority: optional
+Depends: linux-headers-$VERSION-amd64-desktop, linux-image-$VERSION-amd64-desktop
+Section: utils
+Installed-Size: 0
+Description: 内核（虚包）
+EOF
+dpkg -b deb linux-kernel-dclc-gfdgdxi_${VERSION}_amd64.deb
+cd ..
+bash ./repack-zstd --scan .
 ./build.py
 git add .
 git config --global user.email 3025613752@qq.com
