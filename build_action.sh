@@ -21,7 +21,7 @@ cd "${GITHUB_WORKSPACE}" || exit
 
 # download kernel source
 wget $URL  
-tar -xf linux-"$VERSION".tar.gz
+tar -xf linux-"$VERSION".tar.xz
 cd linux-"$VERSION" || exit
 
 # copy config file
@@ -36,7 +36,7 @@ scripts/config --set-str SYSTEM_TRUSTED_KEYS ""
 
 # build deb packages
 CPU_CORES=$(($(grep -c processor < /proc/cpuinfo)*2))
-sudo make bindeb-pkg -j"$CPU_CORES"
+#sudo make bindeb-pkg -j"$CPU_CORES"
 
 # move deb packages to artifact dir
 cd ..
@@ -46,7 +46,7 @@ git clone https://gfdgd-xi:$PASSWORD@github.com/gfdgd-xi/dclc-kernel
 #cd dclc-kernel
 mkdir dclc-kernel/$VERSION
 rm -rfv *dbg*.deb
-mv ./*.deb dclc-kernel/$VERSION
+#mv ./*.deb dclc-kernel/$VERSION
 cd dclc-kernel/$VERSION
 cd ..
 cd head
