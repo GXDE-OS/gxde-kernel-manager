@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 sed -i "/deb-src/s/# //g" /etc/apt/sources.list
 sudo apt update
-sudo apt install python3-pyquery -y
+sudo apt install python3-pyquery python3-requests -y
 python3 get-newest-version-xanmod.py $1
 curl https://www.xanmod.org/
 exit
