@@ -9,6 +9,7 @@ temp = 0
 newestVersion = "0.0.0"
 newestUrl = ""
 for i in programVersionList(f"#content div.page div.level3 :first-child td a").items():
+    print(i)
     if ".tar" in i.attr.href:
         if temp == mainVersion:
             newestVersion = os.path.splitext(os.path.splitext(os.path.basename(i.attr.href))[0])[0]

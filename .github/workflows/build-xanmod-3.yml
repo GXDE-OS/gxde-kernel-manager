@@ -1,7 +1,7 @@
 name: Build Xanmod kernel deb packages(3)
 on:
   schedule:
-    - cron: '0 9 * * *'
+    - cron: '0 13 * * *'
   workflow_dispatch:
 
 jobs:
