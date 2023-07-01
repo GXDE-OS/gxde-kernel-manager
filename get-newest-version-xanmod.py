@@ -4,6 +4,7 @@ import sys
 import pyquery
 mainVersion = int(sys.argv[1])
 programVersionList = pyquery.PyQuery(url=f"https://www.xanmod.org/")
+print(programVersionList)
 #release = pyquery.PyQuery()
 temp = 0
 newestVersion = "0.0.0"
