@@ -22,27 +22,10 @@ for i in programVersionList(f"#content div.page div.level3 :first-child td a").i
             newestVersion = os.path.splitext(os.path.splitext(os.path.basename(i.attr.href))[0])[0]
             newestUrl = i.attr.href
             break
+        temp += 1
     #print(i)
-for i in programVersionList(f"#content div.page div.level3 table a").items():
-    break
-    print(i)
-    continue
-    version = i("td strong").text()
-    if temp == mainVersion:
-        #print(version)
-        newestVersion = version
-        break
-    temp += 1
 
-temp = 0
-for i in programVersionList(f"#releases tr :nth-child(4)").items():
-    url = i("td a").attr.href
-    if temp == mainVersion:
-        newestUrl = url
-        break
-    temp += 1
 print(newestVersion)
-
 print(newestUrl)
 with open("/tmp/kernelversion.txt", "w") as file:
     file.write(newestVersion)
