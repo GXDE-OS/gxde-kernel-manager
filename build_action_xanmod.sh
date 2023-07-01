@@ -2,10 +2,10 @@
 sed -i "/deb-src/s/# //g" /etc/apt/sources.list
 sudo apt update
 sudo apt install python3-pyquery -y
-python3 get-newest-version.py $1
+python3 get-newest-version-xanmod.py $1
 #VERSION=$(grep 'Kernel Configuration' < config | awk '{print $3}')
 # add deb-src to sources.list
-
+#$1
 VERSION=`cat /tmp/kernelversion.txt`
 URL=`cat /tmp/kernelurl.txt`
 MAINVERSION=`expr substr $VERSION 1 1`
@@ -22,8 +22,8 @@ cd "${GITHUB_WORKSPACE}" || exit
 
 # download kernel source
 wget $URL  
-tar -xvf linux-"$VERSION".tar.xz
-cd linux-"$VERSION" || exit
+tar -xvf "$VERSION".tar.bz2
+cd "$VERSION" || exit
 
 # copy config file
 cp ../config .config
@@ -52,7 +52,7 @@ cd dclc-kernel/$VERSION
 cd ..
 cd head
 cat > deb/DEBIAN/control <<EOF
-Package: linux-kernel-dclc-gfdgdxi
+Package: linux-kernel-dclc-gfdgdxi-xanmod
 Version: $VERSION
 Maintainer: gfdgd xi <3025613752@qq.com>
 Homepage: https://github.com/gfdgd-xi/dclc-kernel
@@ -67,11 +67,11 @@ Section: utils
 Installed-Size: 0
 Description: 内核（虚包）
 EOF
-if [[ ! -d deb-$MAINVERSION ]]; then
-    mkdir -pv deb-$MAINVERSION/DEBIAN
+if [[ ! -d deb-$MAINVERSION-xanmod ]]; then
+    mkdir -pv deb-$MAINVERSION-xanmod/DEBIAN
 fi
-cat > deb-$MAINVERSION/DEBIAN/control <<EOF
-Package: linux-kernel-dclc-gfdgdxi-$MAINVERSION
+cat > deb-$MAINVERSION-xanmod/DEBIAN/control <<EOF
+Package: linux-kernel-dclc-gfdgdxi-$MAINVERSION-xanmod
 Version: $VERSION
 Maintainer: gfdgd xi <3025613752@qq.com>
 Homepage: https://github.com/gfdgd-xi/dclc-kernel
@@ -86,8 +86,8 @@ Section: utils
 Installed-Size: 0
 Description: 内核（虚包）
 EOF
-dpkg -b deb linux-kernel-dclc-gfdgdxi_${VERSION}_amd64.deb
-dpkg -b deb-$MAINVERSION linux-kernel-dclc-gfdgdxi-$MAINVERSION_${VERSION}_amd64.deb
+dpkg -b deb linux-kernel-dclc-gfdgdxi-xanmod_${VERSION}_amd64.deb
+dpkg -b deb-$MAINVERSION-xanmod linux-kernel-dclc-gfdgdxi-xanmod-$MAINVERSION_${VERSION}_amd64.deb
 cd ..
 bash ./repack-zstd --scan .
 ./build.py
