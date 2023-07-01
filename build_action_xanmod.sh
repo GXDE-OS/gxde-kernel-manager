@@ -3,6 +3,7 @@ sed -i "/deb-src/s/# //g" /etc/apt/sources.list
 sudo apt update
 sudo apt install python3-pyquery -y
 python3 get-newest-version-xanmod.py $1
+curl https://www.xanmod.org/
 exit
 #VERSION=$(grep 'Kernel Configuration' < config | awk '{print $3}')
 # add deb-src to sources.list
