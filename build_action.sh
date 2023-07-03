@@ -36,6 +36,10 @@ if [[ $2 == 1 ]]; then
 else
     cp ../config .config
 fi
+echo $VERSION | grep 4.14
+if [[ $? == 0 ]]; then
+    cp ../config-4.19.0-10-amd64 .config
+fi
 #
 # disable DEBUG_INFO to speedup build
 scripts/config --disable DEBUG_INFO
