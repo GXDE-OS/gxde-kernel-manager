@@ -59,10 +59,10 @@ if [[ $2 == 1 ]]; then
     #cp ./*.deb artifact/
     git clone https://gfdgd-xi:$PASSWORD@github.com/gfdgd-xi/dclc-kernel
     #cd dclc-kernel
-    mkdir dclc-kernel/$VERSION
+    mkdir dclc-kernel/$SHOWVERSION
     rm -rfv *dbg*.deb
-    mv ./*.deb dclc-kernel/$VERSION
-    cd dclc-kernel/$VERSION
+    mv ./*.deb dclc-kernel/$SHOWVERSION
+    cd dclc-kernel/$SHOWVERSION
     cd ..
     cd head
     cat > deb/DEBIAN/control <<EOF
