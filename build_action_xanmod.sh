@@ -31,8 +31,15 @@ cd linux-"$VERSION"* || exit
 cp ../config .config
 #
 # disable DEBUG_INFO to speedup build
-scripts/config --disable DEBUG_INFO
 scripts/config --set-str SYSTEM_TRUSTED_KEYS ""
+scripts/config --set-str SYSTEM_REVOCATION_KEYS ""
+scripts/config --undefine DEBUG_INFO
+scripts/config --undefine DEBUG_INFO_COMPRESSED
+scripts/config --undefine DEBUG_INFO_REDUCED
+scripts/config --undefine DEBUG_INFO_SPLIT
+scripts/config --undefine GDB_SCRIPTS
+scripts/config --set-val  DEBUG_INFO_DWARF5     n
+scripts/config --set-val  DEBUG_INFO_NONE       y
 # apply patches
 # shellcheck source=src/util.sh
 # source ../patch.d/*.sh
