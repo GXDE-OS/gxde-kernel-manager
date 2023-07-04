@@ -1,4 +1,4 @@
-name: Build kernel deb packages(7)
+name: Build HWE kernel deb packages(7)
 on:
   schedule:
     - cron: '0 23 * * *'
