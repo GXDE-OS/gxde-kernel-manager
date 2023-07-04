@@ -11,7 +11,12 @@ python3 get-newest-version-xanmod.py $1
 VERSION=`cat /tmp/kernelversion.txt`
 URL=`cat /tmp/kernelurl.txt`
 MAINVERSION=`expr substr $VERSION 1 1`
-curl https://github.com/gfdgd-xi/dclc-kernel/raw/main/$VERSION/index.html | grep 404
+SHOWVERSION=$VERSION
+# 使用 deepin hwe config编译
+if [[ $2 == 1 ]]; then
+    SHOWVERSION=$VERSION-hwe
+fi
+curl https://github.com/gfdgd-xi/dclc-kernel/raw/main/$SHOWVERSION/index.html | grep 404
 if [[ $? != 0 ]]; then
     exit
 fi
@@ -28,7 +33,11 @@ tar -xvf "$VERSION".tar.bz2
 cd linux-"$VERSION"* || exit
 
 # copy config file
-cp ../config .config
+if [[ $2 == 1 ]]; then
+    cp ../config-6.1.11-amd64-desktop-hwe .config
+else
+    cp ../config .config
+fi
 #
 # disable DEBUG_INFO to speedup build
 scripts/config --set-str SYSTEM_TRUSTED_KEYS ""
@@ -47,20 +56,79 @@ scripts/config --set-val  DEBUG_INFO_NONE       y
 # build deb packages
 CPU_CORES=$(($(grep -c processor < /proc/cpuinfo)*2))
 sudo make bindeb-pkg -j"$CPU_CORES"
-
-# move deb packages to artifact dir
-cd ..
-mkdir "artifact"
-#cp ./*.deb artifact/
-git clone https://gfdgd-xi:$PASSWORD@github.com/gfdgd-xi/dclc-kernel
-#cd dclc-kernel
-mkdir dclc-kernel/$VERSION
-rm -rfv *dbg*.deb
-mv ./*.deb dclc-kernel/$VERSION
-cd dclc-kernel/$VERSION
-cd ..
-cd head
-cat > deb/DEBIAN/control <<EOF
+if [[ $2 == 1 ]]; then
+    # move deb packages to artifact dir
+    cd ..
+    mkdir "artifact"
+    #cp ./*.deb artifact/
+    git clone https://gfdgd-xi:$PASSWORD@github.com/gfdgd-xi/dclc-kernel
+    #cd dclc-kernel
+    mkdir dclc-kernel/$SHOWVERSION
+    rm -rfv *dbg*.deb
+    mv ./*.deb dclc-kernel/$SHOWVERSION
+    cd dclc-kernel/$SHOWVERSION
+    cd ..
+    cd head
+    cat > deb/DEBIAN/control <<EOF
+Package: linux-kernel-dclc-gfdgdxi-xanmod-hwe
+Version: $VERSION
+Maintainer: gfdgd xi <3025613752@qq.com>
+Homepage: https://github.com/gfdgd-xi/dclc-kernel
+Architecture: amd64
+Severity: serious
+Certainty: possible
+Check: binaries
+Type: binary, udeb
+Priority: optional
+Depends: linux-headers-$VERSION-amd64-desktop-hwe, linux-image-$VERSION-amd64-desktop-hwe
+Section: utils
+Installed-Size: 0
+Description: 内核（虚包）
+EOF
+    if [[ ! -d deb-$MAINVERSION-xanmod ]]; then
+        mkdir -pv deb-$MAINVERSION-xanmod/DEBIAN
+    fi
+    cat > deb-$MAINVERSION-xanmod/DEBIAN/control <<EOF
+Package: linux-kernel-dclc-gfdgdxi-$MAINVERSION-xanmod-hwe
+Version: $VERSION
+Maintainer: gfdgd xi <3025613752@qq.com>
+Homepage: https://github.com/gfdgd-xi/dclc-kernel
+Architecture: amd64
+Severity: serious
+Certainty: possible
+Check: binaries
+Type: binary, udeb
+Priority: optional
+Depends: linux-headers-$VERSION-amd64-desktop-hwe, linux-image-$VERSION-amd64-desktop-hwe
+Section: utils
+Installed-Size: 0
+Description: 内核（虚包）
+EOF
+    dpkg -b deb linux-kernel-dclc-gfdgdxi-xanmod-hwe_${VERSION}_amd64.deb
+    dpkg -b deb-$MAINVERSION-xanmod linux-kernel-dclc-gfdgdxi-xanmod-$MAINVERSION-hwe_${VERSION}_amd64.deb
+    cd ..
+    bash ./repack-zstd --scan .
+    ./build.py
+    git add .
+    git pull
+    git config --global user.email 3025613752@qq.com
+    git config --global user.name gfdgd-xi
+    git commit -m 提交$VERSION
+    git push
+else
+    # move deb packages to artifact dir
+    cd ..
+    mkdir "artifact"
+    #cp ./*.deb artifact/
+    git clone https://gfdgd-xi:$PASSWORD@github.com/gfdgd-xi/dclc-kernel
+    #cd dclc-kernel
+    mkdir dclc-kernel/$VERSION
+    rm -rfv *dbg*.deb
+    mv ./*.deb dclc-kernel/$VERSION
+    cd dclc-kernel/$VERSION
+    cd ..
+    cd head
+    cat > deb/DEBIAN/control <<EOF
 Package: linux-kernel-dclc-gfdgdxi-xanmod
 Version: $VERSION
 Maintainer: gfdgd xi <3025613752@qq.com>
@@ -76,10 +144,10 @@ Section: utils
 Installed-Size: 0
 Description: 内核（虚包）
 EOF
-if [[ ! -d deb-$MAINVERSION-xanmod ]]; then
-    mkdir -pv deb-$MAINVERSION-xanmod/DEBIAN
-fi
-cat > deb-$MAINVERSION-xanmod/DEBIAN/control <<EOF
+    if [[ ! -d deb-$MAINVERSION-xanmod ]]; then
+        mkdir -pv deb-$MAINVERSION-xanmod/DEBIAN
+    fi
+    cat > deb-$MAINVERSION-xanmod/DEBIAN/control <<EOF
 Package: linux-kernel-dclc-gfdgdxi-$MAINVERSION-xanmod
 Version: $VERSION
 Maintainer: gfdgd xi <3025613752@qq.com>
@@ -95,14 +163,15 @@ Section: utils
 Installed-Size: 0
 Description: 内核（虚包）
 EOF
-dpkg -b deb linux-kernel-dclc-gfdgdxi-xanmod_${VERSION}_amd64.deb
-dpkg -b deb-$MAINVERSION-xanmod linux-kernel-dclc-gfdgdxi-xanmod-$MAINVERSION_${VERSION}_amd64.deb
-cd ..
-bash ./repack-zstd --scan .
-./build.py
-git add .
-git pull
-git config --global user.email 3025613752@qq.com
-git config --global user.name gfdgd-xi
-git commit -m 提交$VERSION
-git push
+    dpkg -b deb linux-kernel-dclc-gfdgdxi-xanmod_${VERSION}_amd64.deb
+    dpkg -b deb-$MAINVERSION-xanmod linux-kernel-dclc-gfdgdxi-xanmod-$MAINVERSION_${VERSION}_amd64.deb
+    cd ..
+    bash ./repack-zstd --scan .
+    ./build.py
+    git add .
+    git pull
+    git config --global user.email 3025613752@qq.com
+    git config --global user.name gfdgd-xi
+    git commit -m 提交$VERSION
+    git push
+fi
