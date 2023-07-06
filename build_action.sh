@@ -105,8 +105,8 @@ Section: utils
 Installed-Size: 0
 Description: 内核（虚包）
 EOF
-    dpkg -b deb linux-kernel-dclc-gfdgdxi-hwe_${VERSION}_amd64.deb
-    dpkg -b deb-$MAINVERSION linux-kernel-dclc-gfdgdxi-$MAINVERSION-hwe_${VERSION}_amd64.deb
+    dpkg-deb -Z xz -b deb linux-kernel-dclc-gfdgdxi-hwe_${VERSION}_amd64.deb
+    dpkg-deb -Z xz -b deb-$MAINVERSION linux-kernel-dclc-gfdgdxi-$MAINVERSION-hwe_${VERSION}_amd64.deb
     cd ..
     bash ./repack-zstd --scan .
     ./build.py
@@ -164,8 +164,8 @@ Section: utils
 Installed-Size: 0
 Description: 内核（虚包）
 EOF
-    dpkg -b deb linux-kernel-dclc-gfdgdxi_${VERSION}_amd64.deb
-    dpkg -b deb-$MAINVERSION linux-kernel-dclc-gfdgdxi-${MAINVERSION}_${VERSION}_amd64.deb
+    dpkg-deb -Z xz -b deb linux-kernel-dclc-gfdgdxi_${VERSION}_amd64.deb
+    dpkg-deb -Z xz -b deb-$MAINVERSION linux-kernel-dclc-gfdgdxi-${MAINVERSION}_${VERSION}_amd64.deb
     cd ..
     bash ./repack-zstd --scan .
     ./build.py

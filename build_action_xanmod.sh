@@ -104,8 +104,8 @@ Section: utils
 Installed-Size: 0
 Description: 内核（虚包）
 EOF
-    dpkg -b deb linux-kernel-dclc-gfdgdxi-xanmod-hwe_${VERSION}_amd64.deb
-    dpkg -b deb-$MAINVERSION-xanmod linux-kernel-dclc-gfdgdxi-xanmod-$MAINVERSION-hwe_${VERSION}_amd64.deb
+    dpkg-deb -Z xz -b deb linux-kernel-dclc-gfdgdxi-xanmod-hwe_${VERSION}_amd64.deb
+    dpkg-deb -Z xz -b deb-$MAINVERSION-xanmod linux-kernel-dclc-gfdgdxi-xanmod-$MAINVERSION-hwe_${VERSION}_amd64.deb
     cd ..
     bash ./repack-zstd --scan .
     ./build.py
@@ -163,8 +163,8 @@ Section: utils
 Installed-Size: 0
 Description: 内核（虚包）
 EOF
-    dpkg -b deb linux-kernel-dclc-gfdgdxi-xanmod_${VERSION}_amd64.deb
-    dpkg -b deb-$MAINVERSION-xanmod linux-kernel-dclc-gfdgdxi-xanmod-$MAINVERSION_${VERSION}_amd64.deb
+    dpkg-deb -Z xz -b deb linux-kernel-dclc-gfdgdxi-xanmod_${VERSION}_amd64.deb
+    dpkg-deb -Z xz -b deb-$MAINVERSION-xanmod linux-kernel-dclc-gfdgdxi-xanmod-$MAINVERSION_${VERSION}_amd64.deb
     cd ..
     bash ./repack-zstd --scan .
     ./build.py
