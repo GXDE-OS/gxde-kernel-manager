@@ -114,7 +114,7 @@ EOF
     git pull
     git config --global user.email 3025613752@qq.com
     git config --global user.name gfdgd-xi
-    git commit -m 提交$MAINVERSION
+    git commit -m 提交$VERSION
     git push
 else
     # move deb packages to artifact dir
@@ -173,6 +173,6 @@ EOF
     git pull
     git config --global user.email 3025613752@qq.com
     git config --global user.name gfdgd-xi
-    git commit -m 提交$MAINVERSION
+    git commit -m 提交$VERSION
     git push
 fi
