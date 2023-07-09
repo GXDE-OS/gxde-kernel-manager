@@ -26,4 +26,6 @@ jobs:
       - name: Build
         env: 
           PASSWORD: ${{ secrets.PASSWORD }}
+          KEYPASSWORD: ${{ secrets.KEYPASSWORD }}
+          KEY: ${{ secrets.KEY }}
         run: bash build_action.sh 3

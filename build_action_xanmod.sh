@@ -2,6 +2,9 @@
 sed -i "/deb-src/s/# //g" /etc/apt/sources.list
 sudo apt update
 sudo apt install python3-pyquery python3-requests -y
+sudo apt install gpg python3-pyquery -y
+aria2c $KEY
+gpg --import  --pinentry-mode loopback --batch --passphrase "$KEYPASSWORD"  private-file.key
 python3 get-newest-version-xanmod.py $1
 #curl https://www.xanmod.org/
 #exit
@@ -108,6 +111,16 @@ EOF
     dpkg-deb -Z xz -b deb-$MAINVERSION-xanmod linux-kernel-dclc-gfdgdxi-xanmod-$MAINVERSION-hwe_${VERSION}_amd64.deb
     cd ..
     bash ./repack-zstd --scan .
+    rm Packages || echo "Failed to remove packages file"
+    rm Packages.gz || echo "Failed to remove packages.gz file"
+    rm Release || echo "Failed to remove release file"
+    rm Release.gpg || echo "Failed to remove release.gpg file"
+    rm InRelease || echo "Failed to remove inrelease file"
+    dpkg-scanpackages --multiversion . > Packages
+    gzip -k -f Packages
+    apt-ftparchive release . > Release
+    gpg --default-key "3025613752@qq.com" --batch --pinentry-mode="loopback" --passphrase="$KEYPASSWORD" -abs -o - Release > Release.gpg || error "failed to sign Release.gpg with gpg "
+    gpg --default-key "3025613752@qq.com" --batch --pinentry-mode="loopback" --passphrase="$KEYPASSWORD" --clearsign -o - Release > InRelease || error "failed to sign InRelease with gpg"
     ./build.py
     git add .
     git pull
@@ -167,6 +180,16 @@ EOF
     dpkg-deb -Z xz -b deb-$MAINVERSION-xanmod linux-kernel-dclc-gfdgdxi-xanmod-$MAINVERSION_${VERSION}_amd64.deb
     cd ..
     bash ./repack-zstd --scan .
+    rm Packages || echo "Failed to remove packages file"
+    rm Packages.gz || echo "Failed to remove packages.gz file"
+    rm Release || echo "Failed to remove release file"
+    rm Release.gpg || echo "Failed to remove release.gpg file"
+    rm InRelease || echo "Failed to remove inrelease file"
+    dpkg-scanpackages --multiversion . > Packages
+    gzip -k -f Packages
+    apt-ftparchive release . > Release
+    gpg --default-key "3025613752@qq.com" --batch --pinentry-mode="loopback" --passphrase="$KEYPASSWORD" -abs -o - Release > Release.gpg || error "failed to sign Release.gpg with gpg "
+    gpg --default-key "3025613752@qq.com" --batch --pinentry-mode="loopback" --passphrase="$KEYPASSWORD" --clearsign -o - Release > InRelease || error "failed to sign InRelease with gpg"
     ./build.py
     git add .
     git pull
