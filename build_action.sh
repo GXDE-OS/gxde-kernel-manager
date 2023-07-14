@@ -16,7 +16,7 @@ if [[ $2 == 1 ]]; then
     SHOWVERSION=$VERSION-hwe
 fi
 curl https://github.com/gfdgd-xi/dclc-kernel/raw/main/$SHOWVERSION/index.html | grep 404
-if [[ $? != 0 ]]; then
+if [[ $? == 0 ]]; then
     exit
 fi
 # install dep
