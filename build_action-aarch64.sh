@@ -3,12 +3,15 @@ sed -i "/deb-src/s/# //g" /etc/apt/sources.list
 sudo apt update
 sudo apt install python3-pyquery -y
 python3 get-newest-version.py $1
+aria2c $KEY
+gpg --import  --pinentry-mode loopback --batch --passphrase "$KEYPASSWORD"  private-file.key
 #VERSION=$(grep 'Kernel Configuration' < config | awk '{print $3}')
 # add deb-src to sources.list
-MAINVERSION=$1
 VERSION=`cat /tmp/kernelversion.txt`
 URL=`cat /tmp/kernelurl.txt`
-curl https://github.com/gfdgd-xi/dclc-kernel/raw/main/$VERSION-aarch64/index.html | grep 404
+MAINVERSION=`expr substr $VERSION 1 1`
+SHOWVERSION=$VERSION-arm64
+curl https://github.com/gfdgd-xi/dclc-kernel/raw/main/$SHOWVERSION/index.html | grep 404
 if [[ $? == 0 ]]; then
     exit
 fi
@@ -18,7 +21,7 @@ sudo apt build-dep -y linux
 wget http://releases.linaro.org/components/toolchain/binaries/7.5-2019.12/aarch64-linux-gnu/gcc-linaro-7.5.0-2019.12-x86_64_aarch64-linux-gnu.tar.xz
 tar -xvf gcc-linaro-7.5.0-2019.12-x86_64_aarch64-linux-gnu.tar.xz
 sudo mkdir /usr/bin/toolchain
-sudo cp gcc-linaro-7.4.1-2019.02-x86_64_aarch64-linux-gnu /usr/bin/toolchain/ -rfv
+sudo cp gcc-linaro-7.5.0-2019.12-x86_64_aarch64-linux-gnu /usr/bin/toolchain/ -rfv
 export PATH=$PATH:/usr/bin/toolchain/gcc-linaro-7.4.1-2019.02-x86_64_aarch64-linux-gnu/bin/
 echo $PATH
 # change dir to workplace
@@ -26,7 +29,18 @@ cd "${GITHUB_WORKSPACE}" || exit
 
 # download kernel source
 wget $URL  
-tar -xf linux-"$VERSION".tar.xz
+if [[ -f linux-"$VERSION".tar.xz ]]; then
+    tar -xvf linux-"$VERSION".tar.xz
+fi
+if [[ -f linux-"$VERSION".tar.gz ]]; then
+    tar -xvf linux-"$VERSION".tar.gz
+fi
+if [[ -f linux-"$VERSION".tar ]]; then
+    tar -xvf linux-"$VERSION".tar
+fi
+if [[ -f linux-"$VERSION".bz2 ]]; then
+    tar -xvf linux-"$VERSION".tar.bz2
+fi
 cd linux-"$VERSION" || exit
 
 # copy config file
@@ -47,7 +61,7 @@ scripts/config --set-val  DEBUG_INFO_NONE       y
 # build deb packages
 CPU_CORES=$(($(grep -c processor < /proc/cpuinfo)*2))
 sudo make bindeb-pkg ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- -j"$CPU_CORES"
-exit
+
 # move deb packages to artifact dir
 cd ..
 mkdir "artifact"
