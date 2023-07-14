@@ -15,7 +15,12 @@ fi
 # install dep
 sudo apt install -y wget xz-utils make gcc flex bison dpkg-dev bc rsync kmod cpio libssl-dev git lsb vim libelf-dev
 sudo apt build-dep -y linux
-
+wget http://releases.linaro.org/components/toolchain/binaries/7.5-2019.12/aarch64-linux-gnu/gcc-linaro-7.5.0-2019.12-x86_64_aarch64-linux-gnu.tar.xz
+tar -xvf gcc-linaro-7.5.0-2019.12-x86_64_aarch64-linux-gnu.tar.xz
+sudo mkdir /usr/bin/toolchain
+sudo cp gcc-linaro-7.4.1-2019.02-x86_64_aarch64-linux-gnu /usr/bin/toolchain/ -rfv
+export PATH=$PATH:/usr/bin/toolchain/gcc-linaro-7.4.1-2019.02-x86_64_aarch64-linux-gnu/bin/
+echo $PATH
 # change dir to workplace
 cd "${GITHUB_WORKSPACE}" || exit
 
@@ -25,7 +30,7 @@ tar -xf linux-"$VERSION".tar.xz
 cd linux-"$VERSION" || exit
 
 # copy config file
-cp ../config .config
+cp ../config-arm64 .config
 #
 # disable DEBUG_INFO to speedup build
 scripts/config --disable DEBUG_INFO
@@ -36,7 +41,7 @@ scripts/config --set-str SYSTEM_TRUSTED_KEYS ""
 
 # build deb packages
 CPU_CORES=$(($(grep -c processor < /proc/cpuinfo)*2))
-sudo make bindeb-pkg -j"$CPU_CORES"
+sudo make bindeb-pkg ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- -j"$CPU_CORES"
 
 # move deb packages to artifact dir
 cd ..

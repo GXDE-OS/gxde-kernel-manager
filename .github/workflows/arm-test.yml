@@ -5,7 +5,7 @@ on:
 jobs:
   build:
     name: Build kernel
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
 
  # 由于默认的 Ubuntu 环境只有 17G 左右的剩余空间，所以我们需要先利用如下 action 对编译环境进行扩容
@@ -29,5 +29,5 @@ jobs:
           sudo apt install neofetch -y
           neofetch
           df -H /
-          #bash build_action.sh 0
+          bash build_action-aarch64.sh 0
 
