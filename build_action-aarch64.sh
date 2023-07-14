@@ -42,7 +42,7 @@ scripts/config --set-str SYSTEM_TRUSTED_KEYS ""
 # build deb packages
 CPU_CORES=$(($(grep -c processor < /proc/cpuinfo)*2))
 sudo make bindeb-pkg ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- -j"$CPU_CORES"
-
+exit
 # move deb packages to artifact dir
 cd ..
 mkdir "artifact"
