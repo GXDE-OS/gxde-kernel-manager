@@ -22,7 +22,7 @@ wget http://releases.linaro.org/components/toolchain/binaries/7.5-2019.12/aarch6
 tar -xvf gcc-linaro-7.5.0-2019.12-x86_64_aarch64-linux-gnu.tar.xz
 sudo mkdir /usr/bin/toolchain
 sudo cp gcc-linaro-7.5.0-2019.12-x86_64_aarch64-linux-gnu /usr/bin/toolchain/ -rfv
-export PATH=$PATH:/usr/bin/toolchain/gcc-linaro-7.4.1-2019.02-x86_64_aarch64-linux-gnu/bin/
+export PATH=$PATH:/usr/bin/toolchain/gcc-linaro-7.5.0-2019.12-x86_64_aarch64-linux-gnu/bin/
 echo $PATH
 # change dir to workplace
 cd "${GITHUB_WORKSPACE}" || exit
