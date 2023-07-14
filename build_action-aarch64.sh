@@ -9,7 +9,7 @@ MAINVERSION=$1
 VERSION=`cat /tmp/kernelversion.txt`
 URL=`cat /tmp/kernelurl.txt`
 curl https://github.com/gfdgd-xi/dclc-kernel/raw/main/$VERSION-aarch64/index.html | grep 404
-if [[ $? != 0 ]]; then
+if [[ $? == 0 ]]; then
     exit
 fi
 # install dep
