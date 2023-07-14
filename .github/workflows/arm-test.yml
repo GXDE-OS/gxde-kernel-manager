@@ -29,5 +29,5 @@ jobs:
           sudo apt install neofetch -y
           neofetch
           df -H /
-          bash build_action-aarch64.sh 0
+          bash build_action-aarch64.sh 1
 
