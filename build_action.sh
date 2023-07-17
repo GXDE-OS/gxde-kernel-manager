@@ -75,6 +75,7 @@ if [[ $2 == 1 ]]; then
     cd ..
     mkdir "artifact"
     #cp ./*.deb artifact/
+    rm -rfv "${GITHUB_WORKSPACE}/linux-$VERSION*"
     git clone https://gfdgd-xi:$PASSWORD@github.com/gfdgd-xi/dclc-kernel
     #cd dclc-kernel
     mkdir dclc-kernel/$SHOWVERSION
