@@ -11,7 +11,10 @@ for i in programVersionList(f"#releases tr :nth-child(2)").items():
     version = i("td strong").text()
     if temp == mainVersion:
         #print(version)
+        version = version.strip()
         newestVersion = version
+        if " " in version:
+            newestVersion = version.split(" ")[0]
         break
     temp += 1
 
