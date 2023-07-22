@@ -64,7 +64,7 @@ if [[ $2 == 1 ]]; then
     cd ..
     mkdir "artifact"
     #cp ./*.deb artifact/
-    git clone https://gfdgd-xi:$PASSWORD@github.com/gfdgd-xi/dclc-kernel
+    git clone https://gfdgd-xi:$PASSWORD@github.com/gfdgd-xi/dclc-kernel --depth=1
     #cd dclc-kernel
     mkdir dclc-kernel/$SHOWVERSION
     rm -rfv *dbg*.deb
@@ -123,7 +123,7 @@ EOF
     gpg --default-key "3025613752@qq.com" --batch --pinentry-mode="loopback" --passphrase="$KEYPASSWORD" --clearsign -o - Release > InRelease || error "failed to sign InRelease with gpg"
     ./build.py
     git add .
-    git pull
+    #git pull
     git config --global user.email 3025613752@qq.com
     git config --global user.name gfdgd-xi
     git commit -m 提交$VERSION
@@ -133,7 +133,7 @@ else
     cd ..
     mkdir "artifact"
     #cp ./*.deb artifact/
-    git clone https://gfdgd-xi:$PASSWORD@github.com/gfdgd-xi/dclc-kernel
+    git clone https://gfdgd-xi:$PASSWORD@github.com/gfdgd-xi/dclc-kernel --depth=1
     #cd dclc-kernel
     mkdir dclc-kernel/$VERSION
     rm -rfv *dbg*.deb
@@ -192,7 +192,7 @@ EOF
     gpg --default-key "3025613752@qq.com" --batch --pinentry-mode="loopback" --passphrase="$KEYPASSWORD" --clearsign -o - Release > InRelease || error "failed to sign InRelease with gpg"
     ./build.py
     git add .
-    git pull
+    #git pull
     git config --global user.email 3025613752@qq.com
     git config --global user.name gfdgd-xi
     git commit -m 提交$VERSION
