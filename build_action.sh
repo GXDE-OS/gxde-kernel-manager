@@ -46,6 +46,7 @@ cd linux-"$VERSION" || exit
 # 使用 deepin hwe config编译
 if [[ $2 == 1 ]]; then
     cp ../config-6.1.11-amd64-desktop-hwe .config
+    exit
 else
     cp ../config .config
 fi
