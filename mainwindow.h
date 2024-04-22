@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "kernelinformation.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -17,5 +18,7 @@ public:
 
 private:
     Ui::MainWindow *ui;
+    void RefreshKernelList();
+    void RefreshKernelListView(KernelInformation *info);
 };
 #endif // MAINWINDOW_H

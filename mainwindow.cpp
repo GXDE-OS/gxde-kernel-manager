@@ -1,11 +1,38 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+#include "kernelinformation.h"
+
+#include <QStandardItemModel>
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    RefreshKernelList();
+}
+
+void MainWindow::RefreshKernelList()
+{
+    KernelInformation *information = new KernelInformation();
+    connect(information, &KernelInformation::loadFinished, this, [this, information](){
+        qDebug() << information->get_listData();
+        RefreshKernelListView(information);
+        delete information;
+    });
+    information->LoadInfo();
+}
+
+void MainWindow::RefreshKernelListView(KernelInformation *info)
+{
+    // 更新列表
+    int count = info->get_count();
+    QStandardItemModel *model = new QStandardItemModel();
+    for(int i = 0; i <= count; i++) {
+        model->setItem(0, i, new QStandardItem(info->get_name(i)));
+    }
+    ui->m_kernelShow->setModel(model);
 }
 
 MainWindow::~MainWindow()
