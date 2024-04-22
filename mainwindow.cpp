@@ -29,8 +29,10 @@ void MainWindow::RefreshKernelListView(KernelInformation *info)
     // 更新列表
     int count = info->get_count();
     QStandardItemModel *model = new QStandardItemModel();
-    for(int i = 0; i <= count; i++) {
-        model->setItem(0, i, new QStandardItem(info->get_name(i)));
+    model->setHorizontalHeaderLabels(QStringList() << tr("Kernel Name") << tr("Author"));
+    for(int i = 0; i < count; i++) {
+        model->setItem(i, 0, new QStandardItem(info->get_name(i)));
+        model->setItem(i, 1, new QStandardItem(info->get_author(i)));
     }
     ui->m_kernelShow->setModel(model);
 }

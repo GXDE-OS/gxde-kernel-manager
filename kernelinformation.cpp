@@ -60,7 +60,7 @@ QStringList KernelInformation::get_pkgName(int value) const
     QJsonArray list = get_kernelData(value).value("PkgName").toArray();
     int count = list.count();
     QStringList result;
-    for(int i = 0; i <= count; i++) {
+    for(int i = 0; i < count; i++) {
         result << list.at(i).toString();
     }
     return result;
@@ -71,7 +71,7 @@ QStringList KernelInformation::get_system(int value) const
     QJsonArray list = get_kernelData(value).value("System").toArray();
     int count = list.count();
     QStringList result;
-    for(int i = 0; i <= count; i++) {
+    for(int i = 0; i < count; i++) {
         result << list.at(i).toString();
     }
     return result;
@@ -82,7 +82,7 @@ QStringList KernelInformation::get_arch(int value) const
     QJsonArray list = get_kernelData(value).value("Arch").toArray();
     int count = list.count();
     QStringList result;
-    for(int i = 0; i <= count; i++) {
+    for(int i = 0; i < count; i++) {
         result << list.at(i).toString();
     }
     return result;
