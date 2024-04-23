@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/shell">
+        <file>kernel-installer-template.sh</file>
+    </qresource>
+    <qresource prefix="/icon"/>
+</RCC>

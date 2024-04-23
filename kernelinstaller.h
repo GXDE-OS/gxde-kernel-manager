@@ -25,6 +25,7 @@ private:
     QString tempDir = "/tmp";
 
     void StartInstaller();
+    QString BuildKernelInstallerBash(QStringList kernelList, QString tempFilePath) const;
 };
 
 #endif // KERNELINSTALLER_H
