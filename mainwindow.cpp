@@ -10,19 +10,18 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    kernelInformation = new KernelInformation();
     RefreshKernelList();
 }
 
 void MainWindow::RefreshKernelList()
 {
-    KernelInformation *information = new KernelInformation();
-    ui->m_nowKernel->setText(tr("Kernel: ") + information->localKernelName());
-    connect(information, &KernelInformation::loadFinished, this, [this, information](){
-        qDebug() << information->get_listData();
-        RefreshKernelListView(information);
-        delete information;
+    ui->m_nowKernel->setText(tr("Kernel: ") + kernelInformation->localKernelName());
+    connect(kernelInformation, &KernelInformation::loadFinished, this, [this](){
+        qDebug() << this->kernelInformation->get_listData();
+        RefreshKernelListView(kernelInformation);
     });
-    information->LoadInfo();
+    kernelInformation->LoadInfo();
 }
 
 void MainWindow::RefreshKernelListView(KernelInformation *info)
@@ -30,10 +29,11 @@ void MainWindow::RefreshKernelListView(KernelInformation *info)
     // 更新列表
     int count = info->get_count();
     QStandardItemModel *model = new QStandardItemModel();
-    model->setHorizontalHeaderLabels(QStringList() << tr("Kernel Name") << tr("Author"));
+    model->setHorizontalHeaderLabels(QStringList() << tr("ID") << tr("Kernel Name") << tr("Author"));
     for(int i = 0; i < count; i++) {
-        model->setItem(i, 0, new QStandardItem(info->get_name(i)));
-        model->setItem(i, 1, new QStandardItem(info->get_author(i)));
+        model->setItem(i, 0, new QStandardItem(QString::number(i)));
+        model->setItem(i, 1, new QStandardItem(info->get_name(i)));
+        model->setItem(i, 2, new QStandardItem(info->get_author(i)));
     }
     ui->m_kernelShow->setModel(model);
 }
@@ -41,5 +41,18 @@ void MainWindow::RefreshKernelListView(KernelInformation *info)
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+
+void MainWindow::on_m_refreshButton_clicked()
+{
+    RefreshKernelList();
+}
+
+
+void MainWindow::on_m_installButton_clicked()
+{
+    KernelInstaller *installer = new KernelInstaller(kernelInformation->get_pkgName(0));
+    installer->show();
 }
 

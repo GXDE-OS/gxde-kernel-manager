@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "kernelinformation.h"
+#include "kernelinstaller.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -16,8 +17,14 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+private slots:
+    void on_m_refreshButton_clicked();
+
+    void on_m_installButton_clicked();
+
 private:
     Ui::MainWindow *ui;
+    KernelInformation *kernelInformation;
     void RefreshKernelList();
     void RefreshKernelListView(KernelInformation *info);
 };
