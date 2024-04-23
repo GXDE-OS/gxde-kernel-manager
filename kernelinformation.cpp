@@ -55,6 +55,11 @@ QString KernelInformation::get_des(int value) const
     return get_kernelData(value).value("Des").toString().replace("\\n", "\n");
 }
 
+QString KernelInformation::get_ver(int value) const
+{
+    return get_kernelData(value).value("Ver").toString();
+}
+
 QStringList KernelInformation::get_pkgName(int value) const
 {
     QJsonArray list = get_kernelData(value).value("PkgName").toArray();
@@ -85,5 +90,16 @@ QStringList KernelInformation::get_arch(int value) const
     for(int i = 0; i < count; i++) {
         result << list.at(i).toString();
     }
+    return result;
+}
+
+QString KernelInformation::localKernelName() const
+{
+    QProcess process;
+    process.start("uname", QStringList() << "-r");
+    process.waitForStarted();
+    process.waitForFinished();
+    QString result = process.readAllStandardOutput().replace("\n", "").replace(" ", "");
+    process.close();
     return result;
 }

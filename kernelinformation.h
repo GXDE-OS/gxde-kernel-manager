@@ -12,6 +12,8 @@
 #include <QJsonArray>
 #include <QJsonObject>
 
+#include <QProcess>
+
 class KernelInformation : public QObject
 {
     Q_OBJECT
@@ -25,9 +27,12 @@ public:
     QString get_name(int value) const;
     QString get_author(int value) const;
     QString get_des(int value) const;
+    QString get_ver(int value) const;
     QStringList get_pkgName(int value) const;
     QStringList get_system(int value) const;
     QStringList get_arch(int value) const;
+
+    QString localKernelName() const;
 
 signals:
     void loadFinished(QNetworkReply *reply);

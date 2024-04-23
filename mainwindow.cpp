@@ -16,6 +16,7 @@ MainWindow::MainWindow(QWidget *parent)
 void MainWindow::RefreshKernelList()
 {
     KernelInformation *information = new KernelInformation();
+    ui->m_nowKernel->setText(tr("Kernel: ") + information->localKernelName());
     connect(information, &KernelInformation::loadFinished, this, [this, information](){
         qDebug() << information->get_listData();
         RefreshKernelListView(information);
