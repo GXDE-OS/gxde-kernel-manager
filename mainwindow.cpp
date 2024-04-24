@@ -5,6 +5,7 @@
 #include "kernelinformation.h"
 
 #include <QStandardItemModel>
+#include <qdesktopservices.h>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -69,5 +70,17 @@ void MainWindow::on_actionAbout_triggered()
 {
     AboutWindow *aboutWindow = new AboutWindow();
     aboutWindow->show();
+}
+
+
+void MainWindow::on_actionGitee_triggered()
+{
+    QDesktopServices::openUrl(QUrl("https://gitee.com/GXDE-OS/gxde-kernel-manager"));
+}
+
+
+void MainWindow::on_actionGithub_triggered()
+{
+    QDesktopServices::openUrl(QUrl("https://github.com/GXDE-OS/gxde-kernel-manager"));
 }
 

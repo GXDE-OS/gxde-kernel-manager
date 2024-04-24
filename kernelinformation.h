@@ -39,7 +39,7 @@ signals:
 
 
 private:
-    QString url = "http://127.0.0.1:8000/information.json";
+    QString url = "http://info.kernel.gxde.gfdgdxi.top/information.json";
     QJsonArray listData;
 };
 

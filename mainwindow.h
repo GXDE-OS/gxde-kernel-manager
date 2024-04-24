@@ -26,6 +26,10 @@ private slots:
 
     void on_actionAbout_triggered();
 
+    void on_actionGitee_triggered();
+
+    void on_actionGithub_triggered();
+
 private:
     Ui::MainWindow *ui;
     KernelInformation *kernelInformation;
