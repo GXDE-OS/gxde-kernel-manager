@@ -62,8 +62,11 @@ void MainWindow::on_m_installButton_clicked()
         QMessageBox::critical(this, tr("Error"), tr("Nothing to choose"));
         return;
     }
+    // 获取 ID
+    QModelIndex index = ui->m_kernelShow->model()->index(row, 0);
+    int id = ui->m_kernelShow->model()->data(index).toUInt();
     // 获取选中行
-    KernelInstaller *installer = new KernelInstaller(kernelInformation->get_pkgName(row));
+    KernelInstaller *installer = new KernelInstaller(kernelInformation->get_pkgName(id));
     installer->show();
 }
 
