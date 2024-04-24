@@ -79,6 +79,9 @@ QStringList KernelInformation::get_system(int value) const
     for(int i = 0; i < count; i++) {
         result << list.at(i).toString();
     }
+    if(!result.count()) {
+        result << "all";
+    }
     return result;
 }
 
@@ -89,6 +92,9 @@ QStringList KernelInformation::get_arch(int value) const
     QStringList result;
     for(int i = 0; i < count; i++) {
         result << list.at(i).toString();
+    }
+    if(!result.count()) {
+        result << "all";
     }
     return result;
 }

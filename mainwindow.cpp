@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "aboutwindow.h"
 
 #include "kernelinformation.h"
 
@@ -29,11 +30,12 @@ void MainWindow::RefreshKernelListView(KernelInformation *info)
     // 更新列表
     int count = info->get_count();
     QStandardItemModel *model = new QStandardItemModel();
-    model->setHorizontalHeaderLabels(QStringList() << tr("ID") << tr("Kernel Name") << tr("Author"));
+    model->setHorizontalHeaderLabels(QStringList() << tr("ID") << tr("Kernel Name") << tr("Author") << tr("Arch"));
     for(int i = 0; i < count; i++) {
         model->setItem(i, 0, new QStandardItem(QString::number(i)));
         model->setItem(i, 1, new QStandardItem(info->get_name(i)));
         model->setItem(i, 2, new QStandardItem(info->get_author(i)));
+        model->setItem(i, 3, new QStandardItem(info->get_arch(i).at(0)));
     }
     ui->m_kernelShow->setModel(model);
 }
@@ -54,5 +56,18 @@ void MainWindow::on_m_installButton_clicked()
 {
     KernelInstaller *installer = new KernelInstaller(kernelInformation->get_pkgName(0));
     installer->show();
+}
+
+
+void MainWindow::on_actionExit_triggered()
+{
+    this->close();
+}
+
+
+void MainWindow::on_actionAbout_triggered()
+{
+    AboutWindow *aboutWindow = new AboutWindow();
+    aboutWindow->show();
 }
 

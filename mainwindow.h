@@ -22,6 +22,10 @@ private slots:
 
     void on_m_installButton_clicked();
 
+    void on_actionExit_triggered();
+
+    void on_actionAbout_triggered();
+
 private:
     Ui::MainWindow *ui;
     KernelInformation *kernelInformation;

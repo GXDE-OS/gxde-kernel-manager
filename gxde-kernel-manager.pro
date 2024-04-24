@@ -9,17 +9,20 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    aboutwindow.cpp \
     kernelinformation.cpp \
     kernelinstaller.cpp \
     main.cpp \
     mainwindow.cpp
 
 HEADERS += \
+    aboutwindow.h \
     kernelinformation.h \
     kernelinstaller.h \
     mainwindow.h
 
 FORMS += \
+    aboutwindow.ui \
     kernelinstaller.ui \
     mainwindow.ui
 
