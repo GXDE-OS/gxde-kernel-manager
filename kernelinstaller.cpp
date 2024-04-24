@@ -15,7 +15,13 @@ KernelInstaller::KernelInstaller(QStringList kernelList, QWidget *parent) :
     ui(new Ui::KernelInstaller)
 {
     ui->setupUi(this);
-    ui->m_installerStatus->setHidden(true);
+    // 修改提示文本
+    QString kernel = "";
+    foreach (QString name, kernelList) {
+        kernel += name + " ";
+    }
+    ui->m_status->setText(tr("Try to install ") + kernel);
+
     this->kernelList = kernelList;
     terminal = new QTermWidget(0);
     terminal->setColorScheme("DarkPastels");

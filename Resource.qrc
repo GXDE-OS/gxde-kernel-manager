@@ -1,7 +1,14 @@
 <RCC>
-    <qresource prefix="/shell">
-        <file>kernel-installer-template.sh</file>
-        <file>kernel-installer-root-loader-template.sh</file>
+    <qresource prefix="/">
+        <file>shell/kernel-installer-root-loader-template.sh</file>
+        <file>shell/kernel-installer-template.sh</file>
+        <file>icon/dialog-apply.svg</file>
+        <file>icon/dialog-cancel.svg</file>
+        <file>icon/dialog-error.svg</file>
+        <file>icon/dialog-information.svg</file>
+        <file>icon/dialog-ok.svg</file>
+        <file>icon/dialog-question.svg</file>
+        <file>icon/dialog-warning.svg</file>
+        <file>icon/icon.svg</file>
     </qresource>
-    <qresource prefix="/icon"/>
 </RCC>
