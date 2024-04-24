@@ -32,5 +32,19 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 unix:!macx: LIBS += -lqtermwidget5
 
+aptsource.path=/etc/apt/sources.list.d/
+aptsource.files=$$PWD/AptSources/gxde-kernel-manager.list
+
+aptsourcegpg.path=/etc/apt/trusted.gpg.d/
+aptsourcegpg.files=$$PWD/AptSources/gxde-kernel-manager.gpg
+
+desktop.path=/usr/share/applications/
+desktop.files=$$PWD/gxde-kernel-manager.desktop
+
+target.path=/usr/bin
+
+INSTALLS+= aptsourcegpg aptsources target desktop
+
+
 RESOURCES += \
     Resource.qrc
