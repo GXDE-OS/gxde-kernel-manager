@@ -55,7 +55,15 @@ void MainWindow::on_m_refreshButton_clicked()
 
 void MainWindow::on_m_installButton_clicked()
 {
-    KernelInstaller *installer = new KernelInstaller(kernelInformation->get_pkgName(0));
+    QModelIndex list = ui->m_kernelShow->selectionModel()->currentIndex();
+    int row = list.row();
+    if(row <= 0) {
+        // 未选中任何内容
+        QMessageBox::critical(this, tr("Error"), tr("Nothing to choose"));
+        return;
+    }
+    // 获取选中行
+    KernelInstaller *installer = new KernelInstaller(kernelInformation->get_pkgName(row));
     installer->show();
 }
 
