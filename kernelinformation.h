@@ -36,6 +36,7 @@ public:
     bool get_installedAlready(int value) const;
 
     QString localKernelName() const;
+    QString arch() const;
 
 signals:
     void loadFinished(QNetworkReply *reply);

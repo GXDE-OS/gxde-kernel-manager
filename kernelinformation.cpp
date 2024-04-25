@@ -115,3 +115,15 @@ bool KernelInformation::get_installedAlready(int value) const
     QString pkgName = this->get_pkgName(value).at(0);
     return QFile::exists("/var/lib/dpkg/info/" + pkgName + ".list");
 }
+
+QString KernelInformation::arch() const
+{
+    QProcess process;
+    process.start("dpkg", QStringList() << "--print-architecture");
+    process.waitForStarted();
+    process.waitForFinished();
+    QString data = process.readAllStandardOutput();
+    data = data.replace("\n", "").replace(" ", "");
+    process.close();
+    return data;
+}
