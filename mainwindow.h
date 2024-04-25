@@ -31,6 +31,8 @@ private slots:
 
     void on_actionGithub_triggered();
 
+    void on_m_removeButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     KernelInformation *kernelInformation;

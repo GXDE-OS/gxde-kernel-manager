@@ -14,13 +14,20 @@ class KernelInstaller : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit KernelInstaller(QStringList kernelList, QWidget *parent = nullptr);
+    enum Option {
+        Install,
+        Remove
+    };
+
+    explicit KernelInstaller(Option option, QStringList kernelList, QWidget *parent = nullptr);
     ~KernelInstaller();
+
 
 signals:
     void InstallFinished(int status);
 
 private:
+    Option runOption;
     Ui::KernelInstaller *ui;
     QTermWidget *terminal;
     QStringList kernelList;

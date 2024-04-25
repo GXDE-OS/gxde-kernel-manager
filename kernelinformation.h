@@ -14,6 +14,8 @@
 
 #include <QProcess>
 
+#include <QFile>
+
 class KernelInformation : public QObject
 {
     Q_OBJECT
@@ -31,6 +33,7 @@ public:
     QStringList get_pkgName(int value) const;
     QStringList get_system(int value) const;
     QStringList get_arch(int value) const;
+    bool get_installedAlready(int value) const;
 
     QString localKernelName() const;
 

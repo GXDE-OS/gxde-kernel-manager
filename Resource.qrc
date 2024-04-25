@@ -10,5 +10,6 @@
         <file>icon/dialog-question.svg</file>
         <file>icon/dialog-warning.svg</file>
         <file>icon/icon.svg</file>
+        <file>shell/kernel-installer-remove-template.sh</file>
     </qresource>
 </RCC>

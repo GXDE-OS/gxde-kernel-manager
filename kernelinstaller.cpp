@@ -10,17 +10,25 @@
 #define MAX_TMP_NUM 1024
 #define MIN_TMP_NUM 0
 
-KernelInstaller::KernelInstaller(QStringList kernelList, QWidget *parent) :
+KernelInstaller::KernelInstaller(Option option, QStringList kernelList, QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::KernelInstaller)
 {
     ui->setupUi(this);
+    runOption = option;
     // 修改提示文本
     QString kernel = "";
     foreach (QString name, kernelList) {
         kernel += name + " ";
     }
-    ui->m_status->setText(tr("Try to install ") + kernel);
+
+    switch(runOption) {
+        case Option::Install:
+            ui->m_status->setText(tr("Try to install ") + kernel);
+        case Option::Remove:
+            ui->m_status->setText(tr("Try to remove ") + kernel);
+    }
+
 
     this->kernelList = kernelList;
     terminal = new QTermWidget(0);
@@ -63,7 +71,15 @@ QString KernelInstaller::BuildKernelInstallerBash(QStringList kernelList, QStrin
     foreach (QString name, kernelList) {
         kernel += name + " ";
     }
-    QFile file(":/shell/kernel-installer-template.sh");
+    QString filePath = ":/shell/kernel-installer-template.sh";
+    switch(runOption) {
+        case Option::Install:
+            filePath = ":/shell/kernel-installer-template.sh";
+        case Option::Remove:
+            filePath = ":/shell/kernel-installer-remove-template.sh";
+    }
+
+    QFile file(filePath);
     file.open(QFile::ReadOnly);
     QString data = file.readAll();
     data = data.replace("${KernelList}", kernel);

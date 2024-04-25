@@ -109,3 +109,9 @@ QString KernelInformation::localKernelName() const
     process.close();
     return result;
 }
+
+bool KernelInformation::get_installedAlready(int value) const
+{
+    QString pkgName = this->get_pkgName(value).at(0);
+    return QFile::exists("/var/lib/dpkg/info/" + pkgName + ".list");
+}
