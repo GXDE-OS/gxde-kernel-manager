@@ -129,8 +129,10 @@ void KernelInstaller::CheckInstallerStatusTimer()
     // 安装完成
     if(status == 0) {
         ui->m_status->setText(tr("Done"));
+        ui->m_icon->setText("<img src=':/icon/dialog-ok.svg'>");
         return;
     }
+    ui->m_icon->setText("<img src=':/icon/dialog-error.svg'>");
     ui->m_status->setText(tr("Something error, exit code: ") + QString::number(status));
 }
 
