@@ -32,7 +32,14 @@
     <item>
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>
-       <widget class="QTextBrowser" name="textBrowser"/>
+       <widget class="QTextBrowser" name="textBrowser">
+        <property name="openExternalLinks">
+         <bool>true</bool>
+        </property>
+        <property name="openLinks">
+         <bool>true</bool>
+        </property>
+       </widget>
       </item>
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout_2">

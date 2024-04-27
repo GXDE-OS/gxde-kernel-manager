@@ -5,6 +5,11 @@ Maintainer: gfdgd_xi <3025613752@qq.com>
 Rules-Requires-Root: no
 Build-Depends:
  debhelper-compat (= 13),
+ qtbase5-dev,
+ qtbase5-dev-tools
+ qtbase5-private-dev,
+ libqtermwidget5-1-dev,
+ qttools5-dev-tools
 Standards-Version: 4.6.2
 Homepage: https://gitee.com/GXDE-OS/gxde-kernel-manager
 #Vcs-Browser: https://salsa.debian.org/debian/gxde-kernel-manager

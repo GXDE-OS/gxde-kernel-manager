@@ -14,9 +14,24 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../aboutwindow.ui" line="55"/>
+        <location filename="../aboutwindow.ui" line="62"/>
         <source>OK</source>
         <translation>确定</translation>
+    </message>
+    <message>
+        <location filename="../aboutwindow.cpp" line="13"/>
+        <source>A kernel manager allows users to install or remove kernels easily.</source>
+        <translation>内核管理器是一个帮助用户更方便获取、安装、移除内核的工具。</translation>
+    </message>
+    <message>
+        <location filename="../aboutwindow.cpp" line="14"/>
+        <source>Warning: You may damage your system unless you know what you will do!</source>
+        <translation>警告：请不要随意操作内核除非你知道你在做什么！</translation>
+    </message>
+    <message>
+        <location filename="../aboutwindow.cpp" line="17"/>
+        <source>Website</source>
+        <translation>网址</translation>
     </message>
 </context>
 <context>
@@ -161,24 +176,24 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../main.cpp" line="16"/>
+        <location filename="../main.cpp" line="23"/>
         <source>Waring</source>
         <translation>警告</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="16"/>
+        <location filename="../main.cpp" line="23"/>
         <source>It is danger because it may make your system unboot.
 Press &apos;OK&apos; to countinue</source>
         <translation>免责声明：
 操作内核有可能导致系统无法正常启动，按“OK”键继续</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="23"/>
+        <location filename="../main.cpp" line="30"/>
         <source>Error</source>
         <translation>错误</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="23"/>
+        <location filename="../main.cpp" line="30"/>
         <source>It unsupport Windows</source>
         <translation>该程序不支持 Windows</translation>
     </message>
