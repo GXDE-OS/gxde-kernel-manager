@@ -1,9 +1,10 @@
 [Desktop Entry]
 Version=1.0
 Name=kernel manager
-Name[zh_CN]=Kernel Manager
+Name[zh_CN]=内核管理器
 Comment=Kernel Manager
+Comment[zh_CN]=内核管理器
 Type=Application
-Exec=/usr/bin/gxde-kernel-manager
-Icon=deepin-launcher
+Exec=/opt/apps/gxde-kernel-manager/files/gxde-kernel-manager
+Icon=/opt/apps/gxde-kernel-manager/files/gxde-kernel-manager/icon.svg
 Categories=System

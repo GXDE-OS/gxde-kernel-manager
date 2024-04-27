@@ -38,12 +38,18 @@ aptsource.files=$$PWD/AptSources/gxde-kernel-manager.list
 aptsourcegpg.path=/etc/apt/trusted.gpg.d/
 aptsourcegpg.files=$$PWD/AptSources/gxde-kernel-manager.gpg
 
-desktop.path=/usr/share/applications/
-desktop.files=$$PWD/gxde-kernel-manager.desktop
+debiandesktop.path=/usr/share/applications/
+debiandesktop.files=$$PWD/gxde-kernel-manager.desktop
 
-target.path=/usr/bin
+uosdesktop.path=/opt/apps/gxde-kernel-manager/entries/applications
+uosdesktop.files=$$PWD/gxde-kernel-manager.desktop
 
-INSTALLS+= aptsourcegpg aptsources target desktop
+icon.path=/opt/apps/gxde-kernel-manager/
+icon.files=$$PWD/icon/icon.svg
+
+target.path=/opt/apps/gxde-kernel-manager/files
+
+INSTALLS+= aptsourcegpg aptsources target debiandesktop uosdesktop
 
 
 RESOURCES += \
