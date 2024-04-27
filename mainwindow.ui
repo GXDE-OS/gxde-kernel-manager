@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Kerne Manager</string>
+   <string>GXDE Kerne Manager</string>
   </property>
   <property name="windowIcon">
    <iconset resource="Resource.qrc">

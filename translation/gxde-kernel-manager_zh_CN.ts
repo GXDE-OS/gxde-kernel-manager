@@ -21,7 +21,7 @@
     <message>
         <location filename="../aboutwindow.cpp" line="13"/>
         <source>A kernel manager allows users to install or remove kernels easily.</source>
-        <translation>内核管理器是一个帮助用户更方便获取、安装、移除内核的工具。</translation>
+        <translation type="unfinished">GXDE 内核管理器是一个帮助用户更方便获取、安装、移除内核的工具。</translation>
     </message>
     <message>
         <location filename="../aboutwindow.cpp" line="14"/>
