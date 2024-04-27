@@ -26,6 +26,9 @@ FORMS += \
     kernelinstaller.ui \
     mainwindow.ui
 
+# 更新翻译
+system(lrelease translation/gxde-kernel-manager_zh_CN.ts translation/gxde-kernel-manager_zh_CN.qm)
+
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
