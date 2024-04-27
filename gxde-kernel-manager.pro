@@ -49,7 +49,7 @@ icon.files=$$PWD/icon/icon.svg
 
 target.path=/opt/apps/gxde-kernel-manager/
 
-INSTALLS+= aptsourcegpg aptsources target debiandesktop uosdesktop icon
+INSTALLS+= aptsourcegpg aptsource target debiandesktop uosdesktop icon
 
 
 RESOURCES += \
