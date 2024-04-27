@@ -47,9 +47,9 @@ uosdesktop.files=$$PWD/gxde-kernel-manager.desktop
 icon.path=/opt/apps/gxde-kernel-manager/
 icon.files=$$PWD/icon/icon.svg
 
-target.path=/opt/apps/gxde-kernel-manager/files
+target.path=/opt/apps/gxde-kernel-manager/
 
-INSTALLS+= aptsourcegpg aptsources target debiandesktop uosdesktop
+INSTALLS+= aptsourcegpg aptsources target debiandesktop uosdesktop icon
 
 
 RESOURCES += \
