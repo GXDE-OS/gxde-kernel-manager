@@ -51,6 +51,7 @@ target.path=/opt/apps/gxde-kernel-manager/
 
 INSTALLS+= aptsourcegpg aptsource target debiandesktop uosdesktop icon
 
+TRANSLATIONS += translation/gxde-kernel-manager_zh_CN.ts
 
 RESOURCES += \
     Resource.qrc

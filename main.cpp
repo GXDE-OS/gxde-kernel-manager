@@ -10,6 +10,13 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
+    QTranslator translator;
+    // 检查系统语言以加载翻译
+    if(QProcessEnvironment::systemEnvironment().value("LANG").contains("zh")) {
+        // 中文，加载中文翻译
+        translator.load(":/translation/gxde-kernel-manager_zh_CN.qm");
+    }
+    a.installTranslator(&translator);
 #ifdef __linux__
     // 风险提示
     if(!QFile::exists(QDir::homePath() + "/.config/gxde-kernel-manager/read_already")) {
