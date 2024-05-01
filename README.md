@@ -10,6 +10,10 @@ GXDE 内核管理器是一个帮助用户更方便获取、安装、移除内核
 ***警告：请不要随意操作内核除非你知道你在做什么！***  
 如何投稿内核？暂只支持投稿 deb 包，详细可见：https://github.com/GXDE-OS/gxde-kernel-uploader  
 
+## 内核仓库 apt 源
+安装 GXDE 内核管理器后会自动添加  
+源地址：https://kernel.gxde.gfdgdxi.top/  
+
 ## 编译安装
 ```bash
 git clone https://gitee.com/GXDE-OS/gxde-kernel-manager
