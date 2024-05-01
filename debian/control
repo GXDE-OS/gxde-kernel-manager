@@ -6,7 +6,7 @@ Rules-Requires-Root: no
 Build-Depends:
  debhelper-compat (= 13),
  qtbase5-dev,
- qtbase5-dev-tools
+ qtbase5-dev-tools,
  qtbase5-private-dev,
  libqtermwidget5-1-dev,
  qttools5-dev-tools
