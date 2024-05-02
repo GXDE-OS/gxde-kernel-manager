@@ -8,6 +8,7 @@ fi
 programPath=$(cd $(dirname $0); pwd)
 dpkg -x "$1" /tmp/gxde-kernel-manager
 dpkg -e "$1" /tmp/gxde-kernel-manager/DEBIAN
+sed "s/libqtermwidget5-0 (>= 0.8.0), //g" /tmp/gxde-kernel-manager/DEBIAN/control
 cp $programPath/lib /tmp/gxde-kernel-manager/opt/apps/gxde-kernel-manager/ -rv
 if [[ ! -n $2 ]]; then
     dpkg-deb -Z xz -z 9 -b /tmp/gxde-kernel-manager "$1"
