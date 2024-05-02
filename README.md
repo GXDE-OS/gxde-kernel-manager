@@ -9,6 +9,10 @@ GXDE 内核管理器是一个帮助用户更方便获取、安装、移除内核
 目前支持 amd64、arm64、mips64 和 loong64 四个架构  
 ***警告：请不要随意操作内核除非你知道你在做什么！***  
 
+![截图_deepin-terminal_20240502212456.png](https://storage.deepin.org/thread/20240502134212362_截图_deepin-terminal_20240502212456.png)  
+![截图_gxde-kernel-manager_20240502212431.png](https://storage.deepin.org/thread/202405021342123825_截图_gxde-kernel-manager_20240502212431.png)  
+![截图_gxde-kernel-manager_20240502212321.png](https://storage.deepin.org/thread/202405021342122641_截图_gxde-kernel-manager_20240502212321.png)  
+![截图_gxde-kernel-manager_20240502211723.png](https://storage.deepin.org/thread/202405021342116834_截图_gxde-kernel-manager_20240502211723.png)  
 
 ## 内核仓库 apt 源
 安装 GXDE 内核管理器后会自动添加  
