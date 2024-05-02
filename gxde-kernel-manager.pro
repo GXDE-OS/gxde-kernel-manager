@@ -35,24 +35,32 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 unix:!macx: LIBS += -lqtermwidget5
 
-aptsource.path=/etc/apt/sources.list.d/
-aptsource.files=$$PWD/AptSources/gxde-kernel-manager.list
+aptsource.path = /etc/apt/sources.list.d/
+aptsource.files = $$PWD/AptSources/gxde-kernel-manager.list
 
-aptsourcegpg.path=/etc/apt/trusted.gpg.d/
-aptsourcegpg.files=$$PWD/AptSources/gxde-kernel-manager.gpg
+aptsourcegpg.path = /etc/apt/trusted.gpg.d/
+aptsourcegpg.files = $$PWD/AptSources/gxde-kernel-manager.gpg
 
-debiandesktop.path=/usr/share/applications/
-debiandesktop.files=$$PWD/gxde-kernel-manager.desktop
+debiandesktop.path = /usr/share/applications/
+debiandesktop.files = $$PWD/gxde-kernel-manager.desktop
 
-uosdesktop.path=/opt/apps/gxde-kernel-manager/entries/applications
-uosdesktop.files=$$PWD/gxde-kernel-manager.desktop
+uosdesktop.path = /opt/apps/gxde-kernel-manager/entries/applications
+uosdesktop.files = $$PWD/gxde-kernel-manager.desktop
 
-icon.path=/opt/apps/gxde-kernel-manager/
-icon.files=$$PWD/icon/icon.svg
+icon.path = /opt/apps/gxde-kernel-manager/
+icon.files = $$PWD/icon/icon.svg
 
-target.path=/opt/apps/gxde-kernel-manager/
+targetrunner.path = /opt/apps/gxde-kernel-manager/
+targetrunner.files = $$PWD/gxde-kernel-manager-runner.sh
 
-INSTALLS+= aptsourcegpg aptsource target debiandesktop uosdesktop icon
+libinclude.path = /opt/apps/gxde-kernel-manager/
+libinclude.files = $$PWD/lib
+
+target.path = /opt/apps/gxde-kernel-manager/
+
+
+
+INSTALLS += aptsourcegpg aptsource target debiandesktop uosdesktop icon targetrunner libinclude
 
 TRANSLATIONS += translation/gxde-kernel-manager_zh_CN.ts
 

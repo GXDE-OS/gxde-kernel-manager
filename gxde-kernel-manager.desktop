@@ -5,6 +5,6 @@ Name[zh_CN]=内核管理器
 Comment=Kernel Manager
 Comment[zh_CN]=内核管理器
 Type=Application
-Exec=/opt/apps/gxde-kernel-manager/gxde-kernel-manager
+Exec=bash /opt/apps/gxde-kernel-manager/gxde-kernel-manager-runner.sh
 Icon=/opt/apps/gxde-kernel-manager/icon.svg
 Categories=System
