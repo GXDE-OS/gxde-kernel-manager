@@ -1,9 +1,9 @@
 [Desktop Entry]
 Version=1.0
-Name=kernel manager
-Name[zh_CN]=内核管理器
-Comment=Kernel Manager
-Comment[zh_CN]=内核管理器
+Name=GXDE Kernel Manager
+Name[zh_CN]=GXDE 内核管理器
+Comment=GXDE Kernel Manager
+Comment[zh_CN]=GXDE 内核管理器
 Type=Application
 Exec=bash /opt/apps/gxde-kernel-manager/gxde-kernel-manager-runner.sh
 Icon=/opt/apps/gxde-kernel-manager/icon.svg
