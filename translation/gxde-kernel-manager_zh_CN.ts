@@ -21,7 +21,7 @@
     <message>
         <location filename="../aboutwindow.cpp" line="13"/>
         <source>A kernel manager allows users to install or remove kernels easily.</source>
-        <translation type="unfinished">GXDE 内核管理器是一个帮助用户更方便获取、安装、移除内核的工具。</translation>
+        <translation>GXDE 内核管理器是一个帮助用户更方便获取、安装、移除内核的工具。</translation>
     </message>
     <message>
         <location filename="../aboutwindow.cpp" line="14"/>
@@ -37,9 +37,13 @@
 <context>
     <name>KernelInstaller</name>
     <message>
-        <location filename="../kernelinstaller.ui" line="14"/>
         <source>Kernel Installer</source>
-        <translation>安装内核</translation>
+        <translation type="vanished">安装内核</translation>
+    </message>
+    <message>
+        <location filename="../kernelinstaller.ui" line="14"/>
+        <source>Config Kernel</source>
+        <translation>配置内核</translation>
     </message>
     <message>
         <location filename="../kernelinstaller.ui" line="33"/>
@@ -53,17 +57,17 @@
         <translation>正在尝试安装 </translation>
     </message>
     <message>
-        <location filename="../kernelinstaller.cpp" line="29"/>
+        <location filename="../kernelinstaller.cpp" line="30"/>
         <source>Try to remove </source>
         <translation>尝试移除 </translation>
     </message>
     <message>
-        <location filename="../kernelinstaller.cpp" line="131"/>
+        <location filename="../kernelinstaller.cpp" line="135"/>
         <source>Done</source>
         <translation>完成</translation>
     </message>
     <message>
-        <location filename="../kernelinstaller.cpp" line="136"/>
+        <location filename="../kernelinstaller.cpp" line="140"/>
         <source>Something error, exit code: </source>
         <translation>出现错误，退出代码： </translation>
     </message>
@@ -71,8 +75,12 @@
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../mainwindow.ui" line="14"/>
         <source>Kerne Manager</source>
+        <translation type="vanished">GXDE 内核管理器</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="14"/>
+        <source>GXDE Kerne Manager</source>
         <translation>GXDE 内核管理器</translation>
     </message>
     <message>

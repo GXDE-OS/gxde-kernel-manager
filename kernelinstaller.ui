@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Kernel Installer</string>
+   <string>Config Kernel</string>
   </property>
   <property name="windowIcon">
    <iconset resource="Resource.qrc">
@@ -30,7 +30,7 @@
          </sizepolicy>
         </property>
         <property name="text">
-         <string>TextLabel</string>
+         <string/>
         </property>
        </widget>
       </item>

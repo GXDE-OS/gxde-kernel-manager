@@ -25,8 +25,10 @@ KernelInstaller::KernelInstaller(Option option, QStringList kernelList, QWidget 
     switch(runOption) {
         case Option::Install:
             ui->m_status->setText(tr("Try to install ") + kernel);
+            break;
         case Option::Remove:
             ui->m_status->setText(tr("Try to remove ") + kernel);
+            break;
     }
 
 
@@ -75,8 +77,10 @@ QString KernelInstaller::BuildKernelInstallerBash(QStringList kernelList, QStrin
     switch(runOption) {
         case Option::Install:
             filePath = ":/shell/kernel-installer-template.sh";
+            break;
         case Option::Remove:
             filePath = ":/shell/kernel-installer-remove-template.sh";
+            break;
     }
 
     QFile file(filePath);
