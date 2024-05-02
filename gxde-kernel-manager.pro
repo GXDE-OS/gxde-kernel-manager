@@ -53,14 +53,14 @@ icon.files = $$PWD/icon/icon.svg
 targetrunner.path = /opt/apps/gxde-kernel-manager/
 targetrunner.files = $$PWD/gxde-kernel-manager-runner.sh
 
-libinclude.path = /opt/apps/gxde-kernel-manager/
-libinclude.files = $$PWD/lib
+#libinclude.path = /opt/apps/gxde-kernel-manager/
+#libinclude.files = $$PWD/lib
 
 target.path = /opt/apps/gxde-kernel-manager/
 
 
 
-INSTALLS += aptsourcegpg aptsource target debiandesktop uosdesktop icon targetrunner libinclude
+INSTALLS += aptsourcegpg aptsource target debiandesktop uosdesktop icon targetrunner
 
 TRANSLATIONS += translation/gxde-kernel-manager_zh_CN.ts
 

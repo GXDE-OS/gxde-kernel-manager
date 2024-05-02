@@ -18,7 +18,6 @@ Homepage: https://gitee.com/GXDE-OS/gxde-kernel-manager
 Package: gxde-kernel-manager
 Architecture: any
 Depends:
- ${shlibs:Depends},
  ${misc:Depends},
 Description: GXDE 内核管理器
 
