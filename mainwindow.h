@@ -33,10 +33,12 @@ private slots:
 
     void on_m_removeButton_clicked();
 
+    void on_m_showLocalArchOnly_stateChanged(int arg1);
+
 private:
     Ui::MainWindow *ui;
     KernelInformation *kernelInformation;
     void RefreshKernelList();
-    void RefreshKernelListView(KernelInformation *info);
+    void RefreshKernelListView(KernelInformation *info, bool showLocalArchOnly = true);
 };
 #endif // MAINWINDOW_H

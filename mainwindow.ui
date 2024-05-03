@@ -58,6 +58,16 @@
        </spacer>
       </item>
       <item>
+       <widget class="QCheckBox" name="m_showLocalArchOnly">
+        <property name="text">
+         <string>Show local PC architecture only</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QPushButton" name="m_refreshButton">
         <property name="text">
          <string>Refresh</string>

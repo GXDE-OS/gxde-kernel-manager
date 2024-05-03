@@ -21,23 +21,38 @@ void MainWindow::RefreshKernelList()
     ui->m_nowKernel->setText(tr("Kernel: ") + kernelInformation->localKernelName() + " " + tr("Arch: ") + kernelInformation->arch());
     connect(kernelInformation, &KernelInformation::loadFinished, this, [this](){
         qDebug() << this->kernelInformation->get_listData();
-        RefreshKernelListView(kernelInformation);
+        RefreshKernelListView(kernelInformation, ui->m_showLocalArchOnly->isChecked());
     });
     kernelInformation->LoadInfo();
 }
 
-void MainWindow::RefreshKernelListView(KernelInformation *info)
+void MainWindow::RefreshKernelListView(KernelInformation *info, bool showLocalArchOnly)
 {
     // 更新列表
     int count = info->get_count();
     QStandardItemModel *model = new QStandardItemModel();
     model->setHorizontalHeaderLabels(QStringList() << tr("ID") << tr("Kernel Name") << tr("Author") << tr("Arch") << tr("Installed"));
+    int line = 0;
     for(int i = 0; i < count; i++) {
-        model->setItem(i, 0, new QStandardItem(QString::number(i)));
-        model->setItem(i, 1, new QStandardItem(info->get_name(i)));
-        model->setItem(i, 2, new QStandardItem(info->get_author(i)));
-        model->setItem(i, 3, new QStandardItem(info->get_arch(i).at(0)));
-        model->setItem(i, 4, new QStandardItem((QStringList() << "" << "Y").at(info->get_installedAlready(i))));
+        // 显示所有架构
+        QString kernelArch = "";
+        bool isLocalArch = false;
+        const QString arch = info->arch();
+        for(QString i: info->get_arch(i)) {
+            if(i == arch) {
+                isLocalArch = true;
+            }
+            kernelArch += i + " ";
+        }
+        if(showLocalArchOnly && !isLocalArch) {
+            continue;
+        }
+        model->setItem(line, 0, new QStandardItem(QString::number(i)));
+        model->setItem(line, 1, new QStandardItem(info->get_name(i)));
+        model->setItem(line, 2, new QStandardItem(info->get_author(i)));
+        model->setItem(line, 3, new QStandardItem(kernelArch));
+        model->setItem(line, 4, new QStandardItem((QStringList() << "" << "Y").at(info->get_installedAlready(i))));
+        line++;
     }
     ui->m_kernelShow->setModel(model);
 }
@@ -68,6 +83,10 @@ void MainWindow::on_m_installButton_clicked()
     int id = ui->m_kernelShow->model()->data(index).toUInt();
     // 获取选中行
     KernelInstaller *installer = new KernelInstaller(KernelInstaller::Option::Install, kernelInformation->get_pkgName(id));
+    connect(installer, &KernelInstaller::InstallFinished, this, [this](){
+        // 刷新列表
+        this->RefreshKernelListView(this->kernelInformation, ui->m_showLocalArchOnly->isChecked());
+    });
     installer->show();
 }
 
@@ -112,5 +131,11 @@ void MainWindow::on_m_removeButton_clicked()
     // 获取选中行
     KernelInstaller *installer = new KernelInstaller(KernelInstaller::Option::Remove, kernelInformation->get_pkgName(id));
     installer->show();
+}
+
+
+void MainWindow::on_m_showLocalArchOnly_stateChanged(int arg1)
+{
+    RefreshKernelListView(this->kernelInformation, ui->m_showLocalArchOnly->isChecked());
 }
 

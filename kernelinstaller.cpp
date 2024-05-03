@@ -130,6 +130,7 @@ void KernelInstaller::CheckInstallerStatusTimer()
     if(status == -1) {
         return;
     }
+    emit InstallFinished(status);
     // 安装完成
     if(status == 0) {
         ui->m_status->setText(tr("Done"));
