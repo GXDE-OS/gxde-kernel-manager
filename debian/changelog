@@ -1,5 +1,6 @@
-gxde-kernel-manager (1.0.0-1) UNRELEASED; urgency=medium
+gxde-kernel-manager (1.0.1) UNRELEASED; urgency=medium
 
   * Initial release. (Closes: #nnnn)  <nnnn is the bug number of your ITP>
+  * 
 
- -- gfdgd_xi <3025613752@qq.com>  Sat, 27 Apr 2024 11:36:27 +0800
+ -- gfdgd_xi <3025613752@qq.com>  Fri, 03 May 2024 18:57:33 +0800
