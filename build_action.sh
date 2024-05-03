@@ -129,7 +129,7 @@ Description: 内核（虚包）
 EOF
     dpkg-deb -Z xz -b deb linux-kernel-dclc-gfdgdxi-hwe_${VERSION}_amd64.deb
     dpkg-deb -Z xz -b deb-$MAINVERSION linux-kernel-dclc-gfdgdxi-$MAINVERSION-hwe_${VERSION}_amd64.deb
-    cd ../../gxde-linux-kernel
+    cd ../gxde-linux-kernel
     #bash ./repack-zstd --scan .
     #./build.py
     ./move-letter-path.py ../dclc-kernel/$VERSION/*.deb
@@ -192,7 +192,7 @@ Description: 内核（虚包）
 EOF
     dpkg-deb -Z xz -b deb linux-kernel-dclc-gfdgdxi_${VERSION}_amd64.deb
     dpkg-deb -Z xz -b deb-$MAINVERSION linux-kernel-dclc-gfdgdxi-${MAINVERSION}_${VERSION}_amd64.deb
-    cd ../../gxde-linux-kernel
+    cd ../gxde-linux-kernel
     #bash ./repack-zstd --scan .
     #./build.py
     ./move-letter-path.py ../dclc-kernel/$VERSION/*.deb

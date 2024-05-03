@@ -116,7 +116,7 @@ Description: 内核（虚包）
 EOF
     dpkg-deb -Z xz -b deb linux-kernel-dclc-gfdgdxi-xanmod-hwe_${VERSION}_amd64.deb
     dpkg-deb -Z xz -b deb-$MAINVERSION-xanmod linux-kernel-dclc-gfdgdxi-xanmod-$MAINVERSION-hwe_${VERSION}_amd64.deb
-    cd ../../gxde-linux-kernel
+    cd ../gxde-linux-kernel
     #bash ./repack-zstd --scan .
     #./build.py
     ./move-letter-path.py ../dclc-kernel/$VERSION/*.deb
@@ -177,7 +177,7 @@ Description: 内核（虚包）
 EOF
     dpkg-deb -Z xz -b deb linux-kernel-dclc-gfdgdxi-xanmod_${VERSION}_amd64.deb
     dpkg-deb -Z xz -b deb-$MAINVERSION-xanmod linux-kernel-dclc-gfdgdxi-xanmod-$MAINVERSION_${VERSION}_amd64.deb
-    cd ../../gxde-linux-kernel
+    cd ../gxde-linux-kernel
     #bash ./repack-zstd --scan .
     #./build.py
     ./move-letter-path.py ../dclc-kernel/$VERSION/*.deb
