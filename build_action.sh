@@ -15,8 +15,14 @@ SHOWVERSION=$VERSION
 if [[ $2 == 1 ]]; then
     SHOWVERSION=$VERSION-hwe
 fi
-curl https://github.com/gfdgd-xi/dclc-kernel/raw/main/$SHOWVERSION/index.html | grep 404
-if [[ $? != 0 ]]; then
+if [[ $2 == 1 ]]; then
+    curl https://github.com/gfdgd-xi/gxde-kernel-manager/raw/main/l/linux-headers-$VERSION-amd64-gfdgdxi-desktop-hwe/lock | grep 404
+    result=$?
+else
+    curl https://github.com/gfdgd-xi/gxde-kernel-manager/raw/main/l/linux-headers-$VERSION-amd64-gfdgdxi-desktop/lock | grep 404
+    result=$?
+fi
+if [[ $result != 0 ]]; then
     exit
 fi
 # install dep
@@ -78,8 +84,8 @@ if [[ $2 == 1 ]]; then
     mkdir "artifact"
     #cp ./*.deb artifact/
     rm -rfv "${GITHUB_WORKSPACE}/linux-$VERSION*"
-    git clone https://gfdgd-xi:$PASSWORD@github.com/gfdgd-xi/dclc-kernel --depth=1
-    #cd dclc-kernel
+    git clone https://gfdgd-xi:$PASSWORD@github.com/gfdgd-xi/gxde-linux-kernel --depth=1
+    mkdir dclc-kernel
     mkdir dclc-kernel/$SHOWVERSION
     rm -rfv *dbg*.deb
     mv ./*.deb dclc-kernel/$SHOWVERSION
@@ -97,7 +103,7 @@ Certainty: possible
 Check: binaries
 Type: binary, udeb
 Priority: optional
-Depends: linux-headers-$VERSION-amd64-desktop-hwe, linux-image-$VERSION-amd64-desktop-hwe
+Depends: linux-headers-$VERSION-amd64-gfdgdxi-desktop-hwe, linux-image-$VERSION-amd64-gfdgdxi-desktop-hwe
 Section: utils
 Installed-Size: 0
 Description: 内核（虚包）
@@ -116,26 +122,18 @@ Certainty: possible
 Check: binaries
 Type: binary, udeb
 Priority: optional
-Depends: linux-headers-$VERSION-amd64-desktop-hwe, linux-image-$VERSION-amd64-desktop-hwe
+Depends: linux-headers-$VERSION-amd64-gfdgdxi-desktop-hwe, linux-image-$VERSION-amd64-gfdgdxi-desktop-hwe
 Section: utils
 Installed-Size: 0
 Description: 内核（虚包）
 EOF
     dpkg-deb -Z xz -b deb linux-kernel-dclc-gfdgdxi-hwe_${VERSION}_amd64.deb
     dpkg-deb -Z xz -b deb-$MAINVERSION linux-kernel-dclc-gfdgdxi-$MAINVERSION-hwe_${VERSION}_amd64.deb
-    cd ..
-    bash ./repack-zstd --scan .
-    rm Packages || echo "Failed to remove packages file"
-    rm Packages.gz || echo "Failed to remove packages.gz file"
-    rm Release || echo "Failed to remove release file"
-    rm Release.gpg || echo "Failed to remove release.gpg file"
-    rm InRelease || echo "Failed to remove inrelease file"
-    dpkg-scanpackages --multiversion . > Packages
-    gzip -k -f Packages
-    apt-ftparchive release . > Release
-    gpg --default-key "3025613752@qq.com" --batch --pinentry-mode="loopback" --passphrase="$KEYPASSWORD" -abs -o - Release > Release.gpg || error "failed to sign Release.gpg with gpg "
-    gpg --default-key "3025613752@qq.com" --batch --pinentry-mode="loopback" --passphrase="$KEYPASSWORD" --clearsign -o - Release > InRelease || error "failed to sign InRelease with gpg"
-    ./build.py
+    cd ../../gxde-linux-kernel
+    #bash ./repack-zstd --scan .
+    #./build.py
+    ./move-letter-path.py ../dclc-kernel/$VERSION/*.deb
+    touch l/linux-headers-$VERSION-amd64-gfdgdxi-desktop-hwe/lock
     git add .
     #git pull
     git config --global user.email 3025613752@qq.com
@@ -148,8 +146,9 @@ else
     mkdir "artifact"
     #cp ./*.deb artifact/
     rm -rfv "${GITHUB_WORKSPACE}/linux-$VERSION*"
-    git clone https://gfdgd-xi:$PASSWORD@github.com/gfdgd-xi/dclc-kernel --depth=1
+    git clone https://gfdgd-xi:$PASSWORD@github.com/gfdgd-xi/gxde-linux-kernel --depth=1
     #cd dclc-kernel
+    mkdir dclc-kernel
     mkdir dclc-kernel/$VERSION
     rm -rfv *dbg*.deb
     mv ./*.deb dclc-kernel/$VERSION
@@ -167,7 +166,7 @@ Certainty: possible
 Check: binaries
 Type: binary, udeb
 Priority: optional
-Depends: linux-headers-$VERSION-amd64-desktop, linux-image-$VERSION-amd64-desktop
+Depends: linux-headers-$VERSION-amd64-gfdgdxi-desktop, linux-image-$VERSION-amd64-gfdgdxi-desktop
 Section: utils
 Installed-Size: 0
 Description: 内核（虚包）
@@ -186,27 +185,18 @@ Certainty: possible
 Check: binaries
 Type: binary, udeb
 Priority: optional
-Depends: linux-headers-$VERSION-amd64-desktop, linux-image-$VERSION-amd64-desktop
+Depends: linux-headers-$VERSION-amd64-gfdgdxi-desktop, linux-image-$VERSION-amd64-gfdgdxi-desktop
 Section: utils
 Installed-Size: 0
 Description: 内核（虚包）
 EOF
     dpkg-deb -Z xz -b deb linux-kernel-dclc-gfdgdxi_${VERSION}_amd64.deb
     dpkg-deb -Z xz -b deb-$MAINVERSION linux-kernel-dclc-gfdgdxi-${MAINVERSION}_${VERSION}_amd64.deb
-    cd ..
-    bash ./repack-zstd --scan .
+    cd ../../gxde-linux-kernel
+    #bash ./repack-zstd --scan .
     #./build.py
-    rm Packages || echo "Failed to remove packages file"
-    rm Packages.gz || echo "Failed to remove packages.gz file"
-    rm Release || echo "Failed to remove release file"
-    rm Release.gpg || echo "Failed to remove release.gpg file"
-    rm InRelease || echo "Failed to remove inrelease file"
-    dpkg-scanpackages --multiversion . > Packages
-    gzip -k -f Packages
-    apt-ftparchive release . > Release
-    gpg --default-key "3025613752@qq.com" --batch --pinentry-mode="loopback" --passphrase="$KEYPASSWORD" -abs -o - Release > Release.gpg || error "failed to sign Release.gpg with gpg "
-    gpg --default-key "3025613752@qq.com" --batch --pinentry-mode="loopback" --passphrase="$KEYPASSWORD" --clearsign -o - Release > InRelease || error "failed to sign InRelease with gpg"
-    ./build.py
+    ./move-letter-path.py ../dclc-kernel/$VERSION/*.deb
+    touch l/linux-headers-$VERSION-amd64-gfdgdxi-desktop/lock
     git add .
     #git pull
     git config --global user.email 3025613752@qq.com

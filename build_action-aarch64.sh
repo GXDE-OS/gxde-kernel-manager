@@ -11,8 +11,9 @@ VERSION=`cat /tmp/kernelversion.txt`
 URL=`cat /tmp/kernelurl.txt`
 MAINVERSION=`expr substr $VERSION 1 1`
 SHOWVERSION=$VERSION-arm64
-curl https://github.com/gfdgd-xi/dclc-kernel/raw/main/$SHOWVERSION/index.html | grep 404
-if [[ $? == 0 ]]; then
+curl https://github.com/gfdgd-xi/gxde-kernel-manager/raw/main/l/linux-headers-$VERSION-arm64-gfdgdxi-desktop/lock | grep 404
+result=$?
+if [[ $result != 0 ]]; then
     exit
 fi
 # install dep
@@ -66,8 +67,9 @@ sudo make bindeb-pkg ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- -j"$CPU_CORES"
 cd ..
 mkdir "artifact"
 #cp ./*.deb artifact/
-git clone https://gfdgd-xi:$PASSWORD@github.com/gfdgd-xi/dclc-kernel
+git clone https://gfdgd-xi:$PASSWORD@github.com/gfdgd-xi/gxde-linux-kernel
 #cd dclc-kernel
+mkdir dclc-kernel
 mkdir dclc-kernel/$VERSION-aarch64
 rm -rfv *dbg*.deb
 mv ./*.deb dclc-kernel/$VERSION-aarch64
@@ -85,7 +87,7 @@ Certainty: possible
 Check: binaries
 Type: binary, udeb
 Priority: optional
-Depends: linux-headers-$VERSION-arm64-desktop, linux-image-$VERSION-arm64-desktop
+Depends: linux-headers-$VERSION-arm64-gfdgdxi-desktop, linux-image-$VERSION-arm64-gfdgdxi-desktop
 Section: utils
 Installed-Size: 0
 Description: 内核（虚包）
@@ -101,16 +103,18 @@ Certainty: possible
 Check: binaries
 Type: binary, udeb
 Priority: optional
-Depends: linux-headers-$VERSION-arm64-desktop, linux-image-$VERSION-arm64-desktop
+Depends: linux-headers-$VERSION-arm64-gfdgdxi-desktop, linux-image-$VERSION-arm64-gfdgdxi-desktop
 Section: utils
 Installed-Size: 0
 Description: 内核（虚包）
 EOF
 dpkg -b deb linux-kernel-dclc-gfdgdxi_${VERSION}_arm64.deb
 dpkg -b deb-$MAINVERSION linux-kernel-dclc-gfdgdxi-$MAINVERSION_${VERSION}_arm64.deb
-cd ..
-bash ./repack-zstd --scan .
-./build.py
+cd ../../gxde-linux-kernel
+#bash ./repack-zstd --scan .
+#./build.py
+./move-letter-path.py ../dclc-kernel/$VERSION-aarch64/*.deb
+touch l/linux-headers-$VERSION-arm64-gfdgdxi-desktop/lock
 git add .
 git config --global user.email 3025613752@qq.com
 git config --global user.name gfdgd-xi
