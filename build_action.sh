@@ -16,10 +16,10 @@ if [[ $2 == 1 ]]; then
     SHOWVERSION=$VERSION-hwe
 fi
 if [[ $2 == 1 ]]; then
-    curl https://github.com/gfdgd-xi/gxde-kernel-manager/raw/main/l/linux-headers-$VERSION-amd64-gfdgdxi-desktop-hwe/lock | grep 404
+    curl https://github.com/gfdgd-xi/gxde-linux-kernel/raw/main/l/linux-headers-$VERSION-amd64-gfdgdxi-desktop-hwe/lock | grep 404
     result=$?
 else
-    curl https://github.com/gfdgd-xi/gxde-kernel-manager/raw/main/l/linux-headers-$VERSION-amd64-gfdgdxi-desktop/lock | grep 404
+    curl https://github.com/gfdgd-xi/gxde-linux-kernel/raw/main/l/linux-headers-$VERSION-amd64-gfdgdxi-desktop/lock | grep 404
     result=$?
 fi
 if [[ $result != 0 ]]; then

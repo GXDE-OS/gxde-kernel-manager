@@ -11,7 +11,7 @@ VERSION=`cat /tmp/kernelversion.txt`
 URL=`cat /tmp/kernelurl.txt`
 MAINVERSION=`expr substr $VERSION 1 1`
 SHOWVERSION=$VERSION-arm64
-curl https://github.com/gfdgd-xi/gxde-kernel-manager/raw/main/l/linux-headers-$VERSION-arm64-gfdgdxi-desktop/lock | grep 404
+curl https://github.com/gfdgd-xi/gxde-linux-kernel/raw/main/l/linux-headers-$VERSION-arm64-gfdgdxi-desktop/lock | grep 404
 result=$?
 if [[ $result != 0 ]]; then
     exit
