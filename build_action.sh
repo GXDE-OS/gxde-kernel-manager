@@ -133,6 +133,7 @@ EOF
     #bash ./repack-zstd --scan .
     #./build.py
     ./move-letter-path.py ../dclc-kernel/$VERSION/*.deb
+    ./move-letter-path.py ../dclc-kernel/head/*.deb
     touch l/linux-headers-$VERSION-amd64-gfdgdxi-desktop-hwe/lock
     rm -rfv l/linux-libc-dev/
     git add .
@@ -197,6 +198,7 @@ EOF
     #bash ./repack-zstd --scan .
     #./build.py
     ./move-letter-path.py ../dclc-kernel/$VERSION/*.deb
+    ./move-letter-path.py ../dclc-kernel/head/*.deb
     rm -rfv l/linux-libc-dev/
     touch l/linux-headers-$VERSION-amd64-gfdgdxi-desktop/lock
     git add .

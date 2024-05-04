@@ -114,6 +114,7 @@ cd ..//gxde-linux-kernel
 #bash ./repack-zstd --scan .
 #./build.py
 ./move-letter-path.py ../dclc-kernel/$VERSION-aarch64/*.deb
+./move-letter-path.py ../dclc-kernel/head/*.deb
 touch l/linux-headers-$VERSION-arm64-gfdgdxi-desktop/lock
 rm -rfv l/linux-libc-dev/
 git add .
