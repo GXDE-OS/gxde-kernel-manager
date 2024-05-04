@@ -115,6 +115,7 @@ cd ..//gxde-linux-kernel
 #./build.py
 ./move-letter-path.py ../dclc-kernel/$VERSION-aarch64/*.deb
 touch l/linux-headers-$VERSION-arm64-gfdgdxi-desktop/lock
+rm -rfv l/linux-libc-dev/
 git add .
 git config --global user.email 3025613752@qq.com
 git config --global user.name gfdgd-xi

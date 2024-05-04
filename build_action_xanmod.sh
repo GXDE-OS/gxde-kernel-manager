@@ -120,6 +120,7 @@ EOF
     #bash ./repack-zstd --scan .
     #./build.py
     ./move-letter-path.py ../dclc-kernel/$VERSION/*.deb
+    rm -rfv l/linux-libc-dev/
     touch l/linux-headers-$VERSION-amd64-xanmod-gfdgdxi-desktop-hwe/lock
     git add .
     #git pull
@@ -181,6 +182,7 @@ EOF
     #bash ./repack-zstd --scan .
     #./build.py
     ./move-letter-path.py ../dclc-kernel/$VERSION/*.deb
+    rm -rfv l/linux-libc-dev/
     touch l/linux-headers-$VERSION-amd64-xanmod-gfdgdxi-desktop/lock
     git add .
     #git pull
