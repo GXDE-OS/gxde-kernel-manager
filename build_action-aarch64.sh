@@ -95,7 +95,7 @@ Installed-Size: 0
 Description: 内核（虚包）
 EOF
 cat > deb-$MAINVERSION/DEBIAN/control <<EOF
-Package: linux-kernel-gxde-gfdgdxi-$MAINVERSION
+Package: linux-kernel-gxde-gfdgdxi-$1
 Version: $VERSION
 Maintainer: gfdgd xi <3025613752@qq.com>
 Homepage: https://github.com/gfdgd-xi/dclc-kernel
@@ -111,7 +111,7 @@ Installed-Size: 0
 Description: 内核（虚包）
 EOF
 dpkg -b deb linux-kernel-gxde-gfdgdxi_${VERSION}_arm64.deb
-dpkg -b deb-$MAINVERSION linux-kernel-gxde-gfdgdxi-$MAINVERSION_${VERSION}_arm64.deb
+dpkg -b deb-$MAINVERSION linux-kernel-gxde-gfdgdxi-${1}_${VERSION}_arm64.deb
 cd ../../gxde-linux-kernel
 #bash ./repack-zstd --scan .
 #./build.py

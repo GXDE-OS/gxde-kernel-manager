@@ -113,7 +113,7 @@ EOF
         mkdir -pv deb-$MAINVERSION/DEBIAN
     fi
     cat > deb-$MAINVERSION/DEBIAN/control <<EOF
-Package: linux-kernel-gxde-gfdgdxi-$MAINVERSION-hwe
+Package: linux-kernel-gxde-gfdgdxi-$1-hwe
 Version: $VERSION
 Maintainer: gfdgd xi <3025613752@qq.com>
 Homepage: https://github.com/gfdgd-xi/dclc-kernel
@@ -129,7 +129,7 @@ Installed-Size: 0
 Description: 内核（虚包）
 EOF
     dpkg-deb -Z xz -b deb linux-kernel-gxde-gfdgdxi-hwe_${VERSION}_amd64.deb
-    dpkg-deb -Z xz -b deb-$MAINVERSION linux-kernel-gxde-gfdgdxi-$MAINVERSION-hwe_${VERSION}_amd64.deb
+    dpkg-deb -Z xz -b deb-$MAINVERSION linux-kernel-gxde-gfdgdxi-$1-hwe_${VERSION}_amd64.deb
     cd ../../gxde-linux-kernel
     #bash ./repack-zstd --scan .
     #./build.py
@@ -180,7 +180,7 @@ EOF
         mkdir -pv deb-$MAINVERSION/DEBIAN
     fi
     cat > deb-$MAINVERSION/DEBIAN/control <<EOF
-Package: linux-kernel-gxde-gfdgdxi-$MAINVERSION
+Package: linux-kernel-gxde-gfdgdxi-$1
 Version: $VERSION
 Maintainer: gfdgd xi <3025613752@qq.com>
 Homepage: https://github.com/gfdgd-xi/dclc-kernel
@@ -196,7 +196,7 @@ Installed-Size: 0
 Description: 内核（虚包）
 EOF
     dpkg-deb -Z xz -b deb linux-kernel-gxde-gfdgdxi_${VERSION}_amd64.deb
-    dpkg-deb -Z xz -b deb-$MAINVERSION linux-kernel-gxde-gfdgdxi-${MAINVERSION}_${VERSION}_amd64.deb
+    dpkg-deb -Z xz -b deb-$MAINVERSION linux-kernel-gxde-gfdgdxi-${1}_${VERSION}_amd64.deb
     cd ../../gxde-linux-kernel
     #bash ./repack-zstd --scan .
     #./build.py

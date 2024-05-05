@@ -100,7 +100,7 @@ EOF
         mkdir -pv deb-$MAINVERSION-xanmod/DEBIAN
     fi
     cat > deb-$MAINVERSION-xanmod/DEBIAN/control <<EOF
-Package: linux-kernel-gxde-$MAINVERSION-xanmod-hwe
+Package: linux-kernel-gxde-$1-xanmod-hwe
 Version: $VERSION
 Maintainer: gfdgd xi <3025613752@qq.com>
 Homepage: https://github.com/gfdgd-xi/dclc-kernel
@@ -116,7 +116,7 @@ Installed-Size: 0
 Description: 内核（虚包）
 EOF
     dpkg-deb -Z xz -b deb linux-kernel-gxde-gfdgdxi-xanmod-hwe_${VERSION}_amd64.deb
-    dpkg-deb -Z xz -b deb-$MAINVERSION-xanmod linux-kernel-gxde-gfdgdxi-xanmod-$MAINVERSION-hwe_${VERSION}_amd64.deb
+    dpkg-deb -Z xz -b deb-$MAINVERSION-xanmod linux-kernel-gxde-gfdgdxi-xanmod-$1-hwe_${VERSION}_amd64.deb
     cd ../../gxde-linux-kernel
     #bash ./repack-zstd --scan .
     #./build.py
@@ -165,7 +165,7 @@ EOF
         mkdir -pv deb-$MAINVERSION-xanmod/DEBIAN
     fi
     cat > deb-$MAINVERSION-xanmod/DEBIAN/control <<EOF
-Package: linux-kernel-gxde-gfdgdxi-$MAINVERSION-xanmod
+Package: linux-kernel-gxde-gfdgdxi-$1-xanmod
 Version: $VERSION
 Maintainer: gfdgd xi <3025613752@qq.com>
 Homepage: https://github.com/gfdgd-xi/dclc-kernel
@@ -181,7 +181,7 @@ Installed-Size: 0
 Description: 内核（虚包）
 EOF
     dpkg-deb -Z xz -b deb linux-kernel-gxde-gfdgdxi-xanmod_${VERSION}_amd64.deb
-    dpkg-deb -Z xz -b deb-$MAINVERSION-xanmod linux-kernel-gxde-gfdgdxi-xanmod-$MAINVERSION_${VERSION}_amd64.deb
+    dpkg-deb -Z xz -b deb-$MAINVERSION-xanmod linux-kernel-gxde-gfdgdxi-xanmod-${1}_${VERSION}_amd64.deb
     cd ../../gxde-linux-kernel
     #bash ./repack-zstd --scan .
     #./build.py
