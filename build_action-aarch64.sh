@@ -71,11 +71,13 @@ git clone https://gfdgd-xi:$PASSWORD@github.com/gfdgd-xi/gxde-linux-kernel
 #cd dclc-kernel
 mkdir dclc-kernel
 mkdir dclc-kernel/$VERSION-aarch64
+mkdir dclc-kernel/head
 rm -rfv *dbg*.deb
 mv ./*.deb dclc-kernel/$VERSION-aarch64
 cd dclc-kernel/$VERSION-aarch64
 cd ..
 cd head
+mkdir deb/DEBIAN -vp
 cat > deb-/DEBIAN/control <<EOF
 Package: linux-kernel-dclc-gfdgdxi
 Version: $VERSION
@@ -110,7 +112,7 @@ Description: 内核（虚包）
 EOF
 dpkg -b deb linux-kernel-dclc-gfdgdxi_${VERSION}_arm64.deb
 dpkg -b deb-$MAINVERSION linux-kernel-dclc-gfdgdxi-$MAINVERSION_${VERSION}_arm64.deb
-cd ..//gxde-linux-kernel
+cd ../../gxde-linux-kernel
 #bash ./repack-zstd --scan .
 #./build.py
 ./move-letter-path.py ../dclc-kernel/$VERSION-aarch64/*.deb

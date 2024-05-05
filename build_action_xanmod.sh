@@ -73,11 +73,13 @@ if [[ $2 == 1 ]]; then
     git clone https://gfdgd-xi:$PASSWORD@github.com/gfdgd-xi/gxde-linux-kernel --depth=1
     mkdir dclc-kernel
     mkdir dclc-kernel/$SHOWVERSION
+    mkdir dclc-kernel/head
     rm -rfv *dbg*.deb
     mv ./*.deb dclc-kernel/$SHOWVERSION
     cd dclc-kernel/$SHOWVERSION
     cd ..
     cd head
+    mkdir deb/DEBIAN -vp
     cat > deb/DEBIAN/control <<EOF
 Package: linux-kernel-gxde-gfdgdxi-xanmod-hwe
 Version: $VERSION
@@ -115,10 +117,10 @@ Description: 内核（虚包）
 EOF
     dpkg-deb -Z xz -b deb linux-kernel-dclc-gfdgdxi-xanmod-hwe_${VERSION}_amd64.deb
     dpkg-deb -Z xz -b deb-$MAINVERSION-xanmod linux-kernel-dclc-gfdgdxi-xanmod-$MAINVERSION-hwe_${VERSION}_amd64.deb
-    cd ../gxde-linux-kernel
+    cd ../../gxde-linux-kernel
     #bash ./repack-zstd --scan .
     #./build.py
-    ./move-letter-path.py ../dclc-kernel/$VERSION/*.deb
+    ./move-letter-path.py ../dclc-kernel/$SHOWVERSION/*.deb
     ./move-letter-path.py ../dclc-kernel/head/*.deb
     rm -rfv l/linux-libc-dev/
     touch l/linux-headers-$VERSION-amd64-xanmod-gfdgdxi-desktop-hwe/lock
@@ -136,11 +138,13 @@ else
     git clone https://gfdgd-xi:$PASSWORD@github.com/gfdgd-xi/gxde-kernel-manager --depth=1
     #cd dclc-kernel
     mkdir dclc-kernel/$VERSION
+    mkdir dclc-kernel/head
     rm -rfv *dbg*.deb
     mv ./*.deb dclc-kernel/$VERSION
     cd dclc-kernel/$VERSION
     cd ..
     cd head
+    mkdir deb/DEBIAN -vp
     cat > deb/DEBIAN/control <<EOF
 Package: linux-kernel-dclc-gfdgdxi-xanmod
 Version: $VERSION
@@ -178,7 +182,7 @@ Description: 内核（虚包）
 EOF
     dpkg-deb -Z xz -b deb linux-kernel-dclc-gfdgdxi-xanmod_${VERSION}_amd64.deb
     dpkg-deb -Z xz -b deb-$MAINVERSION-xanmod linux-kernel-dclc-gfdgdxi-xanmod-$MAINVERSION_${VERSION}_amd64.deb
-    cd ../gxde-linux-kernel
+    cd ../../gxde-linux-kernel
     #bash ./repack-zstd --scan .
     #./build.py
     ./move-letter-path.py ../dclc-kernel/$VERSION/*.deb
