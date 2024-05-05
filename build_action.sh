@@ -92,7 +92,7 @@ if [[ $2 == 1 ]]; then
     cd ..
     cd head
     cat > deb/DEBIAN/control <<EOF
-Package: linux-kernel-dclc-gfdgdxi-hwe
+Package: linux-kernel-gxde-gfdgdxi-hwe
 Version: $VERSION
 Maintainer: gfdgd xi <3025613752@qq.com>
 Homepage: https://github.com/gfdgd-xi/dclc-kernel
@@ -111,7 +111,7 @@ EOF
         mkdir -pv deb-$MAINVERSION/DEBIAN
     fi
     cat > deb-$MAINVERSION/DEBIAN/control <<EOF
-Package: linux-kernel-dclc-gfdgdxi-$MAINVERSION-hwe
+Package: linux-kernel-gxde-gfdgdxi-$MAINVERSION-hwe
 Version: $VERSION
 Maintainer: gfdgd xi <3025613752@qq.com>
 Homepage: https://github.com/gfdgd-xi/dclc-kernel

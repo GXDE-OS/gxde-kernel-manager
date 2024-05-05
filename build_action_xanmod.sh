@@ -79,7 +79,7 @@ if [[ $2 == 1 ]]; then
     cd ..
     cd head
     cat > deb/DEBIAN/control <<EOF
-Package: linux-kernel-dclc-gfdgdxi-xanmod-hwe
+Package: linux-kernel-gxde-gfdgdxi-xanmod-hwe
 Version: $VERSION
 Maintainer: gfdgd xi <3025613752@qq.com>
 Homepage: https://github.com/gfdgd-xi/dclc-kernel
@@ -98,7 +98,7 @@ EOF
         mkdir -pv deb-$MAINVERSION-xanmod/DEBIAN
     fi
     cat > deb-$MAINVERSION-xanmod/DEBIAN/control <<EOF
-Package: linux-kernel-dclc-gfdgdxi-$MAINVERSION-xanmod-hwe
+Package: linux-kernel-dclc-gxde-$MAINVERSION-xanmod-hwe
 Version: $VERSION
 Maintainer: gfdgd xi <3025613752@qq.com>
 Homepage: https://github.com/gfdgd-xi/dclc-kernel
