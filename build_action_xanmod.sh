@@ -100,7 +100,7 @@ EOF
         mkdir -pv deb-$MAINVERSION-xanmod/DEBIAN
     fi
     cat > deb-$MAINVERSION-xanmod/DEBIAN/control <<EOF
-Package: linux-kernel-dclc-gxde-$MAINVERSION-xanmod-hwe
+Package: linux-kernel-gxde-$MAINVERSION-xanmod-hwe
 Version: $VERSION
 Maintainer: gfdgd xi <3025613752@qq.com>
 Homepage: https://github.com/gfdgd-xi/dclc-kernel
@@ -115,8 +115,8 @@ Section: utils
 Installed-Size: 0
 Description: 内核（虚包）
 EOF
-    dpkg-deb -Z xz -b deb linux-kernel-dclc-gfdgdxi-xanmod-hwe_${VERSION}_amd64.deb
-    dpkg-deb -Z xz -b deb-$MAINVERSION-xanmod linux-kernel-dclc-gfdgdxi-xanmod-$MAINVERSION-hwe_${VERSION}_amd64.deb
+    dpkg-deb -Z xz -b deb linux-kernel-gxde-gfdgdxi-xanmod-hwe_${VERSION}_amd64.deb
+    dpkg-deb -Z xz -b deb-$MAINVERSION-xanmod linux-kernel-gxde-gfdgdxi-xanmod-$MAINVERSION-hwe_${VERSION}_amd64.deb
     cd ../../gxde-linux-kernel
     #bash ./repack-zstd --scan .
     #./build.py
@@ -146,7 +146,7 @@ else
     cd head
     mkdir deb/DEBIAN -vp
     cat > deb/DEBIAN/control <<EOF
-Package: linux-kernel-dclc-gfdgdxi-xanmod
+Package: linux-kernel-gxde-gfdgdxi-xanmod
 Version: $VERSION
 Maintainer: gfdgd xi <3025613752@qq.com>
 Homepage: https://github.com/gfdgd-xi/dclc-kernel
@@ -165,7 +165,7 @@ EOF
         mkdir -pv deb-$MAINVERSION-xanmod/DEBIAN
     fi
     cat > deb-$MAINVERSION-xanmod/DEBIAN/control <<EOF
-Package: linux-kernel-dclc-gfdgdxi-$MAINVERSION-xanmod
+Package: linux-kernel-gxde-gfdgdxi-$MAINVERSION-xanmod
 Version: $VERSION
 Maintainer: gfdgd xi <3025613752@qq.com>
 Homepage: https://github.com/gfdgd-xi/dclc-kernel
@@ -180,8 +180,8 @@ Section: utils
 Installed-Size: 0
 Description: 内核（虚包）
 EOF
-    dpkg-deb -Z xz -b deb linux-kernel-dclc-gfdgdxi-xanmod_${VERSION}_amd64.deb
-    dpkg-deb -Z xz -b deb-$MAINVERSION-xanmod linux-kernel-dclc-gfdgdxi-xanmod-$MAINVERSION_${VERSION}_amd64.deb
+    dpkg-deb -Z xz -b deb linux-kernel-gxde-gfdgdxi-xanmod_${VERSION}_amd64.deb
+    dpkg-deb -Z xz -b deb-$MAINVERSION-xanmod linux-kernel-gxde-gfdgdxi-xanmod-$MAINVERSION_${VERSION}_amd64.deb
     cd ../../gxde-linux-kernel
     #bash ./repack-zstd --scan .
     #./build.py
