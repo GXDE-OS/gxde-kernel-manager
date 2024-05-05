@@ -28,6 +28,6 @@ for i in programVersionList(f"#content div.page div.level3 :first-child td a").i
 print(newestVersion)
 print(newestUrl)
 with open("/tmp/kernelversion.txt", "w") as file:
-    file.write(newestVersion)
+    file.write(newestVersion.replace("\n", "").replace(" ", ""))
 with open("/tmp/kernelurl.txt", "w") as file:
-    file.write(newestUrl)
+    file.write(newestUrl.replace("\n", "").replace(" ", ""))
