@@ -73,7 +73,7 @@ void MainWindow::on_m_installButton_clicked()
 {
     QModelIndex list = ui->m_kernelShow->selectionModel()->currentIndex();
     int row = list.row();
-    if(row <= 0) {
+    if(row < 0) {
         // 未选中任何内容
         QMessageBox::critical(this, tr("Error"), tr("Nothing to choose"));
         return;
@@ -120,7 +120,7 @@ void MainWindow::on_m_removeButton_clicked()
 {
     QModelIndex list = ui->m_kernelShow->selectionModel()->currentIndex();
     int row = list.row();
-    if(row <= 0) {
+    if(row < 0) {
         // 未选中任何内容
         QMessageBox::critical(this, tr("Error"), tr("Nothing to choose"));
         return;

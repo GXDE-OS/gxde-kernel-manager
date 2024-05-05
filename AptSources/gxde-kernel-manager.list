@@ -1,2 +1,4 @@
 deb [trusted=true] https://master.dl.sourceforge.net/project/gxde-kernel-manager/kernel/ ./
 deb [trusted=true] https://kernel.gxde.gfdgdxi.top/ ./
+# CN Mirror
+deb [trusted=true] http://gfdgdxi.v5.idcfengye.com/gxde-linux-kernel/ ./
