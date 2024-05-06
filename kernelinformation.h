@@ -42,9 +42,13 @@ signals:
     void loadFinished(QNetworkReply *reply);
 
 
+
 private:
     QString url = "http://info.kernel.gxde.gfdgdxi.top/information.json";
     QJsonArray listData;
+
+    QStringList GetAptPackageList(QString name);
+    QByteArray GetCommandResult(QString command, QStringList argv, QProcessEnvironment env = QProcessEnvironment::systemEnvironment());
 };
 
 #endif // KERNELINFORMATION_H
