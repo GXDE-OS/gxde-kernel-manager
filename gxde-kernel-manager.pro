@@ -10,6 +10,7 @@ CONFIG += c++17
 
 SOURCES += \
     aboutwindow.cpp \
+    aptpkginfo.cpp \
     kernelinformation.cpp \
     kernelinstaller.cpp \
     main.cpp \
@@ -17,6 +18,7 @@ SOURCES += \
 
 HEADERS += \
     aboutwindow.h \
+    aptpkginfo.h \
     kernelinformation.h \
     kernelinstaller.h \
     mainwindow.h

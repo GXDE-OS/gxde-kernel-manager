@@ -7,38 +7,13 @@ KernelInformation::KernelInformation()
 
 }
 
-QStringList KernelInformation::GetAptPackageList(QString name)
-{
-    QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-    env.insert("LANG", "en");
-    QString data = GetCommandResult("apt", QStringList() << "list" << name, env);
-    QStringList lineData = data.split("\n");
-    QStringList result = {};
-    for(QString i: lineData) {
-        if(i.contains("Listing...")) {
-            continue;
-        }
-        result.append(i.split("/").at(0));
-    }
-    return result;
-}
-
-QByteArray KernelInformation::GetCommandResult(QString command, QStringList argv, QProcessEnvironment env)
-{
-    QProcess process;
-    process.setProcessEnvironment(env);
-    process.start(command, argv);
-    process.waitForStarted();
-    process.waitForFinished();
-    QByteArray result = process.readAllStandardOutput();
-    process.close();
-    return result;
-}
-
 void KernelInformation::LoadInfo()
 {
     // 从 apt 获取信息
-    qDebug() << this->GetAptPackageList("linux-*");
+    //QStringList data = this->GetAptPackageList("linux-*");
+    /*for(QString i: data) {
+
+    }*/
     // 从 Github 拉取信息
     QUrl url(this->url);
     QUrlQuery query;
