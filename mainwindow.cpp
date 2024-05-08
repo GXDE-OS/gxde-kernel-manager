@@ -50,8 +50,8 @@ void MainWindow::RefreshKernelListView(KernelInformation *info, bool showLocalAr
         model->setItem(line, 0, new QStandardItem(QString::number(i)));
         model->setItem(line, 1, new QStandardItem(info->get_name(i)));
         model->setItem(line, 2, new QStandardItem(info->get_author(i)));
-        model->setItem(line, 3, new QStandardItem(kernelArch));
-        model->setItem(line, 4, new QStandardItem((QStringList() << "" << "Y").at(info->get_installedAlready(i))));
+        //model->setItem(line, 3, new QStandardItem(kernelArch));
+        //model->setItem(line, 4, new QStandardItem((QStringList() << "" << "Y").at(info->get_installedAlready(i))));
         line++;
     }
     ui->m_kernelShow->setModel(model);

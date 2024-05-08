@@ -1,4 +1,5 @@
 #include "kernelinformation.h"
+#include "aptpkginfo.h"
 
 #include <QProcess>
 
@@ -14,6 +15,19 @@ void KernelInformation::LoadInfo()
     /*for(QString i: data) {
 
     }*/
+    AptPkgInfo info = AptPkgInfo("");
+    QJsonArray array;
+    QStringList list = info.GetAptPackageList("linux-base");
+    for(QString i: list) {
+        QJsonObject object;
+        info.SetPkgName(i);
+        object.insert("Name", i);
+        object.insert("Author", info.get_maintainer());
+        array.append(object);
+    }
+    this->listData = array;
+    emit loadFinished(NULL);
+    return;
     // 从 Github 拉取信息
     QUrl url(this->url);
     QUrlQuery query;
