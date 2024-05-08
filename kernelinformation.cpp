@@ -15,7 +15,7 @@ void KernelInformation::LoadInfo()
     /*for(QString i: data) {
 
     }*/
-    AptPkgInfo info = AptPkgInfo("");
+    AptPkgInfo info = AptPkgInfo("linux-", AptPkgInfo::PkgSearchOption::Include);
     QJsonArray array;
     QStringList list = info.GetAptPackageList("linux-base");
     for(QString i: list) {

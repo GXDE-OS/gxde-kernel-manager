@@ -3,8 +3,9 @@
 #include <QDir>
 #include <QDebug>
 
-AptPkgInfo::AptPkgInfo(QString pkgName)
+AptPkgInfo::AptPkgInfo(QString pkgName, PkgSearchOption option)
 {
+    this->pkgSearchOption = option;
     SetPkgName(pkgName);
     ReadAptData();
 }
@@ -19,13 +20,58 @@ void AptPkgInfo::ReadAptData()
         if(i == "." || i == "..") {
             continue;
         }
-        // TODO: bug
-        if(i.mid(-10, -1) != "_Packages") {
+        if(i.mid(i.indexOf("_Packages")) != "_Packages") {
             continue;
         }
         QFile file(dir.path() + "/" + i);
         file.open(QFile::ReadOnly);
-        aptData += file.readAll() + "\n";
+        // 分析
+        QString pkgData;
+        pkgDataStatus status = pkgDataStatus::None;
+        while(!file.atEnd()) {
+            QByteArray line = file.readLine();
+            if(line.replace(" ", "").replace("\n", "") == "") {
+                // 空行
+                if(status == pkgDataStatus::IsContain) {
+                    aptData += pkgData + "\n";
+                }
+                status = pkgDataStatus::EmptyLine;
+                pkgData = "";  // 清空
+                continue;
+            }
+            // 如果已经被检测为非要寻找的包名，则
+            if(status == pkgDataStatus::UnContain) {
+                continue;  // 忽略该行
+            }
+            // 分析行
+            if(line.contains("Package: ")) {
+                // 如果为包名行，则进行分析
+                // 是否含有要求关键字
+                QString pkgName = line.replace("Package: ", "").replace(" ", "").replace("\n", "");
+                switch(this->pkgSearchOption) {
+                case PkgSearchOption::Equal:
+                    if(pkgName == this->pkgName) {
+                        status = pkgDataStatus::IsContain;
+                    }
+                    else {
+                        status = pkgDataStatus::UnContain;
+                    }
+                    break;
+                case PkgSearchOption::Include:
+                    if(pkgName.contains(this->pkgName)) {
+                        status = pkgDataStatus::IsContain;
+                    }
+                    else {
+                        status = pkgDataStatus::UnContain;
+                    }
+                    break;
+                }
+                pkgData += line + "\n";
+                continue;
+            }
+            // 处理
+            pkgData += line + "\n";
+        }
         file.close();
     }
     qDebug() << aptData;

@@ -8,7 +8,12 @@ class AptPkgInfo: QObject
 {
     Q_OBJECT
 public:
-    AptPkgInfo(QString pkgName);
+    enum PkgSearchOption {
+        Include = 0,
+        Equal = 1
+    };
+
+    AptPkgInfo(QString pkgName, PkgSearchOption option = PkgSearchOption::Equal);
 
     void SetPkgName(QString pkgName);
     QStringList GetAptPackageList(QString name) const;
@@ -20,10 +25,23 @@ public:
     QString get_version() const;
     QString get_maintainer() const;
 
+
+
 private:
     QString pkgName;
     QString pkgInfo;
     QString aptData;
+    PkgSearchOption pkgSearchOption = PkgSearchOption::Equal;
+
+    enum pkgDataStatus {
+        EmptyLine = 0,
+        EmptyLineAgain = 1,
+        Reading = 2,
+        Readed = 3,
+        None = 4,
+        UnContain = 5,
+        IsContain = 6
+    };
 
     void ReadAptData();
 };
