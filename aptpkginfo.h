@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <QProcess>
+#include <QJsonObject>
 
 class AptPkgInfo: QObject
 {
@@ -16,21 +17,23 @@ public:
     AptPkgInfo(QString pkgName, PkgSearchOption option = PkgSearchOption::Equal);
 
     void SetPkgName(QString pkgName);
-    QStringList GetAptPackageList(QString name) const;
+    QStringList GetAptPackageList() const;
     QByteArray GetCommandResult(QString command, QStringList argv, QProcessEnvironment env = QProcessEnvironment::systemEnvironment()) const;
 
     QString GetPkgInfo(QString pkgName=NULL) const;
 
-    QString get_package() const;
-    QString get_version() const;
-    QString get_maintainer() const;
+    QString get_package(QString pkgName) const;
+    QString get_version(QString pkgName) const;
+    QString get_maintainer(QString pkgName) const;
+    QString get_description(QString pkgName) const;
+    QString get_architecture(QString pkgName) const;
 
 
 
 private:
     QString pkgName;
     QString pkgInfo;
-    QString aptData;
+    QJsonObject aptData;
     PkgSearchOption pkgSearchOption = PkgSearchOption::Equal;
 
     enum pkgDataStatus {

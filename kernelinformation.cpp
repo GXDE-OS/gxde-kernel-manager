@@ -16,35 +16,21 @@ void KernelInformation::LoadInfo()
 
     }*/
     AptPkgInfo info = AptPkgInfo("linux-", AptPkgInfo::PkgSearchOption::Include);
+    QStringList list = info.GetAptPackageList();
     QJsonArray array;
-    QStringList list = info.GetAptPackageList("linux-base");
     for(QString i: list) {
         QJsonObject object;
         info.SetPkgName(i);
         object.insert("Name", i);
-        object.insert("Author", info.get_maintainer());
+        object.insert("Author", info.get_maintainer(i));
+        object.insert("Des", info.get_maintainer(i));
+        object.insert("Arch", info.get_architecture(i));
         array.append(object);
+        qDebug() << object;
     }
     this->listData = array;
     emit loadFinished(NULL);
-    return;
-    // 从 Github 拉取信息
-    QUrl url(this->url);
-    QUrlQuery query;
-    query.addQueryItem("format", "j1");
-    url.setQuery(query.toString(QUrl::FullyEncoded));
-    qDebug() << url;
-    QNetworkRequest request(url);
-    QNetworkAccessManager *m_http = new QNetworkAccessManager(this);
-    QNetworkReply *reply = m_http->get(request);
-    connect(reply, &QNetworkReply::finished, this, [this, m_http](){
-        QNetworkReply *reply = qobject_cast<QNetworkReply *>(sender());
-        QByteArray data = reply->readAll();
-        qDebug() << data;
-        qDebug() << reply->error();
-        this->listData = QJsonDocument::fromJson(data).array();
-        emit loadFinished(reply);
-    });
+
 }
 
 QJsonArray KernelInformation::get_listData() const

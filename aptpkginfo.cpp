@@ -2,6 +2,7 @@
 #include <QFile>
 #include <QDir>
 #include <QDebug>
+#include <QJsonObject>
 
 AptPkgInfo::AptPkgInfo(QString pkgName, PkgSearchOption option)
 {
@@ -12,7 +13,7 @@ AptPkgInfo::AptPkgInfo(QString pkgName, PkgSearchOption option)
 
 void AptPkgInfo::ReadAptData()
 {
-    this->aptData = "";
+    this->aptData = QJsonObject();
     QDir dir("/var/lib/apt/lists/");
     QStringList list = dir.entryList();
     for(QString i: list) {
@@ -26,17 +27,19 @@ void AptPkgInfo::ReadAptData()
         QFile file(dir.path() + "/" + i);
         file.open(QFile::ReadOnly);
         // 分析
-        QString pkgData;
+        QJsonObject pkgData;
         pkgDataStatus status = pkgDataStatus::None;
+        QString strTemp;  // 因为直接 replace 会改变原来的值
         while(!file.atEnd()) {
             QByteArray line = file.readLine();
-            if(line.replace(" ", "").replace("\n", "") == "") {
+            strTemp = line;
+            if(strTemp.replace(" ", "").replace("\n", "") == "") {
                 // 空行
                 if(status == pkgDataStatus::IsContain) {
-                    aptData += pkgData + "\n";
+                    aptData.insert(pkgData.value("Package").toString(), pkgData);
                 }
                 status = pkgDataStatus::EmptyLine;
-                pkgData = "";  // 清空
+                pkgData = QJsonObject();  // 清空
                 continue;
             }
             // 如果已经被检测为非要寻找的包名，则
@@ -47,7 +50,8 @@ void AptPkgInfo::ReadAptData()
             if(line.contains("Package: ")) {
                 // 如果为包名行，则进行分析
                 // 是否含有要求关键字
-                QString pkgName = line.replace("Package: ", "").replace(" ", "").replace("\n", "");
+                strTemp = line;
+                QString pkgName = strTemp.replace("Package: ", "").replace(" ", "").replace("\n", "");
                 switch(this->pkgSearchOption) {
                 case PkgSearchOption::Equal:
                     if(pkgName == this->pkgName) {
@@ -66,15 +70,18 @@ void AptPkgInfo::ReadAptData()
                     }
                     break;
                 }
-                pkgData += line + "\n";
+                // 解析为 QJsonObject
+                pkgData.insert("Package", pkgName);
                 continue;
             }
             // 处理
-            pkgData += line + "\n";
+            int index = line.indexOf(":");
+            strTemp = line;
+            strTemp.replace("\n", "");
+            pkgData.insert(QString(strTemp.mid(0, index)), QString(strTemp.mid(index + 2)));
         }
         file.close();
     }
-    qDebug() << aptData;
 }
 
 void AptPkgInfo::SetPkgName(QString pkgName)
@@ -93,53 +100,34 @@ QString AptPkgInfo::GetPkgInfo(QString pkgName) const
     return this->GetCommandResult("apt", QStringList() << "list" << pkgName, env);
 }
 
-QString AptPkgInfo::get_package() const
+QString AptPkgInfo::get_package(QString pkgName) const
 {
-    QStringList list = pkgInfo.split("\n");
-    for(QString i: list) {
-        if(i.contains("Package: ")) {
-            return i.replace("Package: ", "").replace(" ", "");
-        }
-    }
-    return NULL;
+    return this->aptData.value(pkgName).toObject().value("Package").toString();
 }
 
-QString AptPkgInfo::get_version() const
+QString AptPkgInfo::get_version(QString pkgName) const
 {
-    QStringList list = pkgInfo.split("\n");
-    for(QString i: list) {
-        if(i.contains("Maintainer: ")) {
-            return i.replace("Maintainer: ", "").replace(" ", "");
-        }
-    }
-    return NULL;
+    return this->aptData.value(pkgName).toObject().value("Version").toString();
 }
 
-QString AptPkgInfo::get_maintainer() const
+QString AptPkgInfo::get_maintainer(QString pkgName) const
 {
-    QStringList list = pkgInfo.split("\n");
-    for(QString i: list) {
-        if(i.contains("Version: ")) {
-            return i.replace("Version: ", "").replace(" ", "");
-        }
-    }
-    return NULL;
+    return this->aptData.value(pkgName).toObject().value("Maintainer").toString();
 }
 
-QStringList AptPkgInfo::GetAptPackageList(QString name) const
+QString AptPkgInfo::get_description(QString pkgName) const
 {
-    QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
-    env.insert("LANG", "en");
-    QString data = GetCommandResult("apt", QStringList() << "list" << name, env);
-    QStringList lineData = data.split("\n");
-    QStringList result = {};
-    for(QString i: lineData) {
-        if(i.contains("Listing...")) {
-            continue;
-        }
-        result.append(i.split("/").at(0));
-    }
-    return result;
+    return this->aptData.value(pkgName).toObject().value("Description").toString();
+}
+
+QString AptPkgInfo::get_architecture(QString pkgName) const
+{
+    return this->aptData.value(pkgName).toObject().value("Architecture").toString();
+}
+
+QStringList AptPkgInfo::GetAptPackageList() const
+{
+    return this->aptData.keys();
 }
 
 QByteArray AptPkgInfo::GetCommandResult(QString command, QStringList argv, QProcessEnvironment env) const
