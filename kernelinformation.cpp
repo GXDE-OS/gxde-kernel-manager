@@ -18,6 +18,7 @@ void KernelInformation::LoadInfo()
     AptPkgInfo info = AptPkgInfo("linux-", AptPkgInfo::PkgSearchOption::HeadInclude);
     QStringList list = info.GetAptPackageList();
     QJsonArray array;
+    indexMap = {};
     for(QString i: list) {
         QJsonObject object;
         bool isContinue = false;
@@ -51,8 +52,12 @@ void KernelInformation::LoadInfo()
             alreadyIndex = indexMap.value(strTemp);
             QJsonArray pkgArray = array.at(alreadyIndex).toObject().value("PkgName").toArray();
             pkgArray.append(i);
-            array.insert(alreadyIndex, array.at(alreadyIndex).toObject().insert("PkgName", pkgArray)->toObject());
-            //array.at(alreadyIndex).toObject().insert("PkgName", pkgArray);
+            qDebug() << pkgArray;
+            //array.replace(alreadyIndex, array.at(alreadyIndex).toObject().insert("PkgName", pkgArray)->toObject());
+            qDebug() << alreadyIndex << array.count();
+            QJsonObject pkgObject = array.at(alreadyIndex).toObject();
+            pkgObject["PkgName"] = pkgArray;
+            array.replace(alreadyIndex, pkgObject);//.insert("PkgName", pkgArray)->toObject());
             continue;
         }
         info.SetPkgName(strTemp);
@@ -61,6 +66,7 @@ void KernelInformation::LoadInfo()
         object.insert("Des", info.get_maintainer(i));
         object.insert("Arch", info.get_architecture(i));
         object.insert("PkgName", QJsonArray::fromStringList(QStringList() << i));
+        indexMap.insert(strTemp, array.count());
         array.append(object);
     }
     this->listData = array;
@@ -130,16 +136,16 @@ QStringList KernelInformation::get_system(int value) const
 
 QStringList KernelInformation::get_arch(int value) const
 {
-    QJsonArray list = get_kernelData(value).value("Arch").toArray();
-    int count = list.count();
+    //QJsonArray list = get_kernelData(value).value("Arch").toArray();
+    /*int count = list.count();
     QStringList result;
     for(int i = 0; i < count; i++) {
         result << list.at(i).toString();
     }
     if(!result.count()) {
         result << "all";
-    }
-    return result;
+    }*/
+    return QStringList() << get_kernelData(value).value("Arch").toString();
 }
 
 QString KernelInformation::localKernelName() const

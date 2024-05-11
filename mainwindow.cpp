@@ -31,12 +31,13 @@ void MainWindow::RefreshKernelListView(KernelInformation *info, bool showLocalAr
     int count = info->get_count();
     QStandardItemModel *model = new QStandardItemModel();
     model->setHorizontalHeaderLabels(QStringList() << tr("ID") << tr("Kernel Name") << tr("Author") << tr("Arch") << tr("Installed"));
+    const QString arch = info->arch();
     int line = 0;
     for(int i = 0; i < count; i++) {
         // 显示所有架构
         QString kernelArch = "";
         bool isLocalArch = false;
-        const QString arch = info->arch();
+
         for(QString i: info->get_arch(i)) {
             if(i == arch) {
                 isLocalArch = true;
