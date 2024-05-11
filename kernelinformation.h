@@ -15,6 +15,7 @@
 #include <QProcess>
 
 #include <QFile>
+#include <QMap>
 
 class KernelInformation : public QObject
 {
@@ -46,6 +47,18 @@ signals:
 private:
     QString url = "http://info.kernel.gxde.gfdgdxi.top/information.json";
     QJsonArray listData;
+
+    QStringList unShowMap = {
+        "-dbg"
+    };
+
+    QStringList showMap = {
+        "linux-headers",
+        "linux-image",
+        "linux-kernel"
+    };
+
+    QMap<QString, int> indexMap;
 
 
 };

@@ -11,7 +11,8 @@ class AptPkgInfo: QObject
 public:
     enum PkgSearchOption {
         Include = 0,
-        Equal = 1
+        Equal = 1,
+        HeadInclude = 2
     };
 
     AptPkgInfo(QString pkgName, PkgSearchOption option = PkgSearchOption::Equal);

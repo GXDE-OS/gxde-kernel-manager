@@ -20,7 +20,6 @@ void MainWindow::RefreshKernelList()
 {
     ui->m_nowKernel->setText(tr("Kernel: ") + kernelInformation->localKernelName() + " " + tr("Arch: ") + kernelInformation->arch());
     connect(kernelInformation, &KernelInformation::loadFinished, this, [this](){
-        qDebug() << this->kernelInformation->get_listData();
         RefreshKernelListView(kernelInformation, ui->m_showLocalArchOnly->isChecked());
     });
     kernelInformation->LoadInfo();
@@ -54,7 +53,7 @@ void MainWindow::RefreshKernelListView(KernelInformation *info, bool showLocalAr
         model->setItem(line, 1, new QStandardItem(info->get_name(i)));
         model->setItem(line, 2, new QStandardItem(info->get_author(i)));
         model->setItem(line, 3, new QStandardItem(kernelArch));
-        //model->setItem(line, 4, new QStandardItem((QStringList() << "" << "Y").at(info->get_installedAlready(i))));
+        model->setItem(line, 4, new QStandardItem((QStringList() << "" << "Y").at(info->get_installedAlready(i))));
         line++;
     }
     ui->m_kernelShow->setModel(model);

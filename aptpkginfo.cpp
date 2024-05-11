@@ -69,6 +69,14 @@ void AptPkgInfo::ReadAptData()
                         status = pkgDataStatus::UnContain;
                     }
                     break;
+                case PkgSearchOption::HeadInclude:
+                    if(pkgName.mid(0, this->pkgName.length()) == this->pkgName) {
+                        status = pkgDataStatus::IsContain;
+                    }
+                    else {
+                        status = pkgDataStatus::UnContain;
+                    }
+                    break;
                 }
                 // 解析为 QJsonObject
                 pkgData.insert("Package", pkgName);
@@ -87,7 +95,7 @@ void AptPkgInfo::ReadAptData()
 void AptPkgInfo::SetPkgName(QString pkgName)
 {
     this->pkgName = pkgName;
-    pkgInfo = GetPkgInfo(pkgName);
+    //pkgInfo = GetPkgInfo(pkgName);
 }
 
 QString AptPkgInfo::GetPkgInfo(QString pkgName) const

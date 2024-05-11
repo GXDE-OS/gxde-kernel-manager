@@ -15,18 +15,53 @@ void KernelInformation::LoadInfo()
     /*for(QString i: data) {
 
     }*/
-    AptPkgInfo info = AptPkgInfo("linux-", AptPkgInfo::PkgSearchOption::Include);
+    AptPkgInfo info = AptPkgInfo("linux-", AptPkgInfo::PkgSearchOption::HeadInclude);
     QStringList list = info.GetAptPackageList();
     QJsonArray array;
     for(QString i: list) {
         QJsonObject object;
-        info.SetPkgName(i);
-        object.insert("Name", i);
+        bool isContinue = false;
+        for(QString j: unShowMap) {
+            if(i.contains(j)) {
+                isContinue = true;
+                break;
+            }
+        }
+        // 跳过此次循环
+        if(isContinue) {
+            continue;
+        }
+        isContinue = true;
+        for(QString j: showMap) {
+            if(i.contains(j)) {
+                isContinue = false;
+                break;
+            }
+        }
+        // 跳过此次循环
+        if(isContinue) {
+            continue;
+        }
+        QString strTemp = i;
+        strTemp.replace("-image", "");
+        strTemp.replace("-headers", "");
+        int alreadyIndex = -1;
+        if(indexMap.contains(strTemp)) {
+            // 如果已经存在
+            alreadyIndex = indexMap.value(strTemp);
+            QJsonArray pkgArray = array.at(alreadyIndex).toObject().value("PkgName").toArray();
+            pkgArray.append(i);
+            array.insert(alreadyIndex, array.at(alreadyIndex).toObject().insert("PkgName", pkgArray)->toObject());
+            //array.at(alreadyIndex).toObject().insert("PkgName", pkgArray);
+            continue;
+        }
+        info.SetPkgName(strTemp);
+        object.insert("Name", strTemp);
         object.insert("Author", info.get_maintainer(i));
         object.insert("Des", info.get_maintainer(i));
         object.insert("Arch", info.get_architecture(i));
+        object.insert("PkgName", QJsonArray::fromStringList(QStringList() << i));
         array.append(object);
-        qDebug() << object;
     }
     this->listData = array;
     emit loadFinished(NULL);
