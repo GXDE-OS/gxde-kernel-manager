@@ -61,7 +61,7 @@ scripts/config --set-val  DEBUG_INFO_NONE       y
 
 # build deb packages
 CPU_CORES=$(($(grep -c processor < /proc/cpuinfo)*2))
-sudo make bindeb-pkg ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- -j"$CPU_CORES"
+sudo env DEBEMAIL="gfdgd xi <3025613752@qq.com>" make bindeb-pkg ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- -j"$CPU_CORES"
 
 # move deb packages to artifact dir
 cd ..

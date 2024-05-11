@@ -64,7 +64,7 @@ scripts/config --set-val  DEBUG_INFO_NONE       y
 
 # build deb packages
 CPU_CORES=$(($(grep -c processor < /proc/cpuinfo)*2))
-sudo make bindeb-pkg -j"$CPU_CORES"
+sudo env DEBEMAIL="gfdgd xi <3025613752@qq.com>" make bindeb-pkg -j"$CPU_CORES"
 if [[ $2 == 1 ]]; then
     # move deb packages to artifact dir
     cd ..
