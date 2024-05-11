@@ -94,7 +94,7 @@ Priority: optional
 Depends: linux-headers-$VERSION-amd64-xanmod-gfdgdxi-desktop-hwe, linux-image-$VERSION-amd64-xanmod-gfdgdxi-desktop-hwe
 Section: utils
 Installed-Size: 0
-Description: 内核（虚包）
+Description: Xanmod 内核 $VERSION
 EOF
     if [[ ! -d deb-$MAINVERSION-xanmod ]]; then
         mkdir -pv deb-$MAINVERSION-xanmod/DEBIAN
@@ -113,7 +113,7 @@ Priority: optional
 Depends: linux-headers-$VERSION-amd64-xanmod-gfdgdxi-desktop-hwe, linux-image-$VERSION-amd64-xanmod-gfdgdxi-desktop-hwe
 Section: utils
 Installed-Size: 0
-Description: 内核（虚包）
+Description: Xanmod HWE 内核 $VERSION
 EOF
     dpkg-deb -Z xz -b deb linux-kernel-gxde-gfdgdxi-xanmod-hwe_${VERSION}_amd64.deb
     dpkg-deb -Z xz -b deb-$MAINVERSION-xanmod linux-kernel-gxde-gfdgdxi-xanmod-$1-hwe_${VERSION}_amd64.deb

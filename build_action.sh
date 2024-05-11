@@ -107,7 +107,7 @@ Priority: optional
 Depends: linux-headers-$VERSION-amd64-gfdgdxi-desktop-hwe, linux-image-$VERSION-amd64-gfdgdxi-desktop-hwe
 Section: utils
 Installed-Size: 0
-Description: 内核（虚包）
+Description: 内核 $VERSION
 EOF
     if [[ ! -d deb-$MAINVERSION ]]; then
         mkdir -pv deb-$MAINVERSION/DEBIAN
@@ -126,7 +126,7 @@ Priority: optional
 Depends: linux-headers-$VERSION-amd64-gfdgdxi-desktop-hwe, linux-image-$VERSION-amd64-gfdgdxi-desktop-hwe
 Section: utils
 Installed-Size: 0
-Description: 内核（虚包）
+Description: 内核 HWE $VERSION
 EOF
     dpkg-deb -Z xz -b deb linux-kernel-gxde-gfdgdxi-hwe_${VERSION}_amd64.deb
     dpkg-deb -Z xz -b deb-$MAINVERSION linux-kernel-gxde-gfdgdxi-$1-hwe_${VERSION}_amd64.deb
