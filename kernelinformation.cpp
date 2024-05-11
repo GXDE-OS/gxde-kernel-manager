@@ -52,12 +52,9 @@ void KernelInformation::LoadInfo()
             alreadyIndex = indexMap.value(strTemp);
             QJsonArray pkgArray = array.at(alreadyIndex).toObject().value("PkgName").toArray();
             pkgArray.append(i);
-            qDebug() << pkgArray;
-            //array.replace(alreadyIndex, array.at(alreadyIndex).toObject().insert("PkgName", pkgArray)->toObject());
-            qDebug() << alreadyIndex << array.count();
             QJsonObject pkgObject = array.at(alreadyIndex).toObject();
             pkgObject["PkgName"] = pkgArray;
-            array.replace(alreadyIndex, pkgObject);//.insert("PkgName", pkgArray)->toObject());
+            array.replace(alreadyIndex, pkgObject);
             continue;
         }
         info.SetPkgName(strTemp);

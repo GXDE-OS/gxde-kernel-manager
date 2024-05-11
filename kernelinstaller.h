@@ -16,7 +16,8 @@ class KernelInstaller : public QMainWindow
 public:
     enum Option {
         Install,
-        Remove
+        Remove,
+        Reconfigure
     };
 
     explicit KernelInstaller(Option option, QStringList kernelList, QWidget *parent = nullptr);

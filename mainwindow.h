@@ -35,6 +35,8 @@ private slots:
 
     void on_m_showLocalArchOnly_stateChanged(int arg1);
 
+    void on_m_reconfigureButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     KernelInformation *kernelInformation;

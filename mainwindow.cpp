@@ -142,3 +142,21 @@ void MainWindow::on_m_showLocalArchOnly_stateChanged(int arg1)
     RefreshKernelListView(this->kernelInformation, ui->m_showLocalArchOnly->isChecked());
 }
 
+
+void MainWindow::on_m_reconfigureButton_clicked()
+{
+    QModelIndex list = ui->m_kernelShow->selectionModel()->currentIndex();
+    int row = list.row();
+    if(row < 0) {
+        // 未选中任何内容
+        QMessageBox::critical(this, tr("Error"), tr("Nothing to choose"));
+        return;
+    }
+    // 获取 ID
+    QModelIndex index = ui->m_kernelShow->model()->index(row, 0);
+    int id = ui->m_kernelShow->model()->data(index).toUInt();
+    // 获取选中行
+    KernelInstaller *installer = new KernelInstaller(KernelInstaller::Option::Reconfigure, kernelInformation->get_pkgName(id));
+    installer->show();
+}
+
