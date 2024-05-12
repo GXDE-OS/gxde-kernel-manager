@@ -118,8 +118,6 @@
     <property name="title">
      <string>Program</string>
     </property>
-    <addaction name="actionUpdate_apt_cache"/>
-    <addaction name="separator"/>
     <addaction name="actionExit"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
@@ -129,9 +127,19 @@
     <addaction name="actionGitee"/>
     <addaction name="actionGithub"/>
     <addaction name="separator"/>
+    <addaction name="actionAbout_QT"/>
     <addaction name="actionAbout"/>
    </widget>
+   <widget class="QMenu" name="menuApt">
+    <property name="title">
+     <string>Apt</string>
+    </property>
+    <addaction name="actionUpdate_apt_cache"/>
+    <addaction name="separator"/>
+    <addaction name="actionUpgrade"/>
+   </widget>
    <addaction name="menuProgram"/>
+   <addaction name="menuApt"/>
    <addaction name="menuHelp"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
@@ -158,6 +166,16 @@
   <action name="actionUpdate_apt_cache">
    <property name="text">
     <string>Update apt cache</string>
+   </property>
+  </action>
+  <action name="actionAbout_QT">
+   <property name="text">
+    <string>About QT</string>
+   </property>
+  </action>
+  <action name="actionUpgrade">
+   <property name="text">
+    <string>Upgrade</string>
    </property>
   </action>
  </widget>

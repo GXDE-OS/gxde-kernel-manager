@@ -35,6 +35,9 @@ KernelInstaller::KernelInstaller(Option option, QStringList kernelList, QWidget 
     case Option::Update:
         ui->m_status->setText(tr("Try to update apt cache"));
         break;
+    case Option::Upgrade:
+        ui->m_status->setText(tr("Try to upgrade ") + kernel);
+        break;
     }
 
 
@@ -92,6 +95,9 @@ QString KernelInstaller::BuildKernelInstallerBash(QStringList kernelList, QStrin
         break;
     case Option::Update:
         filePath = ":/shell/kernel-installer-update-template.sh";
+        break;
+    case Option::Upgrade:
+        filePath = ":/shell/kernel-installer-upgrade-template.sh";
         break;
     }
 

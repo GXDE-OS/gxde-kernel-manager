@@ -18,7 +18,8 @@ public:
         Install,
         Remove,
         Reconfigure,
-        Update
+        Update,
+        Upgrade
     };
 
     explicit KernelInstaller(Option option, QStringList kernelList, QWidget *parent = nullptr);

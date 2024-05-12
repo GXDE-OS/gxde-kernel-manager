@@ -174,3 +174,16 @@ void MainWindow::on_actionUpdate_apt_cache_triggered()
     installer->show();
 }
 
+
+void MainWindow::on_actionAbout_QT_triggered()
+{
+    QMessageBox::aboutQt(this);
+}
+
+
+void MainWindow::on_actionUpgrade_triggered()
+{
+    KernelInstaller *installer = new KernelInstaller(KernelInstaller::Option::Upgrade, QStringList());
+    installer->show();
+}
+

@@ -19,17 +19,22 @@
         <translation>确定</translation>
     </message>
     <message>
-        <location filename="../aboutwindow.cpp" line="13"/>
+        <location filename="../aboutwindow.cpp" line="18"/>
         <source>A kernel manager allows users to install or remove kernels easily.</source>
         <translation>GXDE 内核管理器是一个帮助用户更方便获取、安装、移除内核的工具。</translation>
     </message>
     <message>
-        <location filename="../aboutwindow.cpp" line="14"/>
+        <location filename="../aboutwindow.cpp" line="19"/>
         <source>Warning: You may damage your system unless you know what you will do!</source>
         <translation>警告：请不要随意操作内核除非你知道你在做什么！</translation>
     </message>
     <message>
-        <location filename="../aboutwindow.cpp" line="17"/>
+        <location filename="../aboutwindow.cpp" line="20"/>
+        <source>Built Time: </source>
+        <translation>构建时间： </translation>
+    </message>
+    <message>
+        <location filename="../aboutwindow.cpp" line="25"/>
         <source>Website</source>
         <translation>网址</translation>
     </message>
@@ -46,7 +51,6 @@
         <translation>配置内核</translation>
     </message>
     <message>
-        <location filename="../kernelinstaller.ui" line="33"/>
         <location filename="../kernelinstaller.ui" line="46"/>
         <source>TextLabel</source>
         <translation>文本标签</translation>
@@ -54,20 +58,35 @@
     <message>
         <location filename="../kernelinstaller.cpp" line="27"/>
         <source>Try to install </source>
-        <translation>正在尝试安装 </translation>
+        <translation>正在尝试安装内核 </translation>
     </message>
     <message>
         <location filename="../kernelinstaller.cpp" line="30"/>
         <source>Try to remove </source>
-        <translation>尝试移除 </translation>
+        <translation>尝试移除内核 </translation>
     </message>
     <message>
-        <location filename="../kernelinstaller.cpp" line="135"/>
+        <location filename="../kernelinstaller.cpp" line="33"/>
+        <source>Try to reconfigure </source>
+        <translation>尝试重新配置内核 </translation>
+    </message>
+    <message>
+        <location filename="../kernelinstaller.cpp" line="36"/>
+        <source>Try to update apt cache</source>
+        <translation>尝试刷新 apt 缓存</translation>
+    </message>
+    <message>
+        <location filename="../kernelinstaller.cpp" line="39"/>
+        <source>Try to upgrade </source>
+        <translation>尝试升级 </translation>
+    </message>
+    <message>
+        <location filename="../kernelinstaller.cpp" line="156"/>
         <source>Done</source>
         <translation>完成</translation>
     </message>
     <message>
-        <location filename="../kernelinstaller.cpp" line="140"/>
+        <location filename="../kernelinstaller.cpp" line="161"/>
         <source>Something error, exit code: </source>
         <translation>出现错误，退出代码： </translation>
     </message>
@@ -84,99 +103,136 @@
         <translation>GXDE 内核管理器</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="43"/>
+        <location filename="../mainwindow.ui" line="49"/>
         <source>TextLabel</source>
         <translation>文本标签</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="63"/>
+        <location filename="../mainwindow.ui" line="69"/>
+        <source>Show local PC architecture only</source>
+        <translation>支持当前架构</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="79"/>
         <source>Refresh</source>
         <translation>刷新</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="70"/>
+        <location filename="../mainwindow.ui" line="86"/>
+        <source>Reconfigure</source>
+        <translation>重新配置</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="93"/>
         <source>Install</source>
         <translation>安装</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="77"/>
+        <location filename="../mainwindow.ui" line="100"/>
         <source>Remove</source>
         <translation>卸载</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="96"/>
+        <location filename="../mainwindow.ui" line="119"/>
         <source>Program</source>
         <translation>程序</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="102"/>
+        <location filename="../mainwindow.ui" line="125"/>
         <source>Help</source>
         <translation>帮助</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="115"/>
+        <location filename="../mainwindow.ui" line="135"/>
+        <source>Apt</source>
+        <translation>Apt</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="148"/>
         <source>Exit</source>
         <translation>退出</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="120"/>
+        <location filename="../mainwindow.ui" line="153"/>
         <source>About</source>
         <translation>关于</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="125"/>
+        <location filename="../mainwindow.ui" line="158"/>
         <source>Gitee</source>
         <translation>Gitee</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="130"/>
+        <location filename="../mainwindow.ui" line="163"/>
         <source>Github</source>
         <translation>Github</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="21"/>
+        <location filename="../mainwindow.ui" line="168"/>
+        <source>Update apt cache</source>
+        <translation>刷新 apt 缓存</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="173"/>
+        <source>About QT</source>
+        <translation>关于 QT</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="178"/>
+        <source>Upgrade</source>
+        <translation>升级</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="23"/>
         <source>Kernel: </source>
         <translation>内核： </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="21"/>
+        <location filename="../mainwindow.cpp" line="23"/>
         <source>Arch: </source>
         <translation>架构： </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="34"/>
+        <location filename="../mainwindow.cpp" line="35"/>
         <source>ID</source>
         <translation>ID</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="34"/>
+        <location filename="../mainwindow.cpp" line="35"/>
         <source>Kernel Name</source>
         <translation>内核名称</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="34"/>
+        <location filename="../mainwindow.cpp" line="35"/>
         <source>Author</source>
         <translation>维护者</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="34"/>
+        <location filename="../mainwindow.cpp" line="35"/>
         <source>Arch</source>
         <translation>架构</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="34"/>
+        <location filename="../mainwindow.cpp" line="35"/>
         <source>Installed</source>
         <translation>是否安装</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="63"/>
-        <location filename="../mainwindow.cpp" line="106"/>
+        <location filename="../mainwindow.cpp" line="35"/>
+        <source>Description</source>
+        <translation>描述</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="85"/>
+        <location filename="../mainwindow.cpp" line="132"/>
+        <location filename="../mainwindow.cpp" line="156"/>
         <source>Error</source>
         <translation>错误</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="63"/>
-        <location filename="../mainwindow.cpp" line="106"/>
+        <location filename="../mainwindow.cpp" line="85"/>
+        <location filename="../mainwindow.cpp" line="132"/>
+        <location filename="../mainwindow.cpp" line="156"/>
         <source>Nothing to choose</source>
         <translation>没有选择任何选项</translation>
     </message>

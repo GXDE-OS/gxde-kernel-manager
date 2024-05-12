@@ -39,6 +39,10 @@ private slots:
 
     void on_actionUpdate_apt_cache_triggered();
 
+    void on_actionAbout_QT_triggered();
+
+    void on_actionUpgrade_triggered();
+
 private:
     Ui::MainWindow *ui;
     KernelInformation *kernelInformation;

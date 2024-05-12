@@ -10,14 +10,23 @@ KernelInformation::KernelInformation()
 
 void KernelInformation::LoadInfo()
 {
-    // 从 apt 获取信息
-    //QStringList data = this->GetAptPackageList("linux-*");
-    /*for(QString i: data) {
-
-    }*/
-    AptPkgInfo info = AptPkgInfo("linux-", AptPkgInfo::PkgSearchOption::HeadInclude);
-    QStringList list = info.GetAptPackageList();
+    // 添加 GXDE Kernel Manager
     QJsonArray array;
+    AptPkgInfo kernelManagerinfo = AptPkgInfo("gxde-kernel-manager", AptPkgInfo::PkgSearchOption::Equal);
+    QStringList list = kernelManagerinfo.GetAptPackageList();
+    for(QString i: list) {
+        QJsonObject object;
+        kernelManagerinfo.SetPkgName(i);
+        object.insert("Name", i);
+        object.insert("Author", kernelManagerinfo.get_maintainer(i));
+        object.insert("Des", kernelManagerinfo.get_description(i));
+        object.insert("Arch", QJsonArray::fromStringList(QStringList() << arch()));
+        object.insert("PkgName", QJsonArray::fromStringList(QStringList() << i));
+        array.append(object);
+    }
+    AptPkgInfo info = AptPkgInfo("linux-", AptPkgInfo::PkgSearchOption::HeadInclude);
+    list = info.GetAptPackageList();
+
     indexMap = {};
     for(QString i: list) {
         QJsonObject object;
@@ -72,19 +81,7 @@ void KernelInformation::LoadInfo()
         indexMap.insert(strTemp, array.count());
         array.append(object);
     }
-    // 添加 GXDE Kernel Manager
-    AptPkgInfo kernelManagerinfo = AptPkgInfo("gxde-kernel-manager", AptPkgInfo::PkgSearchOption::Equal);
-    list = kernelManagerinfo.GetAptPackageList();
-    for(QString i: list) {
-        QJsonObject object;
-        info.SetPkgName(i);
-        object.insert("Name", i);
-        object.insert("Author", kernelManagerinfo.get_maintainer(i));
-        object.insert("Des", kernelManagerinfo.get_description(i));
-        object.insert("Arch", QJsonArray::fromStringList(QStringList() << arch()));
-        object.insert("PkgName", QJsonArray::fromStringList(QStringList() << i));
-        array.append(object);
-    }
+
     this->listData = array;
     emit loadFinished(NULL);
 
@@ -160,7 +157,6 @@ QStringList KernelInformation::get_arch(int value) const
     }
     if(!result.count()) {
         result << "all";
-        qDebug() << get_kernelData(value);
     }
     return result;
 }
