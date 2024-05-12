@@ -13,10 +13,16 @@ GXDE Kernel Manager is a kernel manager allows users to install or remove kernel
 Support architectures: amd64, arm64, mips64, loong64  
 **Warning: You may damage your system unless you know what you will do!**  
 
-![截图_deepin-terminal_20240502212456.png](https://storage.deepin.org/thread/20240502134212362_截图_deepin-terminal_20240502212456.png)  
-![截图_gxde-kernel-manager_20240502212431.png](https://storage.deepin.org/thread/202405021342123825_截图_gxde-kernel-manager_20240502212431.png)  
-![截图_gxde-kernel-manager_20240502212321.png](https://storage.deepin.org/thread/202405021342122641_截图_gxde-kernel-manager_20240502212321.png)  
-![截图_gxde-kernel-manager_20240502211723.png](https://storage.deepin.org/thread/202405021342116834_截图_gxde-kernel-manager_20240502211723.png)  
+![image.png](https://storage.deepin.org/thread/202405120819335429_image.png)
+
+![image.png](https://storage.deepin.org/thread/202405120820175356_image.png)
+
+## GXDE 系统如何安装 GXDE 内核管理器？
+只适用于 GXDE，deepin/UOS 等需要下载 deb 手动安装  
+```bash
+sudo apt update
+sudo apt install gxde-kernel-manager
+```
 
 ## 更新内容
 ### 1.1.0（2024.05.12）
@@ -33,6 +39,11 @@ Support architectures: amd64, arm64, mips64, loong64
 **※4. Show a warning message box when removing all kernels.**  
 5. Optimize the effect of the kernels table.  
 6. Support showing kernel descriptions and versions.  
+
+![image.png](https://storage.deepin.org/thread/202405120819335429_image.png)
+
+![image.png](https://storage.deepin.org/thread/202405120820175356_image.png)
+
 
 ### 1.0.1（2024.05.03）
 **1、修复部分系统无法打开管理器的问题**  
