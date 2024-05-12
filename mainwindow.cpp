@@ -58,6 +58,7 @@ void MainWindow::RefreshKernelListView(KernelInformation *info, bool showLocalAr
         line++;
     }
     ui->m_kernelShow->setModel(model);
+    ui->m_kernelShow->resizeColumnsToContents();
 }
 
 MainWindow::~MainWindow()
@@ -157,6 +158,16 @@ void MainWindow::on_m_reconfigureButton_clicked()
     int id = ui->m_kernelShow->model()->data(index).toUInt();
     // 获取选中行
     KernelInstaller *installer = new KernelInstaller(KernelInstaller::Option::Reconfigure, kernelInformation->get_pkgName(id));
+    installer->show();
+}
+
+
+void MainWindow::on_actionUpdate_apt_cache_triggered()
+{
+    KernelInstaller *installer = new KernelInstaller(KernelInstaller::Option::Update, QStringList());
+    connect(installer, &KernelInstaller::InstallFinished, this, [this, installer](){
+        RefreshKernelList();
+    });
     installer->show();
 }
 

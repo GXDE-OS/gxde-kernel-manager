@@ -17,7 +17,8 @@ public:
     enum Option {
         Install,
         Remove,
-        Reconfigure
+        Reconfigure,
+        Update
     };
 
     explicit KernelInstaller(Option option, QStringList kernelList, QWidget *parent = nullptr);
@@ -28,6 +29,7 @@ signals:
     void InstallFinished(int status);
 
 private:
+    QTimer *runStatusTimer;
     Option runOption;
     Ui::KernelInstaller *ui;
     QTermWidget *terminal;

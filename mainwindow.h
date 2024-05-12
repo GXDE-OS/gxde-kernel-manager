@@ -37,6 +37,8 @@ private slots:
 
     void on_m_reconfigureButton_clicked();
 
+    void on_actionUpdate_apt_cache_triggered();
+
 private:
     Ui::MainWindow *ui;
     KernelInformation *kernelInformation;

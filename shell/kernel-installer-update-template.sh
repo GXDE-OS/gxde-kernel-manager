@@ -8,5 +8,4 @@ if [[ $? == 0 ]]; then
     aptPath="aptss"
 fi
 $aptPath update
-$aptPath install ${KernelList} -y
 rm -f "${kernelInstallerShellTempPath}"

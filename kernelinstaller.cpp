@@ -32,6 +32,9 @@ KernelInstaller::KernelInstaller(Option option, QStringList kernelList, QWidget 
     case Option::Reconfigure:
         ui->m_status->setText(tr("Try to reconfigure ") + kernel);
         break;
+    case Option::Update:
+        ui->m_status->setText(tr("Try to update apt cache"));
+        break;
     }
 
 
@@ -63,7 +66,7 @@ void KernelInstaller::StartInstaller()
     terminal->startShellProgram();
     processID = terminal->getShellPID();
     // 使用 QTimer 用于判断内核是否安装完成
-    QTimer *runStatusTimer = new QTimer();
+    runStatusTimer = new QTimer();
     runStatusTimer->setInterval(100);
     connect(runStatusTimer, &QTimer::timeout, this, &KernelInstaller::CheckInstallerStatusTimer);
     runStatusTimer->start();
@@ -86,6 +89,9 @@ QString KernelInstaller::BuildKernelInstallerBash(QStringList kernelList, QStrin
         break;
     case Option::Reconfigure:
         filePath = ":/shell/kernel-installer-reconfigure-template.sh";
+        break;
+    case Option::Update:
+        filePath = ":/shell/kernel-installer-update-template.sh";
         break;
     }
 
@@ -136,6 +142,8 @@ void KernelInstaller::CheckInstallerStatusTimer()
     if(status == -1) {
         return;
     }
+    // 关闭 Timer 防止一直发送错误的信号
+    runStatusTimer->stop();
     emit InstallFinished(status);
     // 安装完成
     if(status == 0) {

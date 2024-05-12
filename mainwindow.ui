@@ -27,9 +27,15 @@
       <property name="selectionBehavior">
        <enum>QAbstractItemView::SelectRows</enum>
       </property>
+      <property name="sortingEnabled">
+       <bool>true</bool>
+      </property>
       <property name="wordWrap">
        <bool>true</bool>
       </property>
+      <attribute name="horizontalHeaderCascadingSectionResizes">
+       <bool>false</bool>
+      </attribute>
       <attribute name="verticalHeaderVisible">
        <bool>false</bool>
       </attribute>
@@ -112,6 +118,8 @@
     <property name="title">
      <string>Program</string>
     </property>
+    <addaction name="actionUpdate_apt_cache"/>
+    <addaction name="separator"/>
     <addaction name="actionExit"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
@@ -145,6 +153,11 @@
   <action name="actionGithub">
    <property name="text">
     <string>Github</string>
+   </property>
+  </action>
+  <action name="actionUpdate_apt_cache">
+   <property name="text">
+    <string>Update apt cache</string>
    </property>
   </action>
  </widget>
