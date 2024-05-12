@@ -32,9 +32,10 @@ void MainWindow::RefreshKernelListView(KernelInformation *info, bool showLocalAr
     // 更新列表
     int count = info->get_count();
     QStandardItemModel *model = new QStandardItemModel();
-    model->setHorizontalHeaderLabels(QStringList() << tr("ID") << tr("Kernel Name") << tr("Author") << tr("Arch") << tr("Installed") << tr("Description"));
+    model->setHorizontalHeaderLabels(QStringList() << tr("ID") << tr("Kernel Name") << tr("Author") << tr("Arch") << tr("Version") << tr("Installed") << tr("Description"));
     const QString arch = info->arch();
     int line = 0;
+    kernelNumber = 0;
     for(int i = 0; i < count; i++) {
         // 显示所有架构
         QString kernelArch = "";
@@ -56,8 +57,13 @@ void MainWindow::RefreshKernelListView(KernelInformation *info, bool showLocalAr
         model->setItem(line, 1, new QStandardItem(info->get_name(i)));
         model->setItem(line, 2, new QStandardItem(info->get_author(i)));
         model->setItem(line, 3, new QStandardItem(kernelArch));
-        model->setItem(line, 4, new QStandardItem((QStringList() << "" << "Y").at(info->get_installedAlready(i))));
-        model->setItem(line, 5, new QStandardItem(info->get_des(i)));
+        model->setItem(line, 4, new QStandardItem(info->get_ver(i)));
+        bool installed = info->get_installedAlready(i);
+        model->setItem(line, 5, new QStandardItem((QStringList() << "" << "Y").at(installed)));
+        if (installed) {
+            kernelNumber++;
+        }
+        model->setItem(line, 6, new QStandardItem(info->get_des(i)));
         line++;
     }
     ui->m_kernelShow->setModel(model);
@@ -135,6 +141,17 @@ void MainWindow::on_m_removeButton_clicked()
     // 获取 ID
     QModelIndex index = ui->m_kernelShow->model()->index(row, 0);
     int id = ui->m_kernelShow->model()->data(index).toUInt();
+    if(kernelNumber <= 1) {
+        QMessageBox msgBox;
+        msgBox.setIcon(QMessageBox::Warning);
+        msgBox.setWindowTitle(tr("Warning"));
+        msgBox.setInformativeText(tr("Are you sure you want to remove all installed kernel versions? Please note that this may render your system unstable or unbootable."));
+        msgBox.addButton(tr("Confirm"), QMessageBox::AcceptRole);
+        msgBox.addButton(tr("Cancel"), QMessageBox::RejectRole);
+        if(msgBox.exec() == QMessageBox::RejectRole) {
+            return;
+        }
+    }
     // 获取选中行
     KernelInstaller *installer = new KernelInstaller(KernelInstaller::Option::Remove, kernelInformation->get_pkgName(id));
     installer->show();

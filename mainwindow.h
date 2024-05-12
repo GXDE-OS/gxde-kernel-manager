@@ -48,5 +48,7 @@ private:
     KernelInformation *kernelInformation;
     void RefreshKernelList();
     void RefreshKernelListView(KernelInformation *info, bool showLocalArchOnly = true);
+
+    int kernelNumber = 0;
 };
 #endif // MAINWINDOW_H

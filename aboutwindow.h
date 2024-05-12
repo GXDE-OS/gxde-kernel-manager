@@ -18,6 +18,8 @@ public:
 private slots:
     void on_m_closeButton_clicked();
 
+    void on_m_logoShower_linkActivated(const QString &link);
+
 private:
     Ui::AboutWindow *ui;
 };

@@ -20,6 +20,7 @@ void KernelInformation::LoadInfo()
         object.insert("Name", i);
         object.insert("Author", kernelManagerinfo.get_maintainer(i));
         object.insert("Des", kernelManagerinfo.get_description(i));
+        object.insert("Ver", kernelManagerinfo.get_version(i));
         object.insert("Arch", QJsonArray::fromStringList(QStringList() << arch()));
         object.insert("PkgName", QJsonArray::fromStringList(QStringList() << i));
         array.append(object);
@@ -76,6 +77,7 @@ void KernelInformation::LoadInfo()
         object.insert("Name", strTemp);
         object.insert("Author", info.get_maintainer(i));
         object.insert("Des", info.get_description(i));
+        object.insert("Ver", info.get_version(i));
         object.insert("Arch", QJsonArray::fromStringList(QStringList() << info.get_architecture(i)));
         object.insert("PkgName", QJsonArray::fromStringList(QStringList() << i));
         indexMap.insert(strTemp, array.count());

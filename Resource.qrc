@@ -18,5 +18,10 @@
         <file>data/new/zh_CN.html</file>
         <file>data/version</file>
         <file>shell/kernel-installer-upgrade-template.sh</file>
+        <file>icon/icon1.png</file>
+        <file>Donate/advertisement0.jpg</file>
+        <file>Donate/Alipay.jpg</file>
+        <file>Donate/QQ.png</file>
+        <file>Donate/Wechat.png</file>
     </qresource>
 </RCC>
