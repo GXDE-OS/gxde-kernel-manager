@@ -8,6 +8,7 @@
 GXDE 内核管理器是一个帮助用户更方便获取、安装、移除内核的工具。  
 目前支持 amd64、arm64、mips64 和 loong64 四个架构  
 ***警告：请不要随意操作内核除非你知道你在做什么！***  
+QQ 群：881201853  
 
 GXDE Kernel Manager is a kernel manager allows users to install or remove kernels easily.  
 Support architectures: amd64, arm64, mips64, loong64  
