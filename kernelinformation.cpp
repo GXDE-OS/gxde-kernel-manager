@@ -60,10 +60,23 @@ void KernelInformation::LoadInfo()
         info.SetPkgName(strTemp);
         object.insert("Name", strTemp);
         object.insert("Author", info.get_maintainer(i));
-        object.insert("Des", info.get_maintainer(i));
+        object.insert("Des", info.get_description(i));
         object.insert("Arch", info.get_architecture(i));
         object.insert("PkgName", QJsonArray::fromStringList(QStringList() << i));
         indexMap.insert(strTemp, array.count());
+        array.append(object);
+    }
+    // 添加 GXDE Kernel Manager
+    AptPkgInfo kernelManagerinfo = AptPkgInfo("gxde-kernel-manager", AptPkgInfo::PkgSearchOption::Equal);
+    list = info.GetAptPackageList();
+    for(QString i: list) {
+        QJsonObject object;
+        info.SetPkgName(i);
+        object.insert("Name", i);
+        object.insert("Author", info.get_maintainer(i));
+        object.insert("Des", info.get_description(i));
+        object.insert("Arch", info.get_architecture(i));
+        object.insert("PkgName", QJsonArray::fromStringList(QStringList() << i));
         array.append(object);
     }
     this->listData = array;

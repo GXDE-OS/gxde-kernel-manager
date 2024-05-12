@@ -1,5 +1,7 @@
 #include "mainwindow.h"
 
+#include "programinfo.h"
+
 #include <QApplication>
 
 #include <QFile>
@@ -11,9 +13,7 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     QTranslator translator;
-    // 检查系统语言以加载翻译
-    if(QProcessEnvironment::systemEnvironment().value("LANG").contains("zh")) {
-        // 中文，加载中文翻译
+    if(ProgramInfo::systemLANG() == ProgramInfo::LANG::zh_CN) {
         translator.load(":/translation/gxde-kernel-manager_zh_CN.qm");
     }
     a.installTranslator(&translator);

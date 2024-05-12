@@ -14,14 +14,16 @@ SOURCES += \
     kernelinformation.cpp \
     kernelinstaller.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    programinfo.cpp
 
 HEADERS += \
     aboutwindow.h \
     aptpkginfo.h \
     kernelinformation.h \
     kernelinstaller.h \
-    mainwindow.h
+    mainwindow.h \
+    programinfo.h
 
 FORMS += \
     aboutwindow.ui \

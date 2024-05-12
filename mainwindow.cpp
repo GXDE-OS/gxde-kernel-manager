@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "aboutwindow.h"
+#include "programinfo.h"
 
 #include "kernelinformation.h"
 
@@ -12,6 +13,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    this->setWindowTitle(this->windowTitle() + " " + ProgramInfo::version());
     kernelInformation = new KernelInformation();
     RefreshKernelList();
 }
@@ -30,7 +32,7 @@ void MainWindow::RefreshKernelListView(KernelInformation *info, bool showLocalAr
     // 更新列表
     int count = info->get_count();
     QStandardItemModel *model = new QStandardItemModel();
-    model->setHorizontalHeaderLabels(QStringList() << tr("ID") << tr("Kernel Name") << tr("Author") << tr("Arch") << tr("Installed"));
+    model->setHorizontalHeaderLabels(QStringList() << tr("ID") << tr("Kernel Name") << tr("Author") << tr("Arch") << tr("Installed") << tr("Description"));
     const QString arch = info->arch();
     int line = 0;
     for(int i = 0; i < count; i++) {
@@ -55,6 +57,7 @@ void MainWindow::RefreshKernelListView(KernelInformation *info, bool showLocalAr
         model->setItem(line, 2, new QStandardItem(info->get_author(i)));
         model->setItem(line, 3, new QStandardItem(kernelArch));
         model->setItem(line, 4, new QStandardItem((QStringList() << "" << "Y").at(info->get_installedAlready(i))));
+        model->setItem(line, 5, new QStandardItem(info->get_des(i)));
         line++;
     }
     ui->m_kernelShow->setModel(model);
