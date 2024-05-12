@@ -15,7 +15,8 @@ public:
         HeadInclude = 2
     };
 
-    AptPkgInfo(QString pkgName, PkgSearchOption option = PkgSearchOption::Equal);
+    explicit AptPkgInfo(QString pkgName, PkgSearchOption option = PkgSearchOption::Equal);
+    ~AptPkgInfo();
 
     void SetPkgName(QString pkgName);
     QStringList GetAptPackageList() const;
