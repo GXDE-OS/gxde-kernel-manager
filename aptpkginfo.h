@@ -5,9 +5,8 @@
 #include <QProcess>
 #include <QJsonObject>
 
-class AptPkgInfo: QObject
+class AptPkgInfo
 {
-    Q_OBJECT
 public:
     enum PkgSearchOption {
         Include = 0,
@@ -16,7 +15,6 @@ public:
     };
 
     explicit AptPkgInfo(QString pkgName, PkgSearchOption option = PkgSearchOption::Equal);
-    ~AptPkgInfo();
 
     void SetPkgName(QString pkgName);
     QStringList GetAptPackageList() const;
