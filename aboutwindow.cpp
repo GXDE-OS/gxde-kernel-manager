@@ -17,7 +17,7 @@ AboutWindow::AboutWindow(QWidget *parent) :
     info += "<pre>";
     info += tr("A kernel manager allows users to install or remove kernels easily.") + "\n\n";
     info += "<b>" + tr("Warning: You may damage your system unless you know what you will do!") + "</b>\n";
-    info += "Built Time: " + QString(__DATE__) + " " + __TIME__;
+    info += tr("Built Time: ") + QString(__DATE__) + " " + __TIME__;
     info += "</pre>";
     info += "<hr/>";
     info += ProgramInfo::updateInfo();

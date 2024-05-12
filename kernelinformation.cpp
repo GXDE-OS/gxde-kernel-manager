@@ -51,9 +51,15 @@ void KernelInformation::LoadInfo()
             // 如果已经存在
             alreadyIndex = indexMap.value(strTemp);
             QJsonArray pkgArray = array.at(alreadyIndex).toObject().value("PkgName").toArray();
+            QJsonArray archArray = array.at(alreadyIndex).toObject().value("Arch").toArray();
             pkgArray.append(i);
+            QString pkgArch = info.get_architecture(i);
+            if(!archArray.contains(pkgArch)) {
+                archArray.append(pkgArch);
+            }
             QJsonObject pkgObject = array.at(alreadyIndex).toObject();
             pkgObject["PkgName"] = pkgArray;
+            pkgObject["Arch"] = archArray;
             array.replace(alreadyIndex, pkgObject);
             continue;
         }
@@ -61,21 +67,21 @@ void KernelInformation::LoadInfo()
         object.insert("Name", strTemp);
         object.insert("Author", info.get_maintainer(i));
         object.insert("Des", info.get_description(i));
-        object.insert("Arch", info.get_architecture(i));
+        object.insert("Arch", QJsonArray::fromStringList(QStringList() << info.get_architecture(i)));
         object.insert("PkgName", QJsonArray::fromStringList(QStringList() << i));
         indexMap.insert(strTemp, array.count());
         array.append(object);
     }
     // 添加 GXDE Kernel Manager
     AptPkgInfo kernelManagerinfo = AptPkgInfo("gxde-kernel-manager", AptPkgInfo::PkgSearchOption::Equal);
-    list = info.GetAptPackageList();
+    list = kernelManagerinfo.GetAptPackageList();
     for(QString i: list) {
         QJsonObject object;
         info.SetPkgName(i);
         object.insert("Name", i);
-        object.insert("Author", info.get_maintainer(i));
-        object.insert("Des", info.get_description(i));
-        object.insert("Arch", info.get_architecture(i));
+        object.insert("Author", kernelManagerinfo.get_maintainer(i));
+        object.insert("Des", kernelManagerinfo.get_description(i));
+        object.insert("Arch", QJsonArray::fromStringList(QStringList() << arch()));
         object.insert("PkgName", QJsonArray::fromStringList(QStringList() << i));
         array.append(object);
     }
@@ -146,16 +152,17 @@ QStringList KernelInformation::get_system(int value) const
 
 QStringList KernelInformation::get_arch(int value) const
 {
-    //QJsonArray list = get_kernelData(value).value("Arch").toArray();
-    /*int count = list.count();
+    QJsonArray list = get_kernelData(value).value("Arch").toArray();
+    int count = list.count();
     QStringList result;
     for(int i = 0; i < count; i++) {
         result << list.at(i).toString();
     }
     if(!result.count()) {
         result << "all";
-    }*/
-    return QStringList() << get_kernelData(value).value("Arch").toString();
+        qDebug() << get_kernelData(value);
+    }
+    return result;
 }
 
 QString KernelInformation::localKernelName() const
