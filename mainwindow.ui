@@ -127,6 +127,8 @@
     <addaction name="actionGitee"/>
     <addaction name="actionGithub"/>
     <addaction name="separator"/>
+    <addaction name="actionDonate"/>
+    <addaction name="separator"/>
     <addaction name="actionAbout_QT"/>
     <addaction name="actionAbout"/>
    </widget>
@@ -176,6 +178,11 @@
   <action name="actionUpgrade">
    <property name="text">
     <string>Upgrade</string>
+   </property>
+  </action>
+  <action name="actionDonate">
+   <property name="text">
+    <string>Donate</string>
    </property>
   </action>
  </widget>

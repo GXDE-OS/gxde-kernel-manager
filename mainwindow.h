@@ -43,6 +43,8 @@ private slots:
 
     void on_actionUpgrade_triggered();
 
+    void on_actionDonate_triggered();
+
 private:
     Ui::MainWindow *ui;
     KernelInformation *kernelInformation;

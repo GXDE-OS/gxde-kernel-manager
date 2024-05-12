@@ -204,3 +204,9 @@ void MainWindow::on_actionUpgrade_triggered()
     installer->show();
 }
 
+
+void MainWindow::on_actionDonate_triggered()
+{
+    QDesktopServices::openUrl(QUrl("https://gitee.com/GXDE-OS#%E8%AF%B7%E4%BD%9C%E8%80%85%E5%96%9D%E6%9D%AF%E8%8C%B6"));
+}
+

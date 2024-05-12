@@ -10,7 +10,7 @@
     </message>
     <message>
         <location filename="../aboutwindow.ui" line="25"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img width=128 src=&quot;:/icon/icon.svg&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&apos;https://gxde.gfdgdxi.top&apos;&gt;&lt;img width=128 src=&quot;:/icon/icon.svg&quot;/&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -34,7 +34,12 @@
         <translation>构建时间： </translation>
     </message>
     <message>
-        <location filename="../aboutwindow.cpp" line="25"/>
+        <location filename="../aboutwindow.cpp" line="21"/>
+        <source>QQ Group: 881201853</source>
+        <translation>QQ 交流群：881201853</translation>
+    </message>
+    <message>
+        <location filename="../aboutwindow.cpp" line="26"/>
         <source>Website</source>
         <translation>网址</translation>
     </message>
@@ -143,44 +148,49 @@
         <translation>帮助</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="135"/>
+        <location filename="../mainwindow.ui" line="137"/>
         <source>Apt</source>
         <translation>Apt</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="148"/>
+        <location filename="../mainwindow.ui" line="150"/>
         <source>Exit</source>
         <translation>退出</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="153"/>
+        <location filename="../mainwindow.ui" line="155"/>
         <source>About</source>
         <translation>关于</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="158"/>
+        <location filename="../mainwindow.ui" line="160"/>
         <source>Gitee</source>
         <translation>Gitee</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="163"/>
+        <location filename="../mainwindow.ui" line="165"/>
         <source>Github</source>
         <translation>Github</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="168"/>
+        <location filename="../mainwindow.ui" line="170"/>
         <source>Update apt cache</source>
         <translation>刷新 apt 缓存</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="173"/>
+        <location filename="../mainwindow.ui" line="175"/>
         <source>About QT</source>
         <translation>关于 QT</translation>
     </message>
     <message>
-        <location filename="../mainwindow.ui" line="178"/>
+        <location filename="../mainwindow.ui" line="180"/>
         <source>Upgrade</source>
         <translation>升级</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.ui" line="185"/>
+        <source>Donate</source>
+        <translation>请作者喝杯茶</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="23"/>
@@ -223,18 +233,43 @@
         <translation>描述</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="85"/>
-        <location filename="../mainwindow.cpp" line="132"/>
-        <location filename="../mainwindow.cpp" line="156"/>
+        <location filename="../mainwindow.cpp" line="35"/>
+        <source>Version</source>
+        <translation>版本</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="91"/>
+        <location filename="../mainwindow.cpp" line="138"/>
+        <location filename="../mainwindow.cpp" line="173"/>
         <source>Error</source>
         <translation>错误</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="85"/>
-        <location filename="../mainwindow.cpp" line="132"/>
-        <location filename="../mainwindow.cpp" line="156"/>
+        <location filename="../mainwindow.cpp" line="91"/>
+        <location filename="../mainwindow.cpp" line="138"/>
+        <location filename="../mainwindow.cpp" line="173"/>
         <source>Nothing to choose</source>
         <translation>没有选择任何选项</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="147"/>
+        <source>Warning</source>
+        <translation>警告</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="148"/>
+        <source>Are you sure you want to remove all installed kernel versions? Please note that this may render your system unstable or unbootable.</source>
+        <translation>你确定要移除所有的内核？如果移除后你的系统将无法正常启动。</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="149"/>
+        <source>Confirm</source>
+        <translation>确定</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="150"/>
+        <source>Cancel</source>
+        <translation>取消</translation>
     </message>
 </context>
 <context>
