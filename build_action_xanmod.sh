@@ -65,6 +65,11 @@ scripts/config --set-val  DEBUG_INFO_NONE       y
 # build deb packages
 CPU_CORES=$(($(grep -c processor < /proc/cpuinfo)*2))
 sudo env DEBEMAIL="gfdgd xi <3025613752@qq.com>" make bindeb-pkg -j"$CPU_CORES"
+# 移动 deb
+mkdir /tmp/deb-result
+cp ../*.deb /tmp/deb-result
+rm /tmp/deb-result/linux-libc-dev*.deb
+rm /tmp/deb-result/*dbg*.deb
 if [[ $2 == 1 ]]; then
     # move deb packages to artifact dir
     cd ..
@@ -122,6 +127,7 @@ EOF
     #./build.py
     ./move-letter-path.py ../dclc-kernel/$SHOWVERSION/*.deb
     ./move-letter-path.py ../dclc-kernel/head/*.deb
+    ./move-letter-path.py /tmp/deb-result/*.deb
     rm -rfv l/linux-libc-dev/
     touch l/linux-headers-$VERSION-amd64-xanmod-gfdgdxi-desktop-hwe/lock
     git add .
@@ -187,6 +193,7 @@ EOF
     #./build.py
     ./move-letter-path.py ../dclc-kernel/$VERSION/*.deb
     ./move-letter-path.py ../dclc-kernel/head/*.deb
+    ./move-letter-path.py /tmp/deb-result/*.deb
     rm -rfv l/linux-libc-dev/
     touch l/linux-headers-$VERSION-amd64-xanmod-gfdgdxi-desktop/lock
     git add .
