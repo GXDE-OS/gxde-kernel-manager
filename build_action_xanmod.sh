@@ -141,7 +141,7 @@ else
     cd ..
     mkdir "artifact"
     #cp ./*.deb artifact/
-    git clone https://gfdgd-xi:$PASSWORD@github.com/gfdgd-xi/gxde-kernel-manager --depth=1
+    git clone https://gfdgd-xi:$PASSWORD@github.com/gfdgd-xi/gxde-linux-kernel --depth=1
     #cd dclc-kernel
     mkdir dclc-kernel/$VERSION
     mkdir dclc-kernel/head
