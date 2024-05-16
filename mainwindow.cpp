@@ -8,6 +8,8 @@
 #include <QStandardItemModel>
 #include <qdesktopservices.h>
 
+#include "kernelinformationdialog.h"
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -208,5 +210,25 @@ void MainWindow::on_actionUpgrade_triggered()
 void MainWindow::on_actionDonate_triggered()
 {
     QDesktopServices::openUrl(QUrl("https://gitee.com/GXDE-OS#%E8%AF%B7%E4%BD%9C%E8%80%85%E5%96%9D%E6%9D%AF%E8%8C%B6"));
+}
+
+
+void MainWindow::on_m_kernelShow_doubleClicked(const QModelIndex &index)
+{
+    // 显示具体信息
+    QModelIndex list = index;
+    int row = list.row();
+    if(row < 0) {
+        // 未选中任何内容
+        QMessageBox::critical(this, tr("Error"), tr("Nothing to choose"));
+        return;
+    }
+    // 获取 ID
+    QModelIndex chooseIndex = ui->m_kernelShow->model()->index(row, 0);
+    int id = ui->m_kernelShow->model()->data(chooseIndex).toUInt();
+    // 获取选中行
+    KernelInformationDialog dialog(kernelInformation->get_kernelData(id));
+    dialog.exec();
+
 }
 

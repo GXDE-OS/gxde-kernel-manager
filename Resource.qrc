@@ -23,5 +23,6 @@
         <file>Donate/Alipay.jpg</file>
         <file>Donate/QQ.png</file>
         <file>Donate/Wechat.png</file>
+        <file>icon/tux.png</file>
     </qresource>
 </RCC>

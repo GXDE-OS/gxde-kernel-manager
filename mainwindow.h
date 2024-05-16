@@ -45,6 +45,8 @@ private slots:
 
     void on_actionDonate_triggered();
 
+    void on_m_kernelShow_doubleClicked(const QModelIndex &index);
+
 private:
     Ui::MainWindow *ui;
     KernelInformation *kernelInformation;
