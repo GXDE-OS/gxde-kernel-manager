@@ -28,4 +28,6 @@ jobs:
           PASSWORD: ${{ secrets.PASSWORD }}
           KEYPASSWORD: ${{ secrets.KEYPASSWORD }}
           KEY: ${{ secrets.KEY }}
-        run: bash build_action.sh 7
+        run: |
+          bash build_action.sh 7
+          bash build_action-aarch64.sh 7
