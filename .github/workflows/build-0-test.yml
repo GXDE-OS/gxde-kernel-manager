@@ -26,4 +26,4 @@ jobs:
           PASSWORD: ${{ secrets.PASSWORD }}
           KEYPASSWORD: ${{ secrets.KEYPASSWORD }}
           KEY: ${{ secrets.KEY }}
-        run: bash build_action-aarch64.sh 0
+        run: bash build_action-mips64el.sh 0
