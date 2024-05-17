@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>526</width>
+    <height>330</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -39,12 +39,35 @@
          <property name="text">
           <string>Kernel Name:</string>
          </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="label">
+        <widget class="QLabel" name="m_kernelVersion">
          <property name="text">
           <string>Kernel Version:</string>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="m_kernelAuthor">
+         <property name="text">
+          <string>Author:</string>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="m_kernelArch">
+         <property name="text">
+          <string>Kernel Architecture:</string>
          </property>
         </widget>
        </item>
@@ -64,6 +87,19 @@
       </layout>
      </item>
     </layout>
+   </item>
+   <item>
+    <widget class="QLabel" name="m_PkgName">
+     <property name="text">
+      <string>Package Name:</string>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QTextBrowser" name="m_des"/>
    </item>
    <item>
     <spacer name="verticalSpacer">
