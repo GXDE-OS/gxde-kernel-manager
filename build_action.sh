@@ -35,16 +35,16 @@ cd "${GITHUB_WORKSPACE}" || exit
 # download kernel source
 wget $URL  
 if [[ -f linux-"$VERSION".tar.xz ]]; then
-    tar -xvf linux-"$VERSION".tar.xz
+    tar -xf linux-"$VERSION".tar.xz
 fi
 if [[ -f linux-"$VERSION".tar.gz ]]; then
-    tar -xvf linux-"$VERSION".tar.gz
+    tar -xf linux-"$VERSION".tar.gz
 fi
 if [[ -f linux-"$VERSION".tar ]]; then
-    tar -xvf linux-"$VERSION".tar
+    tar -xf linux-"$VERSION".tar
 fi
 if [[ -f linux-"$VERSION".bz2 ]]; then
-    tar -xvf linux-"$VERSION".tar.bz2
+    tar -xf linux-"$VERSION".tar.bz2
 fi
 cd linux-"$VERSION" || exit
 

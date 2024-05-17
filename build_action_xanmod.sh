@@ -38,7 +38,7 @@ cd "${GITHUB_WORKSPACE}" || exit
 
 # download kernel source
 wget $URL  
-tar -xvf "$VERSION".tar.bz2
+tar -xf "$VERSION".tar.bz2
 cd linux-"$VERSION"* || exit
 
 # copy config file
