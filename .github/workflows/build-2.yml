@@ -31,3 +31,4 @@ jobs:
         run: |
           bash build_action.sh 2
           bash build_action-aarch64.sh 2
+          bash build_action-mips64el.sh 2
