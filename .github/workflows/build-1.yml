@@ -32,3 +32,4 @@ jobs:
           bash build_action.sh 1
           bash build_action-aarch64.sh 1
           bash build_action-mips64el.sh 1
+          bash build_action-riscv64.sh 1
