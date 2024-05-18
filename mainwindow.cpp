@@ -131,6 +131,13 @@ void MainWindow::on_actionGithub_triggered()
 }
 
 
+
+void MainWindow::on_actionSourceforge_triggered()
+{
+    QDesktopServices::openUrl(QUrl("https://sourceforge.net/projects/gxde-kernel-manager/"));
+}
+
+
 void MainWindow::on_m_removeButton_clicked()
 {
     QModelIndex list = ui->m_kernelShow->selectionModel()->currentIndex();
@@ -227,8 +234,17 @@ void MainWindow::on_m_kernelShow_doubleClicked(const QModelIndex &index)
     QModelIndex chooseIndex = ui->m_kernelShow->model()->index(row, 0);
     int id = ui->m_kernelShow->model()->data(chooseIndex).toUInt();
     // 获取选中行
-    KernelInformationDialog dialog(kernelInformation->get_kernelData(id));
-    dialog.exec();
+    KernelInformationDialog *dialog = new KernelInformationDialog(kernelInformation->get_kernelData(id));
+    connect(dialog, &KernelInformationDialog::InstallFinished, this, [this](){
+        // 刷新列表
+        this->RefreshKernelListView(this->kernelInformation, ui->m_showLocalArchOnly->isChecked());
+    });
+    connect(dialog, &KernelInformationDialog::RemoveFinished, this, [this](){
+        // 刷新列表
+        this->RefreshKernelListView(this->kernelInformation, ui->m_showLocalArchOnly->isChecked());
+    });
+    dialog->show();
 
 }
+
 

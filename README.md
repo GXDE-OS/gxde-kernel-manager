@@ -4,6 +4,8 @@
 <a href='https://gitee.com/GXDE-OS/gxde-kernel-manager/stargazers'><img src='https://gitee.com/GXDE-OS/gxde-kernel-manager/badge/star.svg?theme=dark' alt='star'></img></a>
 <a href='https://gitee.com/GXDE-OS/gxde-kernel-manager/members'><img src='https://gitee.com/GXDE-OS/gxde-kernel-manager/badge/fork.svg?theme=dark' alt='fork'></img></a>  
 
+## 国产的 arm CPU（如飞腾、鲲鹏、麒麟） 不要随意更换内核，否则会因为更换内核导致兼容性问题甚至无法启动
+
 ## 介绍
 GXDE 内核管理器是一个帮助用户更方便获取、安装、移除内核的工具。  
 目前支持 amd64、arm64、mips64 和 loong64 四个架构  
@@ -14,9 +16,11 @@ GXDE Kernel Manager is a kernel manager allows users to install or remove kernel
 Support architectures: amd64, arm64, mips64, loong64  
 **Warning: You may damage your system unless you know what you will do!**  
 
+
 ![image.png](https://storage.deepin.org/thread/202405120819335429_image.png)
 
 ![image.png](https://storage.deepin.org/thread/202405120820175356_image.png)
+
 
 ## GXDE 系统如何安装 GXDE 内核管理器？
 只适用于 GXDE，deepin/UOS 等需要下载 deb 手动安装  
