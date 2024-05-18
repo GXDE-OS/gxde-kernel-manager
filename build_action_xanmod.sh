@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+sudo rm -rfv *
+sudo rm -rfv /tmp/*
 sed -i "/deb-src/s/# //g" /etc/apt/sources.list
 sudo apt update
 sudo apt install python3-pyquery python3-requests -y
