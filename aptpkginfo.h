@@ -28,6 +28,9 @@ public:
     QString get_description(QString pkgName) const;
     QString get_architecture(QString pkgName) const;
 
+    QJsonObject get_data() const;
+
+    bool CompareVersion(QString version1, QString version2) const;
 
 
 private:
@@ -35,6 +38,15 @@ private:
     QString pkgInfo;
     QJsonObject aptData;
     PkgSearchOption pkgSearchOption = PkgSearchOption::Equal;
+    QStringList symbolList = {"-", "~", "+"};
+    enum SplitVersionStatus {
+        Checking,
+        MeetedEnglishLetter,
+        MeetSymbol,
+        Other
+    };
+
+    QStringList SplitVersion(QString version) const;
 
     enum pkgDataStatus {
         EmptyLine = 0,
@@ -43,7 +55,10 @@ private:
         Readed = 3,
         None = 4,
         UnContain = 5,
-        IsContain = 6
+        IsContain = 6,
+        IsContainOldVersion = 7,
+        IsContainNewVersion = 8,
+        IsContainSameVersion = 9
     };
 
     void ReadAptData();

@@ -11,6 +11,63 @@ AptPkgInfo::AptPkgInfo(QString pkgName, PkgSearchOption option)
     ReadAptData();
 }
 
+QStringList AptPkgInfo::SplitVersion(QString version) const
+{
+    SplitVersionStatus status = SplitVersionStatus::Checking;
+    QStringList versionList;
+    QString versionNumberTemp = "";
+    QString versionLetterTemp = "";
+    for(QString i: version) {
+        if(symbolList.contains(i)) {
+            // 如果是特殊字符
+
+            switch(status) {
+            case SplitVersionStatus::Checking:
+                versionList.append(versionNumberTemp);
+                break;
+            case SplitVersionStatus::MeetedEnglishLetter:
+                versionList.append(versionLetterTemp);
+                break;
+            }
+            versionList.append(i);
+            versionNumberTemp = "";
+            versionLetterTemp = "";
+            status = SplitVersionStatus::MeetSymbol;
+            continue;
+        }
+        if(i[0].isLetter()) {
+            switch(status) {
+            case SplitVersionStatus::Checking:
+                versionList.append(versionNumberTemp);
+                break;
+            }
+            versionLetterTemp += i;
+            versionNumberTemp = "";
+            status = SplitVersionStatus::MeetedEnglishLetter;
+            continue;
+        }
+        switch(status) {
+        case SplitVersionStatus::MeetedEnglishLetter:
+            versionList.append(versionLetterTemp);
+            break;
+        }
+        versionNumberTemp += i;
+        status = SplitVersionStatus::Checking;
+        versionLetterTemp = "";
+        }
+    if(status == SplitVersionStatus::Checking) {
+        versionList.append(versionNumberTemp);
+    }
+
+
+    return versionList;
+}
+
+bool AptPkgInfo::CompareVersion(QString version1, QString version2) const
+{
+    return true;
+}
+
 void AptPkgInfo::ReadAptData()
 {
     this->aptData = QJsonObject();
@@ -36,7 +93,19 @@ void AptPkgInfo::ReadAptData()
             if(strTemp.replace(" ", "").replace("\n", "") == "") {
                 // 空行
                 if(status == pkgDataStatus::IsContain) {
-                    aptData.insert(pkgData.value("Package").toString(), pkgData);
+                    QString addPkgName = pkgData.value("Package").toString();
+                    // 如果已经存在表中
+                    if(pkgData.contains(addPkgName)) {
+                        // 新增数据
+                        QJsonObject allDataObject = aptData.value(addPkgName).toObject();
+                        // 判断版本大小,如果新于表内版本则更新
+                        QString dataVersion = allDataObject.value("Version").toString();
+
+                    }
+                    else {
+                        aptData.insert(addPkgName, pkgData);
+                    }
+
                 }
                 status = pkgDataStatus::EmptyLine;
                 pkgData = QJsonObject();  // 清空
@@ -148,4 +217,9 @@ QByteArray AptPkgInfo::GetCommandResult(QString command, QStringList argv, QProc
     QByteArray result = process.readAllStandardOutput();
     process.close();
     return result;
+}
+
+QJsonObject AptPkgInfo::get_data() const
+{
+    return aptData;
 }

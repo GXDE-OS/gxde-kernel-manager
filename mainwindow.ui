@@ -126,6 +126,7 @@
     </property>
     <addaction name="actionGitee"/>
     <addaction name="actionGithub"/>
+    <addaction name="actionSourceforge"/>
     <addaction name="separator"/>
     <addaction name="actionDonate"/>
     <addaction name="separator"/>
@@ -140,8 +141,15 @@
     <addaction name="separator"/>
     <addaction name="actionUpgrade"/>
    </widget>
+   <widget class="QMenu" name="menuGrub">
+    <property name="title">
+     <string>Grub</string>
+    </property>
+    <addaction name="actionUpdate_Grub"/>
+   </widget>
    <addaction name="menuProgram"/>
    <addaction name="menuApt"/>
+   <addaction name="menuGrub"/>
    <addaction name="menuHelp"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
@@ -183,6 +191,16 @@
   <action name="actionDonate">
    <property name="text">
     <string>Donate</string>
+   </property>
+  </action>
+  <action name="actionSourceforge">
+   <property name="text">
+    <string>Sourceforge</string>
+   </property>
+  </action>
+  <action name="actionUpdate_Grub">
+   <property name="text">
+    <string>Update Grub</string>
    </property>
   </action>
  </widget>

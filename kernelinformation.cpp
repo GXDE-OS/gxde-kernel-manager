@@ -14,6 +14,7 @@ void KernelInformation::LoadInfo()
     QJsonArray array;
     AptPkgInfo kernelManagerinfo = AptPkgInfo("gxde-kernel-manager", AptPkgInfo::PkgSearchOption::Equal);
     QStringList list = kernelManagerinfo.GetAptPackageList();
+    qDebug() << kernelManagerinfo.get_data();
     for(QString i: list) {
         QJsonObject object;
         kernelManagerinfo.SetPkgName(i);

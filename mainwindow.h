@@ -47,6 +47,8 @@ private slots:
 
     void on_m_kernelShow_doubleClicked(const QModelIndex &index);
 
+    void on_actionSourceforge_triggered();
+
 private:
     Ui::MainWindow *ui;
     KernelInformation *kernelInformation;
