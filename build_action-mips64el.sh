@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-sudo rm -rfv *
+sudo rm -rfv "${GITHUB_WORKSPACE}"/*
 sudo rm -rfv /tmp/*
 sed -i "/deb-src/s/# //g" /etc/apt/sources.list
 sudo apt update
