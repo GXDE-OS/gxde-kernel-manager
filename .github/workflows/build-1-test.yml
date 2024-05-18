@@ -1,7 +1,5 @@
-name: Build kernel deb packages(1)
+name: Build kernel deb packages(1, test)
 on:
-  schedule:
-    - cron: '0 3 * * *'
   workflow_dispatch:
 
 jobs:
@@ -29,5 +27,4 @@ jobs:
           KEYPASSWORD: ${{ secrets.KEYPASSWORD }}
           KEY: ${{ secrets.KEY }}
         run: |
-          bash build_action.sh 1
-          bash build_action-aarch64.sh 1
+          bash build_action-riscv64.sh 1
