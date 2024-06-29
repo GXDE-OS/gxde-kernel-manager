@@ -1,5 +1,5 @@
 <p width=100px align="center"><img width=40% src="icon/icon.svg"></p>
-<h1 align="center">GXDE 内核管理器 1.1.0</h1>
+<h1 align="center">GXDE 内核管理器 1.1.1</h1>
 <hr>
 <a href='https://gitee.com/GXDE-OS/gxde-kernel-manager/stargazers'><img src='https://gitee.com/GXDE-OS/gxde-kernel-manager/badge/star.svg?theme=dark' alt='star'></img></a>
 <a href='https://gitee.com/GXDE-OS/gxde-kernel-manager/members'><img src='https://gitee.com/GXDE-OS/gxde-kernel-manager/badge/fork.svg?theme=dark' alt='fork'></img></a>  
@@ -30,6 +30,13 @@ sudo apt install gxde-kernel-manager
 ```
 
 ## 更新内容
+### 1.1.1（2024.06.29）
+**※1、新增内核详细信息窗口**  
+**※2、修复在部分机器上安装内核直接提示错误 1 的问题**  
+
+**※1. Add an information window about the Kernel**  
+**※2. Fix the issue with the installed Kernel causing exit code 1**  
+
 ### 1.1.0（2024.05.12）
 **※1、支持从 apt 源读取内核数据并显示安装**  
 **※2、支持只显示与当前系统相同架构的内核**  
