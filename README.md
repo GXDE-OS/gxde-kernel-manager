@@ -90,7 +90,7 @@ sudo apt install fakeroot
 dpkg-buildpackage -b -us
 ```
 ## 请作者喝杯茶
-如果您觉得 Wine 运行器对你有帮助，可以请作者喝杯茶  
+如果您觉得 GXDE 内核管理器对你有帮助，可以请作者喝杯茶  
 <img src="Donate/Wechat.png" width="250"  /> 
 <img src="Donate/Alipay.jpg" width="250"  />
 <img src="Donate/QQ.png" width="250" >
