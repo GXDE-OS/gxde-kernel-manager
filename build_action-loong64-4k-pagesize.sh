@@ -33,7 +33,6 @@ sudo apt install -y gcc-aarch64-linux-gnu
 sudo apt build-dep -y linux
 
 # 配置 loong64 交叉编译环境
-sudo mkdir /usr/ -p
 cd ~
 aria2c -x 16 -s 16 https://github.com/sunhaiyong1978/CLFS-for-LoongArch/releases/download/8.1/CLFS-loongarch64-8.1-x86_64-cross-tools-gcc.tar.xz
 tar -xf CLFS-loongarch64-8.1-x86_64-cross-tools-gcc.tar.xz
@@ -87,7 +86,7 @@ scripts/config --set-val  DEBUG_INFO_NONE       y
 
 # build deb packages
 CPU_CORES=$(($(grep -c processor < /proc/cpuinfo)*2))
-sudo env DEBEMAIL="gfdgd xi <3025613752@qq.com>" make ARCH=loongarch CROSS_COMPILE=loongarch64-unknown-linux-gnu- bindeb-pkg -j"$CPU_CORES"
+sudo env DEBEMAIL="gfdgd xi <3025613752@qq.com>" make PATH=/home/runner/cross-tools/bin:$PATH LD_LIBRARY_PATH=/home/runner/cross-tools/lib:/home/runner/cross-tools/loongarch64-unknown-linux-gnu/lib64:$LD_LIBRARY_PATH ARCH=loongarch CROSS_COMPILE=loongarch64-unknown-linux-gnu- bindeb-pkg -j"$CPU_CORES"
 # 移动 deb
 mkdir /tmp/deb-result
 cp ../*.deb /tmp/deb-result
