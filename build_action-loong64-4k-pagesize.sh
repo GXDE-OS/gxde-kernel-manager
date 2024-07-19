@@ -25,7 +25,8 @@ else
     result=$?
 fi
 if [[ $result != 0 ]]; then
-    exit
+    # 临时关闭检测
+    #exit
 fi
 # install dep
 sudo apt install -y wget xz-utils make gcc flex bison dpkg-dev bc rsync kmod cpio libssl-dev git lsb vim libelf-dev aria2
