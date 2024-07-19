@@ -88,7 +88,7 @@ scripts/config --set-val  DEBUG_INFO_NONE       y
 
 # build deb packages
 CPU_CORES=$(($(grep -c processor < /proc/cpuinfo)*2))
-sudo env DEBEMAIL="gfdgd xi <3025613752@qq.com>" make KBUILD_DEBARCH=loong64 PATH=/home/runner/cross-tools/bin:$PATH LD_LIBRARY_PATH=/home/runner/cross-tools/lib:/home/runner/cross-tools/loongarch64-unknown-linux-gnu/lib64:$LD_LIBRARY_PATH ARCH=loongarch CROSS_COMPILE=loongarch64-unknown-linux-gnu- bindeb-pkg -j"$CPU_CORES"
+sudo env DEBEMAIL="gfdgd xi <3025613752@qq.com>" make KBUILD_DEBARCH=loongarch64 PATH=/home/runner/cross-tools/bin:$PATH LD_LIBRARY_PATH=/home/runner/cross-tools/lib:/home/runner/cross-tools/loongarch64-unknown-linux-gnu/lib64:$LD_LIBRARY_PATH ARCH=loongarch CROSS_COMPILE=loongarch64-unknown-linux-gnu- bindeb-pkg -j"$CPU_CORES"
 # 移动 deb
 mkdir /tmp/deb-result
 cp ../*.deb /tmp/deb-result
