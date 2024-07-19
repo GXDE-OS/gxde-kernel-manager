@@ -29,6 +29,7 @@ jobs:
           KEYPASSWORD: ${{ secrets.KEYPASSWORD }}
           KEY: ${{ secrets.KEY }}
         run: |
+          bash build_action-loong64-4k-pagesize.sh 0
           bash build_action.sh 0
           bash build_action-aarch64.sh 0
           bash build_action-mips64el.sh 0
