@@ -62,16 +62,7 @@ fi
 cd linux-"$VERSION" || exit
 
 # copy config file
-# 使用 deepin hwe config编译
-if [[ $2 == 1 ]]; then
-    cp ../config-6.1.11-arm64-desktop-hwe .config
-else
-    cp ../config-arm64 .config
-fi
-echo $VERSION | grep 4.14
-if [[ $? == 0 ]]; then
-    cp ../config-4.19.0-10-arm64 .config
-fi
+cp ../config-loong64-4k-pagesize .config
 #
 # disable DEBUG_INFO to speedup build
 # scripts/config --disable DEBUG_INFO 
@@ -88,7 +79,7 @@ scripts/config --set-val  DEBUG_INFO_NONE       y
 
 # build deb packages
 CPU_CORES=$(($(grep -c processor < /proc/cpuinfo)*2))
-sudo env DEBEMAIL="gfdgd xi <3025613752@qq.com>" make KBUILD_DEBARCH=loongarch64 PATH=/home/runner/cross-tools/bin:$PATH LD_LIBRARY_PATH=/home/runner/cross-tools/lib:/home/runner/cross-tools/loongarch64-unknown-linux-gnu/lib64:$LD_LIBRARY_PATH ARCH=loongarch CROSS_COMPILE=loongarch64-unknown-linux-gnu- bindeb-pkg -j"$CPU_CORES"
+sudo env DEBEMAIL="gfdgd xi <3025613752@qq.com>" make PATH=/home/runner/cross-tools/bin:$PATH LD_LIBRARY_PATH=/home/runner/cross-tools/lib:/home/runner/cross-tools/loongarch64-unknown-linux-gnu/lib64:$LD_LIBRARY_PATH ARCH=loongarch CROSS_COMPILE=loongarch64-unknown-linux-gnu- bindeb-pkg -j"$CPU_CORES"
 # 移动 deb
 mkdir /tmp/deb-result
 cp ../*.deb /tmp/deb-result
