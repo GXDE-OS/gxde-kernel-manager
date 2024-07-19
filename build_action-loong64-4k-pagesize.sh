@@ -35,7 +35,7 @@ sudo apt build-dep -y linux
 # 配置 loong64 交叉编译环境
 sudo mkdir /usr/ -p
 cd /usr
-aria2c -x 16 -s 16 https://github.com/sunhaiyong1978/CLFS-for-LoongArch/releases/download/8.0/loongarch64-clfs-8.0-cross-tools-gcc-full.tar.xz
+sudo aria2c -x 16 -s 16 https://github.com/sunhaiyong1978/CLFS-for-LoongArch/releases/download/8.0/loongarch64-clfs-8.0-cross-tools-gcc-full.tar.xz
 sudo tar -xvf loongarch64-clfs-8.0-cross-tools-gcc-full.tar.xz
 export PATH=/usr/cross-tools/bin:$PATH
 export LD_LIBRARY_PATH=/usr/cross-tools/lib:/usr/cross-tools/loongarch64-unknown-linux-gnu/lib64:$LD_LIBRARY_PATH
