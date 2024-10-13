@@ -1,4 +1,4 @@
-gxde-kernel-manager (1.1.0) UNRELEASED; urgency=medium
+gxde-kernel-manager (1.2.0) UNRELEASED; urgency=medium
 
   * ※1、支持从 apt 源读取内核数据并显示安装
   * ※2、支持只显示与当前系统相同架构的内核
@@ -13,5 +13,6 @@ gxde-kernel-manager (1.1.0) UNRELEASED; urgency=medium
   * ※4. Show a warning message box when removing all kernels.
   * 5. Optimize the effect of the kernels table.
   * 6. Support showing kernel descriptions and versions.
+  * 
 
- -- gfdgd_xi <3025613752@qq.com>  Sun, 12 May 2024 16:26:29 +0800
+ -- gfdgd_xi <3025613752@qq.com>  Sun, 13 Oct 2024 10:08:00 +0800

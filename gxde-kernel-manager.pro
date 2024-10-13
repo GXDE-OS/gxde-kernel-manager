@@ -42,8 +42,9 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 unix:!macx: LIBS += -lqtermwidget5
 
-aptsource.path = /etc/apt/sources.list.d/
-aptsource.files = $$PWD/AptSources/gxde-kernel-manager.list
+# 使用 GXDE 系统源里含有的内核
+#aptsource.path = /etc/apt/sources.list.d/
+#aptsource.files = $$PWD/AptSources/gxde-kernel-manager.list
 
 aptsourcegpg.path = /etc/apt/trusted.gpg.d/
 aptsourcegpg.files = $$PWD/AptSources/gxde-kernel-manager.gpg
@@ -51,23 +52,29 @@ aptsourcegpg.files = $$PWD/AptSources/gxde-kernel-manager.gpg
 debiandesktop.path = /usr/share/applications/
 debiandesktop.files = $$PWD/gxde-kernel-manager.desktop
 
-uosdesktop.path = /opt/apps/gxde-kernel-manager/entries/applications
-uosdesktop.files = $$PWD/gxde-kernel-manager.desktop
+#uosdesktop.path = /opt/apps/gxde-kernel-manager/entries/applications
+#uosdesktop.files = $$PWD/gxde-kernel-manager.desktop
 
-icon.path = /opt/apps/gxde-kernel-manager/
+icon.path = /usr/share/icons/
 icon.files = $$PWD/icon/icon.svg
+#icon.path = /opt/apps/gxde-kernel-manager/
+#icon.files = $$PWD/icon/icon.svg
 
-targetrunner.path = /opt/apps/gxde-kernel-manager/
-targetrunner.files = $$PWD/gxde-kernel-manager-runner.sh
+# GXDE 下不需要该脚本
+#targetrunner.path = /opt/apps/gxde-kernel-manager/
+#targetrunner.files = $$PWD/gxde-kernel-manager-runner.sh
 
 #libinclude.path = /opt/apps/gxde-kernel-manager/
 #libinclude.files = $$PWD/lib
 
-target.path = /opt/apps/gxde-kernel-manager/
+#target.path = /opt/apps/gxde-kernel-manager/
+target.path = /usr/bin
 
+sysbro.path = /usr/share/GXDE/gxde-system-assistant/tool-extensions
+sysbro.files = $$PWD/gxde-kernel-manager.desktop
 
-
-INSTALLS += aptsourcegpg aptsource target debiandesktop uosdesktop icon targetrunner
+#INSTALLS += aptsourcegpg aptsource target debiandesktop uosdesktop icon targetrunner
+INSTALLS += target icon sysbro
 
 TRANSLATIONS += translation/gxde-kernel-manager_zh_CN.ts
 
