@@ -1,4 +1,4 @@
-<p width=100px align="center"><img width=40% src="icon/icon.svg"></p>
+<p width=100px align="center"><img width=40% src="icon/gxde-kernel-manager.svg"></p>
 <h1 align="center">GXDE 内核管理器 1.1.1</h1>
 <hr>
 <a href='https://gitee.com/GXDE-OS/gxde-kernel-manager/stargazers'><img src='https://gitee.com/GXDE-OS/gxde-kernel-manager/badge/star.svg?theme=dark' alt='star'></img></a>
