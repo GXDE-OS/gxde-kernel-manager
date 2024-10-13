@@ -56,7 +56,7 @@ debiandesktop.files = $$PWD/gxde-kernel-manager.desktop
 #uosdesktop.files = $$PWD/gxde-kernel-manager.desktop
 
 icon.path = /usr/share/icons/
-icon.files = $$PWD/icon/icon.svg
+icon.files = $$PWD/icon/gxde-kernel-manager.svg
 #icon.path = /opt/apps/gxde-kernel-manager/
 #icon.files = $$PWD/icon/icon.svg
 

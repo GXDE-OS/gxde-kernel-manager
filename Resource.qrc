@@ -9,7 +9,7 @@
         <file>icon/dialog-ok.svg</file>
         <file>icon/dialog-question.svg</file>
         <file>icon/dialog-warning.svg</file>
-        <file>icon/icon.svg</file>
+        <file>icon/gxde-kernel-manager.svg</file>
         <file>shell/kernel-installer-remove-template.sh</file>
         <file>translation/gxde-kernel-manager_zh_CN.qm</file>
         <file>shell/kernel-installer-reconfigure-template.sh</file>

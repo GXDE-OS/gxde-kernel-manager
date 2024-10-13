@@ -15,7 +15,7 @@
   </property>
   <property name="windowIcon">
    <iconset resource="Resource.qrc">
-    <normaloff>:/icon/icon.svg</normaloff>:/icon/icon.svg</iconset>
+    <normaloff>:/icon/gxde-kernel-manager.svg</normaloff>:/icon/gxde-kernel-manager.svg</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout">
