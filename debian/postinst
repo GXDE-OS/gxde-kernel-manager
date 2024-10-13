@@ -1,2 +1,2 @@
 #!/bin/bash
-apt update | true
+#apt update | true
