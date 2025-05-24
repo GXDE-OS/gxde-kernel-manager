@@ -3,7 +3,8 @@
 
 #include <QMainWindow>
 
-#include <qtermwidget5/qtermwidget.h>
+//#include <qtermwidget5/qtermwidget.h>
+#include <qtermwidget6/qtermwidget.h>
 
 namespace Ui {
 class KernelInstaller;

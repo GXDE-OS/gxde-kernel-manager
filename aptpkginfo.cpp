@@ -169,7 +169,7 @@ void AptPkgInfo::SetPkgName(QString pkgName)
 
 QString AptPkgInfo::GetPkgInfo(QString pkgName) const
 {
-    if(pkgName == NULL) {
+    if(pkgName == "") {
         pkgName = this->pkgName;
     }
     QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
