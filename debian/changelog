@@ -1,17 +1,6 @@
-gxde-kernel-manager (1.2.2) UNRELEASED; urgency=medium
+gxde-kernel-manager (1.3.0) UNRELEASED; urgency=medium
 
-  * ※1、支持从 apt 源读取内核数据并显示安装
-  * ※2、支持只显示与当前系统相同架构的内核
-  * ※3、下载/更新内核时支持调用 aptss 提升下载速度
-  * ※4、新增卸载所有内核时的窗口警告
-  * 5、优化表格显示效果
-  * 6、支持显示内核描述和版本
+  * 使用 qt6 进行构建
+ 
 
-  * ※1. Support getting kernel data from apt database.
-  * ※2. Support showing only kernels that are the same as the local system architecture.
-  * ※3. Support using aptss to download packages faster.
-  * ※4. Show a warning message box when removing all kernels.
-  * 5. Optimize the effect of the kernels table.
-  * 6. Support showing kernel descriptions and versions.
-
- -- gfdgd_xi <3025613752@qq.com>  Sun, 13 Oct 2024 10:56:49 +0800
+ -- gfdgd_xi <3025613752@qq.com>  Fri, 29 Aug 2025 12:35:50 +0800

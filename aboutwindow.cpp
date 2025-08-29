@@ -20,14 +20,13 @@ AboutWindow::AboutWindow(QWidget *parent) :
     info += tr("Built Time: ") + QString(__DATE__) + " " + __TIME__ + "\n";
     info += tr("QQ Group: 881201853") + "\n";
     info += "</pre>";
-    info += "<hr/>";
+    /*info += "<hr/>";
     info += ProgramInfo::updateInfo();
-    info += "<hr/>";
+    info += "<hr/>";*/
     info += "<h3>" + tr("Website") + "</h3>";
     info += "<p>Gitee: <a href='https://gitee.com/GXDE-OS/gxde-kernel-manager'>https://gitee.com/GXDE-OS/gxde-kernel-manager</a></p>";
     info += "<p>Github: <a href='https://github.com/GXDE-OS/gxde-kernel-manager'>https://github.com/GXDE-OS/gxde-kernel-manager</a></p>";
-    info += "<p>Sourceforge: <a href='https://sourceforge.net/projects/gxde-kernel-manager/'>https://sourceforge.net/projects/gxde-kernel-manager/</a></p>";
-    info += "<p>GXDE Homepage: <a href='https://www.gxde.org'>https://www.gxde.org</a></p>";
+    info += "<p>GXDE Homepage: <a href='https://www.gxde.top'>https://www.gxde.top</a></p>";
     info += "<hr/>\n";
     info += "<h1>©2023～" + QDateTime::currentDateTime().toString("yyyy") + " gfdgd xi</h1>\n";
     ui->textBrowser->setHtml(info);
