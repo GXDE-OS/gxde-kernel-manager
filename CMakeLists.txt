@@ -30,6 +30,9 @@ target_link_libraries(gxde-kernel-manager PRIVATE
     Qt::Network
 )
 
+# generate qm
+execute_process(COMMAND bash "translate_generation.sh"
+    WORKING_DIRECTORY ${CMAKE_SOURCE_DIR})
 
 # Resources:
 set(Resource_resource_files
@@ -56,7 +59,7 @@ set(Resource_resource_files
     "shell/kernel-installer-template.sh"
     "shell/kernel-installer-update-template.sh"
     "shell/kernel-installer-upgrade-template.sh"
-    "translation/gxde-kernel-manager_zh_CN.qm"
+    "translations/gxde-kernel-manager_zh_CN.qm"
 )
 
 qt_add_resources(gxde-kernel-manager "Resource"
