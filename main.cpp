@@ -14,7 +14,7 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     QTranslator translator;
     if(ProgramInfo::systemLANG() == ProgramInfo::LANG::zh_CN) {
-        translator.load(":/translation/gxde-kernel-manager_zh_CN.qm");
+        translator.load(":/translations/gxde-kernel-manager_zh_CN.qm");
     }
     a.installTranslator(&translator);
 #ifdef __linux__

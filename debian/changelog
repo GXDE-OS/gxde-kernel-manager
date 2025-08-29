@@ -1,6 +1,6 @@
-gxde-kernel-manager (1.3.0) UNRELEASED; urgency=medium
+gxde-kernel-manager (1.3.1) UNRELEASED; urgency=medium
 
   * 使用 qt6 进行构建
- 
+  * 修复翻译缺失的问题
 
- -- gfdgd_xi <3025613752@qq.com>  Fri, 29 Aug 2025 12:35:50 +0800
+ -- gfdgd_xi <3025613752@qq.com>  Fri, 29 Aug 2025 18:11:26 +0800
