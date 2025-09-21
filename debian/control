@@ -9,7 +9,6 @@ Build-Depends:
  qt6-base-dev-tools,
  qt6-base-private-dev,
  qt6-tools-dev-tools,
- qt6-5compat-dev,
  cmake,
  libqtermwidget-dev | libqtermwidget5-1-dev | libqtermwidget5-0-dev,
 Standards-Version: 4.6.2

@@ -86,6 +86,9 @@ install(TARGETS gxde-kernel-manager
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
 )
 
+install(FILES gxde-kernel-manager.desktop DESTINATION /usr/share/GXDE/gxde-system-assistant/tool-extensions/)
+install(FILES icon/gxde-kernel-manager.svg DESTINATION /usr/share/icons/hicolor/apps/)
+
 # Consider using qt_generate_deploy_app_script() for app deployment if
 # the project can use Qt 6.3. In that case rerun qmake2cmake with
 # --min-qt-version=6.3.
