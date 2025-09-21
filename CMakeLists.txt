@@ -11,7 +11,7 @@ include(GNUInstallDirs)
 set(CMAKE_AUTOUIC ON)
 
 find_package(QT NAMES Qt6 REQUIRED COMPONENTS Core)
-find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Gui Network)
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS DBus Gui Network)
 find_package(Qt${QT_VERSION_MAJOR} OPTIONAL_COMPONENTS Widgets)
 
 qt_add_executable(gxde-kernel-manager WIN32 MACOSX_BUNDLE
@@ -28,6 +28,7 @@ target_link_libraries(gxde-kernel-manager PRIVATE
     Qt::Core
     Qt::Gui
     Qt::Network
+    Qt::DBus
 )
 
 # generate qm

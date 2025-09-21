@@ -10,6 +10,7 @@ Build-Depends:
  qt6-base-private-dev,
  qt6-tools-dev-tools,
  cmake,
+ qdbus-qt6,
  libqtermwidget-dev | libqtermwidget5-1-dev | libqtermwidget5-0-dev,
 Standards-Version: 4.6.2
 Homepage: https://gitee.com/GXDE-OS/gxde-kernel-manager

@@ -1,6 +1,8 @@
-gxde-kernel-manager (1.3.1) UNRELEASED; urgency=medium
+gxde-kernel-manager (1.3.2) UNRELEASED; urgency=medium
 
   * 使用 qt6 进行构建
   * 修复翻译缺失的问题
+  * 阻止小小电脑用户启动内核管理器
+  * 修复系统助手工具箱无内核管理器入口的问题
 
- -- gfdgd_xi <3025613752@qq.com>  Fri, 29 Aug 2025 18:11:26 +0800
+ -- gfdgd_xi <3025613752@qq.com>  Sun, 21 Sep 2025 11:39:56 +0800
