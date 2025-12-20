@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>650</width>
-    <height>412</height>
+    <height>470</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -25,7 +25,10 @@
         </sizepolicy>
        </property>
        <property name="text">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/icon/tux.png&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        <string/>
+       </property>
+       <property name="pixmap">
+        <pixmap resource="build/unknown-Debug/.qt/rcc/Resource.qrc">:/icon/tux.svg</pixmap>
        </property>
        <property name="alignment">
         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
@@ -148,6 +151,8 @@
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="build/unknown-Debug/.qt/rcc/Resource.qrc"/>
+ </resources>
  <connections/>
 </ui>

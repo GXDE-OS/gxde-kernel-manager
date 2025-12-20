@@ -5,6 +5,7 @@
 #include <QDateTime>
 #include <QProcessEnvironment>
 #include <QFile>
+#include <QScreen>
 
 AboutWindow::AboutWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -30,6 +31,8 @@ AboutWindow::AboutWindow(QWidget *parent) :
     info += "<hr/>\n";
     info += "<h1>©2023～" + QDateTime::currentDateTime().toString("yyyy") + " gfdgd xi</h1>\n";
     ui->textBrowser->setHtml(info);
+
+    ui->m_logoShower->pixmap().setDevicePixelRatio(QGuiApplication::primaryScreen()->devicePixelRatio());
 }
 
 AboutWindow::~AboutWindow()
@@ -45,6 +48,7 @@ void AboutWindow::on_m_closeButton_clicked()
 
 void AboutWindow::on_m_logoShower_linkActivated(const QString &link)
 {
-    ui->m_logoShower->setText("<html><head/><body><p><a href='https://www.gxde.org'><img width=128 src=\":/icon/icon1.png\"/></a></p></body></html>");
+    ui->m_logoShower->setText("<html><head/><body><p><a href='https://www.gxde.top'><img width=128 src=\":/icon/icon1.png\"/></a></p></body></html>");
+    ui->m_logoShower->pixmap().setDevicePixelRatio(QGuiApplication::primaryScreen()->devicePixelRatio());
 }
 

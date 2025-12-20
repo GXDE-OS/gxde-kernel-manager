@@ -34,5 +34,6 @@ QString ProgramInfo::version()
     file.open(QFile::ReadOnly);
     QString data = file.readAll();
     file.close();
+    data.replace("\n", "");
     return data;
 }

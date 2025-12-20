@@ -23,6 +23,8 @@ KernelInformationDialog::KernelInformationDialog(QJsonObject data, QWidget *pare
     ui->m_PkgName->setText(tr("Package Name:") + " " + kernelText);
     ui->m_kernelArch->setText(tr("Kernel Architecture:") + " " + data.value("Arch").toArray().at(0).toString());
     ui->m_des->setText(data.value("Des").toString());
+
+    ui->linuxIconShower->pixmap().setDevicePixelRatio(QGuiApplication::primaryScreen()->devicePixelRatio());
 }
 
 KernelInformationDialog::~KernelInformationDialog()

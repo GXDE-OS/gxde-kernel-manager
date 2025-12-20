@@ -16,7 +16,12 @@
 
 int main(int argc, char *argv[])
 {
+    QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling, true);
+    QCoreApplication::setAttribute(Qt::AA_UseHighDpiPixmaps, true);
+    QApplication::setHighDpiScaleFactorRoundingPolicy(Qt::HighDpiScaleFactorRoundingPolicy::PassThrough);
+
     QApplication a(argc, argv);
+
     QTranslator translator;
     if(ProgramInfo::systemLANG() == ProgramInfo::LANG::zh_CN) {
         translator.load(":/translations/gxde-kernel-manager_zh_CN.qm");

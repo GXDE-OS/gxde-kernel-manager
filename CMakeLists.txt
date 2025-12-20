@@ -53,7 +53,7 @@ set(Resource_resource_files
     "icon/dialog-warning.svg"
     "icon/gxde-kernel-manager.svg"
     "icon/icon1.png"
-    "icon/tux.png"
+    "icon/tux.svg"
     "shell/kernel-installer-reconfigure-template.sh"
     "shell/kernel-installer-remove-template.sh"
     "shell/kernel-installer-root-loader-template.sh"
