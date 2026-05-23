@@ -20,7 +20,7 @@
   <widget class="QWidget" name="centralwidget">
    <layout class="QHBoxLayout" name="horizontalLayout">
     <item>
-     <widget class="QLabel" name="m_logoShower">
+     <widget class="ClickableLabel" name="m_logoShower">
       <property name="text">
        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href='https://www.gxde.org'&gt;&lt;img width=128 src=&quot;:/icon/gxde-kernel-manager.svg&quot;/&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
@@ -70,6 +70,13 @@
    </layout>
   </widget>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>ClickableLabel</class>
+   <extends>QLabel</extends>
+   <header>aboutwindow.h</header>
+  </customwidget>
+ </customwidgets>
  <resources>
   <include location="Resource.qrc"/>
  </resources>

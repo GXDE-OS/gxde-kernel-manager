@@ -6,6 +6,9 @@
 #include <QFile>
 #include <unistd.h>
 #include <QDebug>
+#include <QIcon>
+#include <QPixmap>
+
 
 #define MAX_TMP_NUM 1024
 #define MIN_TMP_NUM 0
@@ -154,10 +157,13 @@ void KernelInstaller::CheckInstallerStatusTimer()
     // 安装完成
     if(status == 0) {
         ui->m_status->setText(tr("Done"));
-        ui->m_icon->setText("<img src=':/icon/dialog-ok.svg'>");
+        // 修复图标模糊的问题
+        // ui->m_icon->setText("<img src=':/icon/dialog-ok.svg'>");
+        ui->m_icon->setPixmap(QIcon(":/icon/dialog-ok.svg").pixmap(64, 64));
         return;
     }
-    ui->m_icon->setText("<img src=':/icon/dialog-error.svg'>");
+    // ui->m_icon->setText("<img src=':/icon/dialog-error.svg'>");
+    ui->m_icon->setPixmap(QIcon(":/icon/dialog-error.svg").pixmap(64, 64));
     ui->m_status->setText(tr("Something error, exit code: ") + QString::number(status));
 }
 
