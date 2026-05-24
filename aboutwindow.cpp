@@ -40,8 +40,9 @@ AboutWindow::AboutWindow(QWidget *parent) :
     ui->m_logoShower->setCursor(Qt::PointingHandCursor);
 
     connect(ui->m_logoShower, &ClickableLabel::clicked, this, [this]() {
-    QIcon pngIcon(":/icon/icon1.png");
-    ui->m_logoShower->setPixmap(pngIcon.pixmap(QSize(128, 128)));
+        QIcon pngIcon(":/icon/icon1.png");
+        ui->m_logoShower->setPixmap(pngIcon.pixmap(QSize(128, 128)));
+    });
 }
 
 AboutWindow::~AboutWindow()
